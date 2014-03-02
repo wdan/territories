@@ -48,8 +48,8 @@ class PoliticsUK(object):
 
     @classmethod
     def import_nodes(cls):
-        #nodes_file = open("territories/data/politicsuk.ids", "r")
-        nodes_file = open("../data/politicsuk.ids", "r")
+        nodes_file = open("territories/data/politicsuk.ids", "r")
+        #nodes_file = open("../data/politicsuk.ids", "r")
         res = {}
         for row in nodes_file:
             res[int(row)] = {}
@@ -58,8 +58,8 @@ class PoliticsUK(object):
 
     @classmethod
     def import_edges(cls):
-        #edges_file = open("territories/data/politicsuk-retweets.mtx", "r")
-        edges_file = open("../data/politicsuk-retweets.mtx", "r")
+        edges_file = open("territories/data/politicsuk-retweets.mtx", "r")
+        #edges_file = open("../data/politicsuk-retweets.mtx", "r")
         dics = {}
         res = []
         for i, row in enumerate(edges_file):
@@ -74,8 +74,8 @@ class PoliticsUK(object):
 
     @classmethod
     def import_communities(cls):
-        #communities_file = open("territories/data/politicsuk.communities", "r")
-        communities_file = open("../data/politicsuk.communities", "r")
+        communities_file = open("territories/data/politicsuk.communities", "r")
+        #communities_file = open("../data/politicsuk.communities", "r")
         res = {}
         for i, row in enumerate(communities_file):
             row_entries = row.split(":")

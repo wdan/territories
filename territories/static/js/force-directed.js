@@ -54,7 +54,7 @@ function draw_force_directed_graph() {
                   //console.log("max2: " + 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size) + 50);
                   //return 10 * (50 - Math.sqrt(d.weight)) + 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size);
                   //return Math.max(10 * (50 - Math.sqrt(d.weight)) , 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size) + 20);
-                  return 30;
+                  return 10;
                 //return link_scale(d.weight) + 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size);
 
               })

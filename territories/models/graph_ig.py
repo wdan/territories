@@ -5,7 +5,7 @@ from random import randint
 import igraph as ig
 
 from graph import AbstractGraph
-from politicsuk_data import PoliticsUK
+from data_politicsuk import PoliticsUK
 
 
 class IGGraph(AbstractGraph):

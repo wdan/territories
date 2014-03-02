@@ -4,7 +4,7 @@ import networkx as nx
 from networkx.readwrite import json_graph
 
 from graph import AbstractGraph
-from politicsuk_data import PoliticsUK
+from data_politicsuk import PoliticsUK
 
 
 class NXGraph(AbstractGraph):

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from random import randint
+
 import igraph as ig
 
 from graph import AbstractGraph
@@ -39,6 +41,24 @@ class IGGraph(AbstractGraph):
         res = PoliticsUK.import_communities()
         for key in res.keys():
             self.igraph_g.vs[self.node_dic[key]]["cluster"] = res[key]
+
+    @classmethod
+    def gen_artifitial_graph(cls, num_com, num_in_com, edge_pr_in_com=0.6,
+                             edge_pr_btw_com=0.05):
+        g = ig.Graph()
+        n_c = num_com
+        n_in_c = num_in_com
+        p_in_c = edge_pr_in_com
+        p_btw_c = edge_pr_btw_com
+        for i in xrange(n_c):
+            g += ig.Graph.GRG(n_in_c, p_in_c)
+
+        for f in xrange(n_c - 1):
+            for t in range(f + 1, n_c):
+                for j in xrange(int((n_in_c * (n_in_c - 1) / 2) * p_btw_c)):
+                    g.add_edge(randint(f * n_in_c, (f + 1) * n_in_c - 1),
+                               randint(t * n_in_c, (t + 1) * n_in_c - 1))
+        return g
 
 if __name__ == "__main__":
     graph = IGGraph()

@@ -1,6 +1,6 @@
 from flask import render_template
 from territories import territories
-from territories.models.graph import Graph
+from territories.models.graph_nx import NXGraph
 
 
 @territories.route('/')
@@ -10,5 +10,5 @@ def index():
 
 @territories.route('/_get_graph_data')
 def get_data():
-    graph = Graph()
+    graph = NXGraph()
     return graph.to_json()

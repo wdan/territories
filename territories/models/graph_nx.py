@@ -9,10 +9,12 @@ from politicsuk_data import PoliticsUK
 
 class NXGraph(AbstractGraph):
 
-    def __init__(self):
+    def __init__(self, g_type="all"):
         self.nx_g = nx.Graph()
-        #self.init_all()
-        #self.init_cluster()
+        if g_type == "cluster":
+            self.init_cluster()
+        else:
+            self.init_all()
 
     def import_cluster_nodes(self):
         res = PoliticsUK.import_cluster_nodes()

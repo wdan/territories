@@ -11,6 +11,8 @@ from data_politicsuk import PoliticsUK
 
 class NXGraph(AbstractGraph):
 
+    ADJUST_NUMBER = 1
+
     def __init__(self, g_type="all"):
         self.nx_g = nx.Graph()
         if g_type == "cluster":
@@ -89,7 +91,7 @@ class NXGraph(AbstractGraph):
             self.nx_g.node["cluster" + str(i)]["cluster"] = i
         for e in self.nx_g.nodes():
             if type(e) is int:
-                if self.nx_g.node[e]["out_degree"] > 1:
+                if self.nx_g.node[e]["out_degree"] > self.ADJUST_NUMBER:
                     self.nx_g.node[e]["size"] = 1
                 else:
                     cluster = self.nx_g.node[e]["cluster"]
@@ -99,9 +101,9 @@ class NXGraph(AbstractGraph):
         for e in self.nx_g.edges():
             num0 = self.nx_g.node[e[0]]["out_degree"]
             num1 = self.nx_g.node[e[1]]["out_degree"]
-            if (num0 > 1 and num1 > 1):
+            if (num0 > self.ADJUST_NUMBER and num1 > self.ADJUST_NUMBER):
                 self.nx_g.edge[e[0]][e[1]]["weight"] = 1
-            elif (num0 > 1):
+            elif (num0 > self.ADJUST_NUMBER):
                 cluster_num = self.nx_g.node[e[1]]["cluster"]
                 t_s = "cluster" + str(cluster_num)
                 if self.nx_g.has_edge(t_s, e[0]):
@@ -110,7 +112,7 @@ class NXGraph(AbstractGraph):
                     self.nx_g.add_edge(t_s, e[0])
                     self.nx_g.edge[t_s][e[0]]["weight"] = 1
                 self.nx_g.remove_edge(e[0], e[1])
-            elif (num1 > 1):
+            elif (num1 > self.ADJUST_NUMBER):
                 cluster_num = self.nx_g.node[e[0]]["cluster"]
                 t_s = "cluster" + str(cluster_num)
                 if self.nx_g.has_edge(t_s, e[1]):
@@ -122,7 +124,7 @@ class NXGraph(AbstractGraph):
             else:
                 self.nx_g.remove_edge(e[0], e[1])
         for e in self.nx_g.nodes():
-            if type(e) is int and self.nx_g.node[e]["out_degree"] <= 1 or self.nx_g.node[e]["size"] == 0:
+            if type(e) is int and self.nx_g.node[e]["out_degree"] <= self.ADJUST_NUMBER or self.nx_g.node[e]["size"] == 0:
                 self.nx_g.remove_node(e)
 
     @classmethod

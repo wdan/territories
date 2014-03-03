@@ -82,4 +82,4 @@ class PoliticsUK(object):
             nodes_id_list = row_entries[1].split(",")
             for e in nodes_id_list:
                 res[int(e)] = i + 1
-        return res
+        return (6, res)

@@ -54,9 +54,12 @@ function draw_force_directed_graph() {
                   //console.log("max2: " + 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size) + 50);
                   //return 10 * (50 - Math.sqrt(d.weight)) + 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size);
                   //return Math.max(10 * (50 - Math.sqrt(d.weight)) , 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size) + 20);
-                  return 10;
-                //return link_scale(d.weight) + 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size);
-
+                  //return link_scale(d.weight) + 10 * Math.sqrt(d.source.size) + 10 * Math.sqrt(d.target.size);
+                  if (d.source.size > 0)
+                      return d.source.size + 120;
+                  if (d.target.size > 0)
+                      return d.target.size + 120;
+                  return 20;
               })
               .linkStrength(function(d) {
                   //return 1.0 / 85 * d.weight;
@@ -67,6 +70,19 @@ function draw_force_directed_graph() {
               .size([width, height]);
 
         force.start();
+        
+        var pos = [{"x":500, "y":400}, {"x":260, "y":160}, {"x":600, "y":200}, {"x":300, "y":550}, {"x":480, "y":100}];
+        var t = 0;
+        for (var i = 0; i < nodes.length; i++)
+            if (nodes[i]["size"] > 1) {
+                nodes[i]["fixed"] = true;
+                var n = nodes[i]["cluster"];
+                nodes[i]["x"] = pos[n-1]["x"];
+                nodes[i]["y"] = pos[n-1]["y"];
+                nodes[i]["px"] = pos[n-1]["x"];
+                nodes[i]["py"] = pos[n-1]["y"];
+                t++;
+            }
 
         node = svg.selectAll('.node')
                 .data(nodes)
@@ -74,9 +90,21 @@ function draw_force_directed_graph() {
                 .attr('class', 'node')
                 .style('opacity', 0.5)
                 .attr('r', function(d) {
-                    //return 10 * Math.sqrt(d.size);
-                    return 5;
+                    if (d.size < 5)
+                        return 5
+                    else 
+                        return d.size
+                    //return 5;
                 })
+                //.style('stroke', 'black')
+                //.style('stroke-width', 2)
+                //.style('stroke-opacity', function(d) {
+                    //if (d.out_degree > 0) {
+                        //return 1;
+                    //}else {
+                        //return 0;
+                    //}
+                //})
                 .style('fill', function(d) {
                     //return color(d.id);
                     return color(d.cluster);
@@ -89,10 +117,10 @@ function draw_force_directed_graph() {
                     return 'link';
                 })
                 .style('stroke', '#222222')
-                .style('opacity', 0.3)
+                .style('opacity', 0.1)
                 .style('stroke-width', function(d) {
-                    //return Math.sqrt(d.weight);
-                    return 1;
+                    return Math.sqrt(d.weight);
+                    //return 1;
                 });
 
         //var k = 0;
@@ -100,6 +128,8 @@ function draw_force_directed_graph() {
             //force.tick(),
             //k = k + 1;
         //}
+
+        force.start();
 
         function collide(alpha) {
           var quadtree = d3.geom.quadtree(nodes);
@@ -130,14 +160,13 @@ function draw_force_directed_graph() {
         }
 
         function tick(e) {
+            node.attr('cx', function(d) { return d.x; })
+                .attr('cy', function(d) { return d.y; });
+
             link.attr('x1', function(d) { return d.source.x; })
                 .attr('y1', function(d) { return d.source.y; })
                 .attr('x2', function(d) { return d.target.x; })
                 .attr('y2', function(d) { return d.target.y; });
-
-            //node.each(collide(.5));
-            node.attr('cx', function(d) { return d.x; })
-                .attr('cy', function(d) { return d.y; });
         }
     });
 }

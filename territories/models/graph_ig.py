@@ -38,7 +38,8 @@ class IGGraph(AbstractGraph):
             self.igraph_g.add_edges((src, tgt))
 
     def import_communities(self):
-        res = PoliticsUK.import_communities()
+        (n, res) = PoliticsUK.import_communities()
+        self.igraph_g["community-num"] = n
         for key in res.keys():
             self.igraph_g.vs[self.node_dic[key]]["cluster"] = res[key]
 

@@ -90,10 +90,11 @@ function draw_force_directed_graph() {
                 .attr('class', 'node')
                 .style('opacity', 0.5)
                 .attr('r', function(d) {
+                    return 5;
                     if (d.size < 5)
-                        return 5
-                    else 
-                        return d.size
+                        return 5;
+                    else
+                        return d.size;
                     //return 5;
                 })
                 //.style('stroke', 'black')

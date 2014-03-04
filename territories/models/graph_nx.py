@@ -7,6 +7,7 @@ from networkx.readwrite import json_graph
 
 from graph import AbstractGraph
 from data_politicsuk import PoliticsUK
+from force_directed import ForceDirectedLayout
 
 
 class NXGraph(AbstractGraph):
@@ -25,7 +26,11 @@ class NXGraph(AbstractGraph):
         self.import_edges()
         self.import_communities()
         self.cal_degree()
-        self.adjust_graph()
+        p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(), self.nx_g.edges(),
+                                           1000, 1000)
+        for i, e in enumerate(self.nx_g.nodes()):
+            self.nx_g.node[e]["x"] = p[i]["x"]
+            self.nx_g.node[e]["y"] = p[i]["y"]
 
     def init_cluster(self):
         self.import_cluster_nodes()

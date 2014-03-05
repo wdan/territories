@@ -23,8 +23,10 @@ class NXGraph(AbstractGraph):
         self.width = width
         self.height = height
         self.nx_g = nx.Graph()
-        if g_type == "cluster":
-            self.init_cluster()
+        if g_type == "r_cluster":
+            self.init_r_cluster()
+        elif g_type == "d_cluster":
+            self.init_d_cluster()
         else:
             self.init_all()
 
@@ -41,14 +43,15 @@ class NXGraph(AbstractGraph):
         #self.adjust_graph()
         self.cal_force_directed_positions()
 
-    def init_cluster(self):
+    def init_d_cluster(self):
         self.nx_g.clear()
+        self.import_cluster_nodes()
+        self.import_cluster_edges()
+
+    def init_r_cluster(self):
         generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
+        self.nx_g = generator.get_nx()
         self.nx_g = generator.community_detection(generator.get_ig())
-        #generator = GraphGenerator(12, 30)
-        #self.nx_g = generator.get_nx()
-        #self.import_cluster_nodes()
-        #self.import_cluster_edges()
 
     def cal_mds_positions(self):
         (matrix, m) = self.cal_edge_weight_matrix()

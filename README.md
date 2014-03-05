@@ -1,1 +1,1 @@
-Python library dependencies: Flask, networkx, igraph, py4j, Polygon2, sklearn, cairo
+Python library dependencies: Flask, networkx, igraph, py4j, sklearn, cairo

@@ -3,3 +3,4 @@
 *.pyc
 .sass-cache
 python_igraph.egg-info/
+venv/

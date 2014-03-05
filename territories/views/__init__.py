@@ -10,7 +10,7 @@ def index():
 
 @territories.route('/_get_graph_data')
 def get_data():
-    graph = NXGraph('cluster')
+    graph = NXGraph('')
     return NXGraph.to_json(graph.nx_g)
 
 

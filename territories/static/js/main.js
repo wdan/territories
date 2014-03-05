@@ -10,6 +10,7 @@ var color = d3.scale.category10();
 set_mouse_event_handler();
 //draw_force_directed_graph();
 draw_voronoi();
+//draw_cluster()
 function draw_cluster() {
     $.ajax({
         dataType: 'json',
@@ -49,8 +50,8 @@ function draw_cluster() {
                         //}
                     //})
                     .style('fill', function(d) {
-                        return color(d.id);
-                        //return color(d.cluster);
+                        //return color(d.id);
+                        return color(d.cluster);
                     });
                     //}).call(force.drag);
 

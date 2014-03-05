@@ -73,7 +73,7 @@ function draw_voronoi() {
 
                 })
                 .style('fill', 'steelblue')
-                .style('opacity', function(d) {
+                .style('fill-opacity', function(d) {
                     return Math.random() / 1.5;
                 })
                 .attr('stroke', 'steelblue')

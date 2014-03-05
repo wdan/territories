@@ -21,7 +21,7 @@ class MDSLayout(object):
         mds = manifold.MDS(n_components=2, max_iter=3000, eps=1e-9,
                            dissimilarity="precomputed", n_jobs=1)
         pos = mds.fit(similarities).embedding_
-        print pos
+        #print pos
         return pos
 
 if __name__ == "__main__":

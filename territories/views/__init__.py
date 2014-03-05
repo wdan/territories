@@ -1,6 +1,7 @@
 from flask import render_template
 from territories import territories
 from territories.models.graph_nx import NXGraph
+from territories.models.voronoi import Voronoi
 
 
 @territories.route('/')
@@ -18,4 +19,6 @@ def get_data():
 def get_voronoi_data():
     graph = NXGraph('cluster')
     graph.cal_mds_positions()
-    return "[" + NXGraph.to_json(graph.nx_g) + "," + graph.cal_cluster_voronoi_positions() + "]"
+    s = graph.cal_cluster_voronoi_positions()
+    v = Voronoi(s)
+    return "[" + NXGraph.to_json(graph.nx_g) + "," + s + "]"

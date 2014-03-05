@@ -30,7 +30,7 @@ $.ajax({
                     return d.y;
                 })
                 .attr('r', function(d) {
-                    return 5;
+                    //return 5;
                     if (d.size < 5)
                         return 5;
                     else
@@ -47,9 +47,10 @@ $.ajax({
                     //}
                 //})
                 .style('fill', function(d) {
-                    //return color(d.id);
-                    return color(d.cluster);
-                }).call(force.drag);
+                    return color(d.id);
+                    //return color(d.cluster);
+                });
+                //}).call(force.drag);
 
         link = svg.selectAll('.link')
                 .data(edges)
@@ -57,13 +58,16 @@ $.ajax({
                 .attr('class', function(d) {
                     return 'link';
                 })
+                .attr('x1', function(d) { return nodes[d.source].x;})
+                .attr('y1', function(d) { return nodes[d.source].y; })
+                .attr('x2', function(d) { return nodes[d.target].x; })
+                .attr('y2', function(d) { return nodes[d.target].y; })
                 .style('stroke', '#222222')
                 .style('opacity', 0.1)
                 .style('stroke-width', function(d) {
                     return Math.sqrt(d.weight);
                     //return 1;
                 });
-
     }
 });
 

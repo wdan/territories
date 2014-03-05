@@ -4,7 +4,7 @@ import numpy as np
 from sklearn import manifold
 
 
-class MDS(object):
+class MDSLayout(object):
 
     @classmethod
     def cal_mds(cls, data, veryLarge):
@@ -25,8 +25,8 @@ class MDS(object):
         return pos
 
 if __name__ == "__main__":
-    veryLarge = 400
+    veryLarge = int(442.5)
     data = [[veryLarge, 295, 74, 3, 6], [295, veryLarge, 82, 11, 13],
             [74, 82, veryLarge, 0, 4], [3, 11, 0, veryLarge, 5],
             [6, 13, 4, 5, veryLarge]]
-    print MDS.cal_mds(data, veryLarge)
+    print MDSLayout.cal_mds(data, veryLarge)

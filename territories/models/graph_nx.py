@@ -1,48 +1,123 @@
 # -*- coding: utf-8 -*-
 
-from sets import Set
+from random import randint
 
 import networkx as nx
 from networkx.readwrite import json_graph
 
 from graph import AbstractGraph
-from data_politicsuk import PoliticsUK
+from data_politicsuk import PoliticsUK as DataSet
 from force_directed import ForceDirectedLayout
+from mds import MDSLayout
+from util import translate
 
 
 class NXGraph(AbstractGraph):
 
     ADJUST_NUMBER = 1
+    MAX_SIZE = 1000
 
-    def __init__(self, g_type="all"):
+    def __init__(self, g_type="all", width=500, height=500):
+        self.width = width
+        self.height = height
         self.nx_g = nx.Graph()
         if g_type == "cluster":
             self.init_cluster()
         else:
             self.init_all()
 
+    @property
+    def size(self):
+        return len(self.nx_g.nodes())
+
     def init_all(self):
+        self.nx_g.clear()
         self.import_nodes()
         self.import_edges()
         self.import_communities()
         self.cal_degree()
+        #self.adjust_graph()
+        self.cal_force_directed_positions()
+
+    def init_cluster(self):
+        self.nx_g.clear()
+        self.import_cluster_nodes()
+        self.import_cluster_edges()
+        self.cal_mds_positions()
+        self.cal_cluster_voronoi_positions()
+
+    def cal_mds_positions(self):
+        (matrix, m) = self.cal_edge_weight_matrix()
+        p = MDSLayout.cal_mds(matrix, m)
+        x_min = min(map(lambda e: e[0], p))
+        x_max = max(map(lambda e: e[0], p))
+        y_min = min(map(lambda e: e[1], p))
+        y_max = max(map(lambda e: e[1], p))
+        for i, e in enumerate(self.nx_g.nodes()):
+            self.nx_g.node[e]["x"] = translate(p[i][0], x_min, x_max,
+                                               0, self.width)
+            self.nx_g.node[e]["y"] = translate(p[i][1], y_min, y_max,
+                                               0, self.height)
+
+    def cal_edge_weight_matrix(self):
+        n = self.size
+        m = 0
+        matrix = [[0 for x in xrange(n)] for x in xrange(n)]
+        node_dict = {}
+        for i, e in enumerate(self.nx_g.nodes()):
+            node_dict[e] = i
+        for e in self.nx_g.edges():
+            index0 = node_dict[e[0]]
+            index1 = node_dict[e[1]]
+            weight = self.nx_g.edge[e[0]][e[1]]["weight"]
+            matrix[index0][index1] = int(weight)
+            matrix[index1][index0] = int(weight)
+            if m < weight:
+                m = weight
+        for i in xrange(n):
+            matrix[i][i] = int(m * 1.5)
+        return (matrix, int(m * 1.5))
+
+    def cal_force_directed_positions(self):
         p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(), self.nx_g.edges(),
-                                           1000, 1000)
+                                           self.WIDTH, self.HEIGHT)
         for i, e in enumerate(self.nx_g.nodes()):
             self.nx_g.node[e]["x"] = p[i]["x"]
             self.nx_g.node[e]["y"] = p[i]["y"]
 
-    def init_cluster(self):
-        self.import_cluster_nodes()
-        self.import_cluster_edges()
+    def cal_cluster_voronoi_positions(self):
+        from py4j.java_gateway import JavaGateway
+        gateway = JavaGateway(auto_convert=True)
+        java_app = gateway.entry_point
+        x = []
+        y = []
+        w = []
+        for n in self.nx_g.nodes():
+            if "x" in self.nx_g.node[n]:
+                t_x = float(self.nx_g.node[n]["x"])
+            else:
+                t_x = float(randint(0, self.width))
+            if "y" in self.nx_g.node[n]:
+                t_y = float(self.nx_g.node[n]["y"])
+            else:
+                t_y = float(randint(0, self.height))
+            if "size" in self.nx_g.node[n]:
+                t_w = float(self.nx_g.node[n]["size"])
+            else:
+                t_w = float(randint(0, self.MAX_SIZE))
+            x.append(t_x)
+            y.append(t_y)
+            w.append(t_w)
+        res = java_app.calVoronoiTreemap(x, y, w, self.width, self.height)
+        print res
 
     def import_cluster_nodes(self):
-        res = PoliticsUK.import_cluster_nodes()
+        res = DataSet.import_cluster_nodes()
         for i, e in enumerate(res.keys()):
             self.nx_g.add_node(i, size=res[i])
 
     def import_cluster_edges(self):
-        res = PoliticsUK.import_cluster_edges()
+        res = DataSet.import_cluster_edges()
         for key in res.keys():
             attributes = res[key]
             self.nx_g.add_edge(key[0], key[1])
@@ -50,7 +125,7 @@ class NXGraph(AbstractGraph):
                 self.nx_g.edge[key[0]][key[1]][attr] = attributes[attr]
 
     def import_nodes(self):
-        res = PoliticsUK.import_nodes()
+        res = DataSet.import_nodes()
         for key in res.keys():
             self.nx_g.add_node(key)
             attributes = res[key]
@@ -58,12 +133,12 @@ class NXGraph(AbstractGraph):
                 self.nx_g.node[key][attr] = attributes[attr]
 
     def import_edges(self):
-        res = PoliticsUK.import_edges()
+        res = DataSet.import_edges()
         for e in res:
             self.nx_g.add_edge(e[0], e[1])
 
     def import_communities(self):
-        (n, res) = PoliticsUK.import_communities()
+        (n, res) = DataSet.import_communities()
         self.nx_g.graph["community-num"] = n
         for key in res.keys():
             self.nx_g.node[key]["cluster"] = res[key]
@@ -129,7 +204,8 @@ class NXGraph(AbstractGraph):
             else:
                 self.nx_g.remove_edge(e[0], e[1])
         for e in self.nx_g.nodes():
-            if type(e) is int and self.nx_g.node[e]["out_degree"] <= self.ADJUST_NUMBER or self.nx_g.node[e]["size"] == 0:
+            if (type(e) is int and self.nx_g.node[e]["out_degree"] <=
+                    self.ADJUST_NUMBER or self.nx_g.node[e]["size"] == 0):
                 self.nx_g.remove_node(e)
 
     @classmethod

@@ -11,7 +11,6 @@ class ForceDirectedLayout(object):
 
     @classmethod
     def cal_layout(cls, nodes, edges, width, height):
-        print "Hello"
         n = len(nodes)
         positions = []
         for i in xrange(n):
@@ -41,8 +40,8 @@ class ForceDirectedLayout(object):
                         j_x = positions[j]["x"]
                         j_y = positions[j]["y"]
                         d = cls.cal_distance(i_x, i_y, j_x, j_y)
-                        vector_i_x += float(i_x - j_x) / pow(d, 3) * 100
-                        vector_i_y += float(i_y - j_y) / pow(d, 3) * 100
+                        vector_i_x += float(i_x - j_x) / pow(d, 2) * 10
+                        vector_i_y += float(i_y - j_y) / pow(d, 2) * 10
                 for j in edges_dict[i]:
                     if (i != j):
                         j_x = positions[j]["x"]

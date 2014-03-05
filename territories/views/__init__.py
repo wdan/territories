@@ -12,3 +12,10 @@ def index():
 def get_data():
     graph = NXGraph('cluster')
     return NXGraph.to_json(graph.nx_g)
+
+
+@territories.route('/_get_voronoi_data')
+def get_voronoi_data():
+    graph = NXGraph('cluster')
+    graph.cal_mds_positions()
+    return "[" + NXGraph.to_json(graph.nx_g) + "," + graph.cal_cluster_voronoi_positions() + "]"

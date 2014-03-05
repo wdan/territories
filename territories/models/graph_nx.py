@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import json
 from random import randint
 
 import networkx as nx
 from networkx.readwrite import json_graph
 
 from graph import AbstractGraph
+from graph_generator import GraphGenerator
 from data_politicsuk import PoliticsUK as DataSet
 from force_directed import ForceDirectedLayout
 from mds import MDSLayout
@@ -17,7 +19,7 @@ class NXGraph(AbstractGraph):
     ADJUST_NUMBER = 1
     MAX_SIZE = 1000
 
-    def __init__(self, g_type="all", width=500, height=500):
+    def __init__(self, g_type="all", width=960, height=720):
         self.width = width
         self.height = height
         self.nx_g = nx.Graph()
@@ -41,10 +43,12 @@ class NXGraph(AbstractGraph):
 
     def init_cluster(self):
         self.nx_g.clear()
-        self.import_cluster_nodes()
-        self.import_cluster_edges()
-        self.cal_mds_positions()
-        self.cal_cluster_voronoi_positions()
+        generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
+        self.nx_g = generator.community_detection(generator.get_ig())
+        #generator = GraphGenerator(12, 30)
+        #self.nx_g = generator.get_nx()
+        #self.import_cluster_nodes()
+        #self.import_cluster_edges()
 
     def cal_mds_positions(self):
         (matrix, m) = self.cal_edge_weight_matrix()
@@ -80,7 +84,7 @@ class NXGraph(AbstractGraph):
 
     def cal_force_directed_positions(self):
         p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(), self.nx_g.edges(),
-                                           self.WIDTH, self.HEIGHT)
+                                           self.width, self.height)
         for i, e in enumerate(self.nx_g.nodes()):
             self.nx_g.node[e]["x"] = p[i]["x"]
             self.nx_g.node[e]["y"] = p[i]["y"]
@@ -109,7 +113,7 @@ class NXGraph(AbstractGraph):
             y.append(t_y)
             w.append(t_w)
         res = java_app.calVoronoiTreemap(x, y, w, self.width, self.height)
-        print res
+        return res
 
     def import_cluster_nodes(self):
         res = DataSet.import_cluster_nodes()

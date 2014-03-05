@@ -44,3 +44,13 @@ class Polygon(object):
         x = k * v["length"] * v["x"] + x1
         y = k * v["length"] * v["y"] + y1
         return (x, y)
+
+    def to_dict(self):
+        dict_res = {}
+        dict_res["cluster"] = self.cluster
+        dict_res["mid_x"] = self.mid_x
+        dict_res["mid_y"] = self.mid_y
+        dict_res["points"] = []
+        for e in self.edge_list:
+            dict_res["points"].append({"x": e["x1"], "y": e["y1"]})
+        return dict_res

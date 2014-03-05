@@ -4,44 +4,35 @@
 
     // data
 function draw_voronoi() {
-    // center node
     $.ajax({
         dataType: 'json',
         url: '/_get_voronoi_data',
         async: false,
         success: function(data) {
-            console.log(data);
             var edges = data[0]['links'];
-            var node = data[1]['nodes'];
-            var vono = data[1]['polygons'];
-            var w = 960;
-            var h = 720;
-            // compute coordinate max, min for scale
-            //
+            var polygons = data[1];
             cluster_dict = {}
             var xlist = [];
             var ylist = [];
-            for (var i = 0; i < node.length; i++) {
-                xlist.push(node[i].x);
-                ylist.push(node[i].y);
-                cluster_id = node[i].cluster;
-                cluster_dict[cluster_id] = {'x': node[i].x, 'y': node[i].y};
+            var node = []
+            var vono = [];
+            for (var i = 0; i < polygons.length; i++) {
+                xlist.push(polygons[i]['mid_x']);
+                ylist.push(polygons[i]['mid_y']);
+                node.push({'x': polygons[i]['mid_x'], 'y': polygons[i]['mid_y']});
+                cluster_id = polygons[i]['cluster'];
+                cluster_dict[cluster_id] = {'x': polygons[i]['mid_x'], 'y': polygons[i]['mid_y']};
+                vono[i] = polygons[i]['points'];
                 for (var j = 0; j < vono[i].length; j++) {
-                    xlist.push(vono[i][j].x);
-                    ylist.push(vono[i][j].y);
+                    console.log(vono[i][j]);
+                    xlist.push(vono[i][j]['x']);
+                    ylist.push(vono[i][j]['y']);
                 }
             }
 
             // x, y axis scale
-            var xscale =  d3.scale.linear().domain([Math.min.apply(Math, xlist), Math.max.apply(Math, xlist)]).range([0, w]);
-            var yscale = d3.scale.linear().domain([Math.min.apply(Math, ylist), Math.max.apply(Math, ylist)]).range([0, h]);
-
-            var svg = d3.select('body').append('svg')
-                        .attr('width', w)
-                        .attr('height', h)
-                        .on('click', function() {
-                            console.log(d3.mouse(this));
-                        });
+            //var xscale =  d3.scale.linear().domain([Math.min.apply(Math, xlist), Math.max.apply(Math, xlist)]).range([0, width]);
+            //var yscale = d3.scale.linear().domain([Math.min.apply(Math, ylist), Math.max.apply(Math, ylist)]).range([0, height]);
 
             // draw nodes
             svg.selectAll('circle')
@@ -49,8 +40,8 @@ function draw_voronoi() {
                 .enter()
                 .append('circle')
                 .attr('r', 5)
-                .attr('cx', function(d) {return xscale(d.x);})
-                .attr('cy', function(d) {return yscale(d.y);})
+                .attr('cx', function(d) {return d.x;})
+                .attr('cy', function(d) {return d.y;})
                 .attr('fill', '#2ca25f');
 
             // draw path
@@ -60,20 +51,19 @@ function draw_voronoi() {
                 .append('path')
                 .attr('d', function(d, i) {
 
-                    var scale = 50;
-                    var tmp = interp(node[i], d[0], scale);
-                    var s = 'M ' + xscale(tmp.x) + ' ' + yscale(tmp.y);
+                    //var scale = 50;
+                    //var tmp = interp(node[i], d[0], scale);
+                    var s = 'M ' + d[0]['x'] + ' ' + d[0]['y'];
 
-                    for(var j = 1; j < d.length; j++) {
-                        tmp = interp(node[i], d[j], scale);
-                        s += ' L ' + xscale(tmp.x) + ' ' + xscale(tmp.y);
+                    for (var j = 1; j < d.length; j++) {
+                        s += ' L ' + d[j]['x'] + ' ' + d[j]['y'];
                     }
                     s += 'Z';
                     return s;
 
                 })
                 .style('fill', 'steelblue')
-                .style('fill-opacity', function(d) {
+                .style('opacity', function(d) {
                     return Math.random() / 1.5;
                 })
                 .attr('stroke', 'steelblue')

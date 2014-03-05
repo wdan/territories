@@ -65,3 +65,9 @@ class Voronoi(object):
                     constraints_item["y2"] = e["y2"]
                     constraints_dict[(cluster_src, cluster_tgt)] = constraints_item
         return constraints_dict
+
+    def to_json(self):
+            js_res = []
+            for p in self.polygons:
+                js_res.append(p.to_dict())
+            return json.dumps(js_res)

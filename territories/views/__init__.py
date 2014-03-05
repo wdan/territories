@@ -17,9 +17,9 @@ def get_data():
 
 @territories.route('/_get_voronoi_data')
 def get_voronoi_data():
-    graph = NXGraph('d_cluster')
+    graph = NXGraph('r_cluster')
     graph.cal_mds_positions()
     s = graph.cal_cluster_voronoi_positions()
     v = Voronoi(s)
     v.get_constraints_dict()
-    return "[" + NXGraph.to_json(graph.nx_g) + "," + s + "]"
+    return "[" + NXGraph.to_json(graph.nx_g) + "," + v.to_json() + "]"

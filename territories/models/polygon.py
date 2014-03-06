@@ -5,6 +5,8 @@ from util import interp
 
 class Polygon(object):
 
+    SCALE = 50
+
     def __init__(self, cluster_id, x, y):
         self.edge_list = []
         self.cluster = cluster_id
@@ -13,8 +15,8 @@ class Polygon(object):
 
     def add_edge(self, x1, y1, x2, y2, tgt_cluster_id):
         edge_dict = {}
-        (xA, yA) = interp(self.mid_x, self.mid_y, x1, y1, 50)
-        (xB, yB) = interp(self.mid_x, self.mid_y, x2, y2, 50)
+        (xA, yA) = interp(self.mid_x, self.mid_y, x1, y1, self.SCALE)
+        (xB, yB) = interp(self.mid_x, self.mid_y, x2, y2, self.SCALE)
         edge_dict["x1"] = xA
         edge_dict["y1"] = yA
         edge_dict["x2"] = xB
@@ -24,7 +26,6 @@ class Polygon(object):
             c = item
         edge_dict["tgt_cluster"] = c
         self.edge_list.append(edge_dict)
-
 
     def to_dict(self):
         dict_res = {}

@@ -4,6 +4,7 @@ import json
 
 from polygon import Polygon
 
+from constraint import Constraint
 
 class Voronoi(object):
 
@@ -58,14 +59,9 @@ class Voronoi(object):
             for e in p.edge_list:
                 if e["tgt_cluster"] is not None:
                     cluster_tgt = e["tgt_cluster"]
-                    constraints_item = {}
-                    constraints_item["x1"] = e["x1"]
-                    constraints_item["y1"] = e["y1"]
-                    constraints_item["x2"] = e["x2"]
-                    constraints_item["y2"] = e["y2"]
-                    constraints_item["mid_x"] = p.mid_x
-                    constraints_item["mid_y"] = p.mid_y
-                    constraints_dict[(cluster_src, cluster_tgt)] = constraints_item
+                    c = Constraint(e["x1"], e["y1"], e["x2"], e["y2"],
+                                   p.mid_x, p.mid_y)
+                    constraints_dict[(cluster_src, cluster_tgt)] = c
         return constraints_dict
 
     def to_json(self):

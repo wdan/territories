@@ -4,5 +4,12 @@
 <div class="container" style="margin-top:50px">
     <div id="paint_zone" class="col-md-12">
     </div>
+    <svg id='filter'>
+	<defs>
+	    <filter id="ball-glow">
+		<feGaussianBlur in="SourceGraphic" stdDeviation="2"></feGaussianBlur>
+	    </filter>
+	</defs>
+    </svg>
 </div>
 {% endblock %}

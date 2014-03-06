@@ -53,7 +53,10 @@ class NXGraph(AbstractGraph):
     def init_r_cluster(self):
         generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
         self.nx_g = generator.get_nx()
-        self.nx_g = generator.community_detection(generator.get_ig())
+        #g = generator.get_ig()
+        #cv = generator.community_detection(g)
+        #original_graph = generator.get_nx()
+        #clustered_graph = generator.convert2nx(cv)
 
     def cal_mds_positions(self):
         (matrix, m) = self.cal_edge_weight_matrix()
@@ -100,7 +103,8 @@ class NXGraph(AbstractGraph):
         for i, e in enumerate(self.nx_g.edges()):
             cluster1 = self.nx_g.node[e[0]]["cluster"]
             cluster2 = self.nx_g.node[e[1]]["cluster"]
-            if ((cluster1, cluster2) in constraints_dict or cluster1 == cluster2) and e[0] in p and e[1] in p:
+            #if ((cluster1, cluster2) in constraints_dict or cluster1 == cluster2) and e[0] in p and e[1] in p:
+            if ((cluster1, cluster2) in constraints_dict) and e[0] in p and e[1] in p:
                 self.nx_g.edge[e[0]][e[1]]["visible"] = 1
             else:
                 self.nx_g.edge[e[0]][e[1]]["visible"] = 0
@@ -187,7 +191,12 @@ class NXGraph(AbstractGraph):
                 self.nx_g.node[e]["in_degree"] = indegree
                 self.nx_g.node[e]["out_degree"] = outdegree
                 if outdegree > 0:
-                    tgt_cluster = max(map(lambda key: tgt_cluster_edge_num_dict[key], tgt_cluster_edge_num_dict.keys()))
+                    cluster_max = 0
+                    tgt_cluster = -1
+                    for cluster_key in tgt_cluster_edge_num_dict.keys():
+                        if cluster_max < tgt_cluster_edge_num_dict[cluster_key]:
+                            cluster_max = tgt_cluster_edge_num_dict[cluster_key]
+                            tgt_cluster = cluster_key
                     self.nx_g.node[e]["tgt_cluster"] = tgt_cluster
 
     def adjust_graph(self):
@@ -234,8 +243,7 @@ class NXGraph(AbstractGraph):
             else:
                 self.nx_g.remove_edge(e[0], e[1])
         for e in self.nx_g.nodes():
-            if (type(e) is int and self.nx_g.node[e]["out_degree"] <=
-                    self.ADJUST_NUMBER or self.nx_g.node[e]["size"] == 0):
+            if (self.nx_g.node[e]["out_degree"] <= self.ADJUST_NUMBER or self.nx_g.node[e]["size"] == 0):
                 self.nx_g.remove_node(e)
 
     @classmethod

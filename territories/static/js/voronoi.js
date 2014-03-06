@@ -6,7 +6,7 @@
 function draw_voronoi() {
     $.ajax({
         dataType: 'json',
-        url: '/_get_voronoi_data',
+        url: '/_get_voronoi_data_r',
         async: false,
         success: function(data) {
             var nodes = data['cluster']['nodes'];
@@ -65,22 +65,21 @@ function draw_voronoi() {
                 .attr('stroke-width', '3px')
                 .attr('stroke-opacity', 1);
 
-            link = svg.selectAll('.link')
-                    .data(edges)
-                    .enter().append('line')
-                    .attr('class', function(d) {
-                        return 'link';
-                    })
-                    .attr('x1', function(d) { return cluster_dict[nodes[d.source]["id"]].x; })
-                    .attr('y1', function(d) { return cluster_dict[nodes[d.source]["id"]].y; })
-                    .attr('x2', function(d) { return cluster_dict[nodes[d.target]["id"]].x; })
-                    .attr('y2', function(d) { return cluster_dict[nodes[d.target]["id"]].y; })
-                    .style('stroke', '#222222')
-                    .style('opacity', 0.1)
-                    .style('stroke-width', function(d) {
-                        return Math.sqrt(d.weight);
-                        //return 1;
-                    });
+            //link = svg.selectAll('.link')
+                    //.data(edges)
+                    //.enter().append('line')
+                    //.attr('class', function(d) {
+                        //return 'link';
+                    //})
+                    //.attr('x1', function(d) { return cluster_dict[nodes[d.source]["id"]].x; })
+                    //.attr('y1', function(d) { return cluster_dict[nodes[d.source]["id"]].y; })
+                    //.attr('x2', function(d) { return cluster_dict[nodes[d.target]["id"]].x; })
+                    //.attr('y2', function(d) { return cluster_dict[nodes[d.target]["id"]].y; })
+                    //.style('stroke', '#222222')
+                    //.style('opacity', 0.1)
+                    //.style('stroke-width', function(d) {
+                        //return Math.sqrt(d.weight);
+                    //});
 
             // draw nodes
             svg.selectAll('circle')

@@ -1,5 +1,5 @@
-var width = 960;
-var height = 720;
+var width = 1200;
+var height = 1200;
 var color = d3.scale.category10();
 
 var svg = d3.select('#paint_zone')
@@ -38,7 +38,7 @@ function draw_river_nodes(data) {
                 return d.y;
             })
             .attr('r', function(d) {
-                //return 5;
+                return 5;
                 if (d.size < 5)
                     return 5;
                 else
@@ -54,6 +54,7 @@ function draw_river_nodes(data) {
                     //return 0;
                 //}
             //})
+            //.attr('filter', 'url(#ball-glow)')
             .style('fill', function(d) {
                 //return color(d.id);
                 return color(d.cluster);
@@ -74,6 +75,5 @@ function draw_river_nodes(data) {
             .style('opacity', 0.1)
             .style('stroke-width', function(d) {
                 return Math.sqrt(d.weight);
-                //return 1;
             });
 }

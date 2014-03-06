@@ -12,20 +12,20 @@ class PoliticsUK(object):
             row_entries = row.split(":")
             nodes_id_list = row_entries[1].split(",")
             for e in nodes_id_list:
-                cls.item_to_communities[int(e)] = i
-                if i in communities_cnt:
-                    communities_cnt[i] += 1
+                cls.item_to_communities[int(e)] = i + 1
+                if i + 1 in communities_cnt:
+                    communities_cnt[i + 1] += 1
                 else:
-                    communities_cnt[i] = 0
+                    communities_cnt[i + 1] = 0
         return communities_cnt
 
     @classmethod
     def import_cluster_edges(cls):
         dics = {}
         res = {}
-        matrix = [[0 for x in xrange(5)] for x in xrange(5)]
-        for i in xrange(5):
-            for j in xrange(5):
+        matrix = [[0 for x in xrange(6)] for x in xrange(6)]
+        for i in xrange(6):
+            for j in xrange(6):
                 matrix[i][j] = 0
         edges_file = open("territories/data/politicsuk-follows.mtx", "r")
         for i, row in enumerate(edges_file):
@@ -39,8 +39,8 @@ class PoliticsUK(object):
             else:
                 dics[(int(row_entries[0]), int(row_entries[1]))] = 1
 
-        for i in xrange(5):
-            for j in xrange(i+1, 5):
+        for i in xrange(6):
+            for j in xrange(i+1, 6):
                 if (matrix[i][j] + matrix[j][i] > 0):
                     res[(i, j)] = {}
                     res[(i, j)]["weight"] = matrix[i][j] + matrix[j][i]

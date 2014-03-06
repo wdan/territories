@@ -17,10 +17,11 @@ def get_data():
 
 @territories.route('/_get_voronoi_data')
 def get_voronoi_data():
-    #graph = NXGraph('d_cluster')
-    graph = NXGraph('')
-    graph.cal_mds_positions()
-    s = graph.cal_cluster_voronoi_positions()
+    graph_cluster = NXGraph('d_cluster')
+    #graph = NXGraph('')
+    graph_cluster.cal_mds_positions()
+    s = graph_cluster.cal_cluster_voronoi_positions()
     v = Voronoi(s)
     c_d = v.get_constraints_dict()
-    return "[" + NXGraph.to_json(graph.nx_g) + "," + v.to_json() + "]"
+    #graph.reduce_graph(c_d)
+    return "[" + NXGraph.to_json(graph_cluster.nx_g) + "," + v.to_json() + "]"

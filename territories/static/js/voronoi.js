@@ -9,6 +9,7 @@ function draw_voronoi() {
         url: '/_get_voronoi_data',
         async: false,
         success: function(data) {
+            var nodes = data[0]['nodes'];
             var edges = data[0]['links'];
             var polygons = data[1];
             cluster_dict = {}
@@ -76,10 +77,10 @@ function draw_voronoi() {
                     .attr('class', function(d) {
                         return 'link';
                     })
-                    .attr('x1', function(d) { return cluster_dict[d.source].x; })
-                    .attr('y1', function(d) { return cluster_dict[d.source].y; })
-                    .attr('x2', function(d) { return cluster_dict[d.target].x; })
-                    .attr('y2', function(d) { return cluster_dict[d.target].y; })
+                    .attr('x1', function(d) { return cluster_dict[nodes[d.source]["id"]].x; })
+                    .attr('y1', function(d) { return cluster_dict[nodes[d.source]["id"]].y; })
+                    .attr('x2', function(d) { return cluster_dict[nodes[d.target]["id"]].x; })
+                    .attr('y2', function(d) { return cluster_dict[nodes[d.target]["id"]].y; })
                     .style('stroke', '#222222')
                     .style('opacity', 0.1)
                     .style('stroke-width', function(d) {

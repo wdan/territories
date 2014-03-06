@@ -39,9 +39,11 @@ class NXGraph(AbstractGraph):
         self.import_nodes()
         self.import_edges()
         self.import_communities()
+
+    def reduce_graph(self, constraints_dict):
         self.cal_degree()
         self.adjust_graph()
-        self.cal_force_directed_positions()
+        self.cal_force_directed_positions(constraints_dict)
 
     def init_d_cluster(self):
         self.nx_g.clear()
@@ -85,9 +87,9 @@ class NXGraph(AbstractGraph):
             matrix[i][i] = int(m * 1.5)
         return (matrix, int(m * 1.5))
 
-    def cal_force_directed_positions(self):
+    def cal_force_directed_positions(self, constraints_dict):
         p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(data=True), self.nx_g.edges(),
-                                           self.width, self.height)
+                                           self.width, self.height, constraints_dict)
         for i, e in enumerate(self.nx_g.nodes()):
             self.nx_g.node[e]["x"] = p[i]["x"]
             self.nx_g.node[e]["y"] = p[i]["y"]
@@ -99,6 +101,7 @@ class NXGraph(AbstractGraph):
         x = []
         y = []
         w = []
+        cluster = []
         for n in self.nx_g.nodes():
             if "x" in self.nx_g.node[n]:
                 t_x = float(self.nx_g.node[n]["x"])
@@ -115,13 +118,14 @@ class NXGraph(AbstractGraph):
             x.append(t_x)
             y.append(t_y)
             w.append(t_w)
-        res = java_app.calVoronoiTreemap(x, y, w, self.width, self.height)
+            cluster.append(n)
+        res = java_app.calVoronoiTreemap(x, y, w, cluster,self.width, self.height)
         return res
 
     def import_cluster_nodes(self):
         res = DataSet.import_cluster_nodes()
         for i, e in enumerate(res.keys()):
-            self.nx_g.add_node(i, size=res[i])
+            self.nx_g.add_node(e, size=res[e])
 
     def import_cluster_edges(self):
         res = DataSet.import_cluster_edges()

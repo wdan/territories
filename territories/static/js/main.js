@@ -9,8 +9,8 @@ var svg = d3.select('#paint_zone')
 
 set_mouse_event_handler();
 //draw_force_directed_graph();
-//draw_voronoi();
-draw_cluster()
+draw_voronoi();
+//draw_cluster()
 function draw_cluster() {
     $.ajax({
         dataType: 'json',

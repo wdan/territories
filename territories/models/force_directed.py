@@ -10,11 +10,15 @@ class ForceDirectedLayout(object):
     c = 0.5
 
     @classmethod
-    def cal_layout(cls, nodes, edges, width, height):
+    def cal_layout(cls, nodes, edges, width, height, constraints_dict):
         n = len(nodes)
+        reduced_nodes = []
         positions = []
-        for i in xrange(n):
-            positions.append({"x": randint(0, width), "y": randint(0, height)})
+        for e in nodes:
+            src_cluster = e[1]["cluster"]
+            tgt_cluster = e[1]["tgt_cluster"]
+            if (src_cluster, tgt_cluster) not in constraints_dict:
+                positions.append({"x": randint(0, width), "y": randint(0, height)})
         node_dict = {}
         edges_dict = {}
         for i, e in enumerate(nodes):

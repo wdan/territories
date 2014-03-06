@@ -9,13 +9,14 @@ function draw_voronoi() {
         url: '/_get_voronoi_data',
         async: false,
         success: function(data) {
-            var nodes = data[0]['nodes'];
-            var edges = data[0]['links'];
-            var polygons = data[1];
-            cluster_dict = {}
+            var nodes = data['cluster']['nodes'];
+            var edges = data['cluster']['links'];
+            var polygons = data['voronoi'];
+            console.log(polygons);
+            cluster_dict = {};
             var xlist = [];
             var ylist = [];
-            var node = []
+            var node = [];
             var vono = [];
             for (var i = 0; i < polygons.length; i++) {
                 xlist.push(polygons[i]['mid_x']);
@@ -25,7 +26,6 @@ function draw_voronoi() {
                 cluster_dict[cluster_id] = {'x': polygons[i]['mid_x'], 'y': polygons[i]['mid_y']};
                 vono[i] = polygons[i]['points'];
                 for (var j = 0; j < vono[i].length; j++) {
-                    console.log(vono[i][j]);
                     xlist.push(vono[i][j]['x']);
                     ylist.push(vono[i][j]['y']);
                 }
@@ -34,16 +34,6 @@ function draw_voronoi() {
             // x, y axis scale
             //var xscale =  d3.scale.linear().domain([Math.min.apply(Math, xlist), Math.max.apply(Math, xlist)]).range([0, width]);
             //var yscale = d3.scale.linear().domain([Math.min.apply(Math, ylist), Math.max.apply(Math, ylist)]).range([0, height]);
-
-            // draw nodes
-            svg.selectAll('circle')
-                .data(node)
-                .enter()
-                .append('circle')
-                .attr('r', 5)
-                .attr('cx', function(d) {return d.x;})
-                .attr('cy', function(d) {return d.y;})
-                .attr('fill', '#2ca25f');
 
             // draw path
             svg.selectAll('path')
@@ -63,11 +53,15 @@ function draw_voronoi() {
                     return s;
 
                 })
-                .style('fill', 'steelblue')
-                .style('opacity', function(d) {
-                    return Math.random() / 1.5;
+                .style('fill', function(d, i) {
+                    return color(polygons[i]['cluster']);
                 })
-                .attr('stroke', 'steelblue')
+                .style('opacity', function(d) {
+                    return 0.3 + Math.random() * 0.5;
+                })
+                .attr('stroke', function(d, i){
+                    return color(polygons[i]['cluster']);
+                })
                 .attr('stroke-width', '3px')
                 .attr('stroke-opacity', 1);
 
@@ -84,10 +78,22 @@ function draw_voronoi() {
                     .style('stroke', '#222222')
                     .style('opacity', 0.1)
                     .style('stroke-width', function(d) {
-                        return d.weight;
+                        return Math.sqrt(d.weight);
                         //return 1;
                     });
 
+            // draw nodes
+            svg.selectAll('circle')
+                .data(node)
+                .enter()
+                .append('circle')
+                .attr('r', 5)
+                .attr('cx', function(d) {return d.x;})
+                .attr('cy', function(d) {return d.y;})
+                .attr('fill', '#fff')
+                .attr('opacity', 0.8);
+
+            draw_river_nodes(data['original']);
         }
     });
 }

@@ -91,8 +91,19 @@ class NXGraph(AbstractGraph):
         p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(data=True), self.nx_g.edges(),
                                            self.width, self.height, constraints_dict)
         for i, e in enumerate(self.nx_g.nodes()):
-            self.nx_g.node[e]["x"] = p[i]["x"]
-            self.nx_g.node[e]["y"] = p[i]["y"]
+            if e in p:
+                self.nx_g.node[e]["x"] = p[e]["x"]
+                self.nx_g.node[e]["y"] = p[e]["y"]
+                self.nx_g.node[e]["visible"] = 1
+            else:
+                self.nx_g.node[e]["visible"] = 0
+        for i, e in enumerate(self.nx_g.edges()):
+            cluster1 = self.nx_g.node[e[0]]["cluster"]
+            cluster2 = self.nx_g.node[e[1]]["cluster"]
+            if ((cluster1, cluster2) in constraints_dict or cluster1 == cluster2) and e[0] in p and e[1] in p:
+                self.nx_g.edge[e[0]][e[1]]["visible"] = 1
+            else:
+                self.nx_g.edge[e[0]][e[1]]["visible"] = 0
 
     def cal_cluster_voronoi_positions(self):
         from py4j.java_gateway import JavaGateway

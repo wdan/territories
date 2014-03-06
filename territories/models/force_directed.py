@@ -6,7 +6,7 @@ import math
 
 class ForceDirectedLayout(object):
 
-    iter_num = 100
+    iter_num = 200
     c = 0.5
 
     @classmethod
@@ -16,9 +16,10 @@ class ForceDirectedLayout(object):
         for i in xrange(n):
             positions.append({"x": randint(0, width), "y": randint(0, height)})
         node_dict = {}
-        for i, e in enumerate(nodes):
-            node_dict[e] = i
         edges_dict = {}
+        for i, e in enumerate(nodes):
+            node_dict[e[0]] = i
+            edges_dict[i] = []
         for i, e in enumerate(edges):
             src_index = node_dict[e[0]]
             tgt_index = node_dict[e[1]]
@@ -40,8 +41,8 @@ class ForceDirectedLayout(object):
                         j_x = positions[j]["x"]
                         j_y = positions[j]["y"]
                         d = cls.cal_distance(i_x, i_y, j_x, j_y)
-                        vector_i_x += float(i_x - j_x) / pow(d, 2) * 10
-                        vector_i_y += float(i_y - j_y) / pow(d, 2) * 10
+                        vector_i_x += float(i_x - j_x) / pow(d, 3) * 1000
+                        vector_i_y += float(i_y - j_y) / pow(d, 3) * 1000
                 for j in edges_dict[i]:
                     if (i != j):
                         j_x = positions[j]["x"]

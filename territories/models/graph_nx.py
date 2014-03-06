@@ -16,7 +16,7 @@ from util import translate
 
 class NXGraph(AbstractGraph):
 
-    ADJUST_NUMBER = 1
+    ADJUST_NUMBER = 0
     MAX_SIZE = 1000
 
     def __init__(self, g_type="all", width=960, height=720):
@@ -40,7 +40,7 @@ class NXGraph(AbstractGraph):
         self.import_edges()
         self.import_communities()
         self.cal_degree()
-        #self.adjust_graph()
+        self.adjust_graph()
         self.cal_force_directed_positions()
 
     def init_d_cluster(self):
@@ -86,7 +86,7 @@ class NXGraph(AbstractGraph):
         return (matrix, int(m * 1.5))
 
     def cal_force_directed_positions(self):
-        p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(), self.nx_g.edges(),
+        p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(data=True), self.nx_g.edges(),
                                            self.width, self.height)
         for i, e in enumerate(self.nx_g.nodes()):
             self.nx_g.node[e]["x"] = p[i]["x"]
@@ -156,33 +156,41 @@ class NXGraph(AbstractGraph):
             neighbors = self.nx_g.neighbors(e)
             indegree = 0
             outdegree = 0
+            tgt_cluster_edge_num_dict = {}
             for neighbor in neighbors:
                 if self.nx_g.node[e]["cluster"] == self.nx_g.node[neighbor]["cluster"]:
                     indegree += 1
                 else:
                     outdegree += 1
+                    tgt_cluster_id = self.nx_g.node[neighbor]["cluster"]
+                    if tgt_cluster_id not in tgt_cluster_edge_num_dict:
+                        tgt_cluster_edge_num_dict[tgt_cluster_id] = 0
+                    tgt_cluster_edge_num_dict[tgt_cluster_id] += 1
             if indegree + outdegree == 0:
                 self.nx_g.remove_node(e)
             else:
                 self.nx_g.node[e]["in_degree"] = indegree
                 self.nx_g.node[e]["out_degree"] = outdegree
+                if outdegree > 0:
+                    tgt_cluster = max(map(lambda key: tgt_cluster_edge_num_dict[key], tgt_cluster_edge_num_dict.keys()))
+                    self.nx_g.node[e]["tgt_cluster"] = tgt_cluster
 
     def adjust_graph(self):
         self.adjust_nodes()
         self.adjust_edges()
 
     def adjust_nodes(self):
-        for i in xrange(self.nx_g.graph["community-num"]):
-            self.nx_g.add_node("cluster" + str(i))
-            self.nx_g.node["cluster" + str(i)]["size"] = 0
-            self.nx_g.node["cluster" + str(i)]["cluster"] = i
+        #for i in xrange(self.nx_g.graph["community-num"]):
+            #self.nx_g.add_node("cluster" + str(i))
+            #self.nx_g.node["cluster" + str(i)]["size"] = 0
+            #self.nx_g.node["cluster" + str(i)]["cluster"] = i
         for e in self.nx_g.nodes():
             if type(e) is int:
                 if self.nx_g.node[e]["out_degree"] > self.ADJUST_NUMBER:
                     self.nx_g.node[e]["size"] = 1
-                else:
-                    cluster = self.nx_g.node[e]["cluster"]
-                    self.nx_g.node["cluster" + str(cluster)]["size"] += 1
+                #else:
+                    #cluster = self.nx_g.node[e]["cluster"]
+                    #self.nx_g.node["cluster" + str(cluster)]["size"] += 1
 
     def adjust_edges(self):
         for e in self.nx_g.edges():
@@ -190,24 +198,24 @@ class NXGraph(AbstractGraph):
             num1 = self.nx_g.node[e[1]]["out_degree"]
             if (num0 > self.ADJUST_NUMBER and num1 > self.ADJUST_NUMBER):
                 self.nx_g.edge[e[0]][e[1]]["weight"] = 1
-            elif (num0 > self.ADJUST_NUMBER):
-                cluster_num = self.nx_g.node[e[1]]["cluster"]
-                t_s = "cluster" + str(cluster_num)
-                if self.nx_g.has_edge(t_s, e[0]):
-                    self.nx_g.edge[t_s][e[0]]["weight"] += 1
-                else:
-                    self.nx_g.add_edge(t_s, e[0])
-                    self.nx_g.edge[t_s][e[0]]["weight"] = 1
-                self.nx_g.remove_edge(e[0], e[1])
-            elif (num1 > self.ADJUST_NUMBER):
-                cluster_num = self.nx_g.node[e[0]]["cluster"]
-                t_s = "cluster" + str(cluster_num)
-                if self.nx_g.has_edge(t_s, e[1]):
-                    self.nx_g.edge[t_s][e[1]]["weight"] += 1
-                else:
-                    self.nx_g.add_edge(t_s, e[1])
-                    self.nx_g.edge[t_s][e[1]]["weight"] = 1
-                self.nx_g.remove_edge(e[0], e[1])
+            #elif (num0 > self.ADJUST_NUMBER):
+                #cluster_num = self.nx_g.node[e[1]]["cluster"]
+                #t_s = "cluster" + str(cluster_num)
+                #if self.nx_g.has_edge(t_s, e[0]):
+                    #self.nx_g.edge[t_s][e[0]]["weight"] += 1
+                #else:
+                    #self.nx_g.add_edge(t_s, e[0])
+                    #self.nx_g.edge[t_s][e[0]]["weight"] = 1
+                #self.nx_g.remove_edge(e[0], e[1])
+            #elif (num1 > self.ADJUST_NUMBER):
+                #cluster_num = self.nx_g.node[e[0]]["cluster"]
+                #t_s = "cluster" + str(cluster_num)
+                #if self.nx_g.has_edge(t_s, e[1]):
+                    #self.nx_g.edge[t_s][e[1]]["weight"] += 1
+                #else:
+                    #self.nx_g.add_edge(t_s, e[1])
+                    #self.nx_g.edge[t_s][e[1]]["weight"] = 1
+                #self.nx_g.remove_edge(e[0], e[1])
             else:
                 self.nx_g.remove_edge(e[0], e[1])
         for e in self.nx_g.nodes():

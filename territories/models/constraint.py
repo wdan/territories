@@ -32,6 +32,8 @@ class Constraint(object):
         (xA, yA, xB, yB) = self.get_constraint(degree)
         k = (yB - yA) / (xB - xA)
         c = yB - k * xB
+        if xA > xB:
+            xA, xB = xB, xA
         if x < xA:
             return self.get_random_coordinate(degree)
         elif x > xB:

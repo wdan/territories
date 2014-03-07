@@ -38,11 +38,7 @@ function draw_river_nodes(data) {
                 return d.y;
             })
             .attr('r', function(d) {
-                return 5;
-                if (d.size < 5)
-                    return 5;
-                else
-                    return d.size;
+                return 5 + 3 * d['out_degree'];
                 //return 5;
             })
             //.style('stroke', 'black')
@@ -54,7 +50,7 @@ function draw_river_nodes(data) {
                     //return 0;
                 //}
             //})
-            //.attr('filter', 'url(#ball-glow)')
+            .attr('filter', 'url(#ball-glow)')
             .style('fill', function(d) {
                 //return color(d.id);
                 return color(d.cluster);

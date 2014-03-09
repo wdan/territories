@@ -7,21 +7,25 @@ var svg = d3.select('#paint_zone')
             .attr('width', width * 2)
             .attr('height', height * 2);
 
-set_mouse_event_handler();
+//set_mouse_event_handler();
 //draw_force_directed_graph();
 draw_voronoi();
 function draw_river_nodes(data) {
     var link, node;
     var edges = data.links;
     var nodes = data.nodes;
-    console.log(nodes);
+//    console.log(nodes);
     reduced_nodes = [];
     reduced_edges = [];
     for (var i = 0; i < nodes.length; i++) {
         if (nodes[i]['visible'] == 1)
         reduced_nodes.push(nodes[i]);
     }
-    console.log(reduced_nodes);
+
+//    draw_hulls(reduced_nodes, voronoi);
+
+
+//    console.log(reduced_nodes);
     for (var i = 0; i < edges.length; i++) {
         if (edges[i]['visible'] == 1)
         reduced_edges.push(edges[i]);
@@ -38,8 +42,8 @@ function draw_river_nodes(data) {
                 return d.y;
             })
             .attr('r', function(d) {
-                return 5 + 3 * d['out_degree'];
-                //return 5;
+//                return 5 + 3 * d['out_degree'];
+                return 5;
             })
             //.style('stroke', 'black')
             //.style('stroke-width', 2)
@@ -50,7 +54,7 @@ function draw_river_nodes(data) {
                     //return 0;
                 //}
             //})
-            .attr('filter', 'url(#ball-glow)')
+//            .attr('filter', 'url(#ball-glow)')
             .style('fill', function(d) {
                 //return color(d.id);
                 return color(d.cluster);
@@ -72,4 +76,7 @@ function draw_river_nodes(data) {
             .style('stroke-width', function(d) {
                 return Math.sqrt(d.weight);
             });
+
+
+
 }

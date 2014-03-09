@@ -2,7 +2,7 @@
  * Created by wenbin on 7/3/14.
  */
 
-var heatmap = function(data, svg, w, h, pix, scale){
+var heatmap = function(data, svg, w, h, pix, scale, color_input){
 
     var maxValue = 300;
     var grid = [];
@@ -40,10 +40,10 @@ var heatmap = function(data, svg, w, h, pix, scale){
     var c = new Conrec,
         xs = d3.range(0, grid_data.length),
         ys = d3.range(0, grid_data[0].length),
-        zs = d3.range(50, 300, 50),
+        zs = d3.range(10, 300, 100),
         x = d3.scale.linear().range([0, w]).domain([0, grid_data.length]),
         y = d3.scale.linear().range([0, h]).domain([0, grid_data[0].length]),
-        colours = d3.scale.linear().domain([50, 300]).range(["#fff", "black"]);
+        colours = d3.scale.linear().domain([10, 300]).range(["#fff", color_input]);
 
     c.contour(grid_data, 0, xs.length - 1, 0, ys.length - 1, xs, ys, zs.length, zs);
 
@@ -53,7 +53,7 @@ var heatmap = function(data, svg, w, h, pix, scale){
         .append("path")
         .style("fill",function(d) { return colours(d.level);})
         .style("stroke",function(d) { return colours(d.level);})
-        .style("fill-opacity", 0.5)
+        .style("fill-opacity", 0.3)
         .attr("d", d3.svg.line()
             .x(function(d) { return x(d.x); })
             .y(function(d) { return y(d.y); }));

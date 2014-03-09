@@ -79,44 +79,44 @@ function log2(x) {
     return Math.log(x) / Math.log(2);
 }
 
-function set_mouse_event_handler() {
-    jQuery('#paint_zone').bind('mousedown', function(event) {
-        if (!visdiv_draging) {
-            visdiv_draging = true;
-        }
-        draging_updating_page.x = event.pageX;
-        draging_updating_page.y = event.pageY;
-    }).bind('mousemove', function(event) {
-        if (visdiv_draging) {
-            var delta_page = {};
-            delta_page.x = event.pageX - draging_updating_page.x;
-            delta_page.y = event.pageY - draging_updating_page.y;
-            draging_updating_page.x = event.pageX;
-            draging_updating_page.y = event.pageY;
-            var $svg = jQuery('#paint_zone svg');
-            var curTop = $svg.css('margin-top');
-            curTop = new Number(curTop.substring(0, curTop.length - 2));
-            var curLeft = $svg.css('margin-left');
-            curLeft = new Number(curLeft.substring(0, curLeft.length - 2));
-            curTop += delta_page.y;
-            curLeft += delta_page.x;
-            if (curTop > 0)
-                curTop = 0;
-            if (curTop < -height / 2)
-                curTop = -height / 2;
-            if (curLeft > 0)
-                curLeft = 0;
-            if (curLeft < -width / 2)
-                curLeft = -width / 2;
-            $svg.css('margin-top', curTop + 'px');
-            $svg.css('margin-left', curLeft + 'px');
-        }
-    }).bind('mouseup', function(event) {
-        visdiv_draging = false;
-        draging_updating_page = {};
-    });
-
-}
+//function set_mouse_event_handler() {
+//    jQuery('#paint_zone').bind('mousedown', function(event) {
+//        if (!visdiv_draging) {
+//            visdiv_draging = true;
+//        }
+//        draging_updating_page.x = event.pageX;
+//        draging_updating_page.y = event.pageY;
+//    }).bind('mousemove', function(event) {
+//        if (visdiv_draging) {
+//            var delta_page = {};
+//            delta_page.x = event.pageX - draging_updating_page.x;
+//            delta_page.y = event.pageY - draging_updating_page.y;
+//            draging_updating_page.x = event.pageX;
+//            draging_updating_page.y = event.pageY;
+//            var $svg = jQuery('#paint_zone svg');
+//            var curTop = $svg.css('margin-top');
+//            curTop = new Number(curTop.substring(0, curTop.length - 2));
+//            var curLeft = $svg.css('margin-left');
+//            curLeft = new Number(curLeft.substring(0, curLeft.length - 2));
+//            curTop += delta_page.y;
+//            curLeft += delta_page.x;
+//            if (curTop > 0)
+//                curTop = 0;
+//            if (curTop < -height / 2)
+//                curTop = -height / 2;
+//            if (curLeft > 0)
+//                curLeft = 0;
+//            if (curLeft < -width / 2)
+//                curLeft = -width / 2;
+//            $svg.css('margin-top', curTop + 'px');
+//            $svg.css('margin-left', curLeft + 'px');
+//        }
+//    }).bind('mouseup', function(event) {
+//        visdiv_draging = false;
+//        draging_updating_page = {};
+//    });
+//
+//}
 
 function do_ajax(get_url, data_text, data_url) {
     var t_nodes, t_edges;

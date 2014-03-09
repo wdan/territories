@@ -12,7 +12,19 @@ function draw_voronoi() {
             var nodes = data['cluster']['nodes'];
             var edges = data['cluster']['links'];
             var polygons = data['voronoi'];
-            console.log(polygons);
+//            console.log(polygons);
+
+
+            var ori_node = data['original'].nodes;
+            var  reduced_nodes = [];
+            for (var i = 0; i < ori_node.length; i++) {
+                if (ori_node[i]['visible'] == 1)
+                    reduced_nodes.push(ori_node[i]);
+            }
+
+//            draw_hulls(reduced_nodes, polygons);
+            draw_contour(reduced_nodes, polygons);
+
             cluster_dict = {};
             var xlist = [];
             var ylist = [];
@@ -36,10 +48,11 @@ function draw_voronoi() {
             //var yscale = d3.scale.linear().domain([Math.min.apply(Math, ylist), Math.max.apply(Math, ylist)]).range([0, height]);
 
             // draw path
-            svg.selectAll('path')
+            svg.selectAll('path .vono')
                 .data(vono)
                 .enter()
                 .append('path')
+                .attr("class", "vono")
                 .attr('d', function(d, i) {
 
                     //var scale = 50;
@@ -97,28 +110,28 @@ function draw_voronoi() {
     });
 }
 
-// helper function, just ignore
-function vectorNorm(from, to) {
-    var v = {
-        x: to.x - from.x,
-        y: to.y - from.y
-    };
-    v.length = Math.sqrt(v.x * v.x + v.y * v.y);
-    v.x = v.x / v.length;
-    v.y = v.y / v.length;
-    return v;
-}
-
-//                            <--scale-->
-// center --------------------X---------> point,
-// compute X coordinates
-function interp(center, point, scale) {
-    var v = vectorNorm(center, point);
-    var k = (v.length - scale) / v.length;
-    return{
-        x: (k * v.length * v.x + center.x),
-        y: (k * v.length * v.y + center.y)
-    };
-}
+//// helper function, just ignore
+//function vectorNorm(from, to) {
+//    var v = {
+//        x: to.x - from.x,
+//        y: to.y - from.y
+//    };
+//    v.length = Math.sqrt(v.x * v.x + v.y * v.y);
+//    v.x = v.x / v.length;
+//    v.y = v.y / v.length;
+//    return v;
+//}
+//
+////                            <--scale-->
+//// center --------------------X---------> point,
+//// compute X coordinates
+//function interp(center, point, scale) {
+//    var v = vectorNorm(center, point);
+//    var k = (v.length - scale) / v.length;
+//    return{
+//        x: (k * v.length * v.x + center.x),
+//        y: (k * v.length * v.y + center.y)
+//    };
+//}
 
 

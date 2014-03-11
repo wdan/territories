@@ -6,7 +6,7 @@ from random import uniform
 
 class Constraint(object):
 
-    C = -20
+    C = -15
 
     def __init__(self, x1, y1, x2, y2, mid_x, mid_y):
         if x1 > x2:
@@ -35,8 +35,12 @@ class Constraint(object):
         if xA > xB:
             xA, xB = xB, xA
         if x < xA:
+            #x_t = xA + 5
+            #return (x_t, x_t * k + c)
             return self.get_random_coordinate(degree)
         elif x > xB:
+            #x_t = xB - 5
+            #return (x_t, x_t * k + c)
             return self.get_random_coordinate(degree)
         else:
             return (x, x * k + c)

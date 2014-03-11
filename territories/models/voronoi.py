@@ -6,14 +6,15 @@ from polygon import Polygon
 
 from constraint import Constraint
 
+
 class Voronoi(object):
 
-    def __init__(self, data):
+    def __init__(self, data, shrink):
         data = json.loads(data)
         self.polygons = []
         self.point_cluster_dict = {}
         for n in data["nodes"]:
-            self.polygons.append(Polygon(n["cluster"], n["x"], n["y"]))
+            self.polygons.append(Polygon(n["cluster"], n["x"], n["y"], shrink))
         for i, e in enumerate(data["polygons"]):
             cluster_id = self.polygons[i].cluster
             for point in e:
@@ -51,8 +52,12 @@ class Voronoi(object):
             #print "Polygon" + str(p.cluster) + ":"
             #for i, e in enumerate(p.edge_list):
                 #print "Edge " + str(i) + ": x1:" + str(e["x1"]) + ", y1:" + str(e["y1"]) + ", x2:" + str(e["x2"]) + ", y2:" + str(e["y2"]) + ", tgt_cluster:" + str(e["tgt_cluster"])
+        #from util import inside_polygon
+        #for p in self.polygons:
+            #mid_p = {"x": p.mid_x, "y": p.mid_y}
+            #print inside_polygon(mid_p, p.points)
 
-    def get_constraints_dict(self):
+    def get_linear_constraints_dict(self):
         constraints_dict = {}
         for p in self.polygons:
             cluster_src = p.cluster
@@ -64,8 +69,20 @@ class Voronoi(object):
                     constraints_dict[(cluster_src, cluster_tgt)] = c
         return constraints_dict
 
+    def get_polygon_constraints_dict(self):
+        constraints_dict = {}
+        for p in self.polygons:
+            cluster = p.cluster
+            constraints_dict[cluster] = {}
+            constraints_dict[cluster]["bounding_box"] = p.get_bounding_box()
+            constraints_dict[cluster]["points"] = p.points
+        return constraints_dict
+
+    def to_dict(self):
+        res = []
+        for p in self.polygons:
+            res.append(p.to_dict())
+        return res
+
     def to_json(self):
-            js_res = []
-            for p in self.polygons:
-                js_res.append(p.to_dict())
-            return json.dumps(js_res)
+        return json.dumps(self.to_dict())

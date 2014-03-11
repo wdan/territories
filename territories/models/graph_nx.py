@@ -19,7 +19,7 @@ class NXGraph(AbstractGraph):
     ADJUST_NUMBER = 0
     MAX_SIZE = 1000
 
-    def __init__(self, g_type="all", width=960, height=540):
+    def __init__(self, g_type="all", width=1000, height=1000):
         self.width = width
         self.height = height
         self.nx_g = nx.Graph()
@@ -40,10 +40,11 @@ class NXGraph(AbstractGraph):
         self.import_edges()
         self.import_communities()
 
-    def reduce_graph(self, constraints_dict):
+    def reduce_graph(self, c_l_d, c_p_d):
         self.cal_degree()
         self.adjust_graph()
-        self.cal_force_directed_positions(constraints_dict)
+        self.cal_outer_positions(c_l_d)
+        self.cal_inner_positions(c_p_d)
 
     def init_d_cluster(self):
         self.nx_g.clear()
@@ -90,8 +91,16 @@ class NXGraph(AbstractGraph):
             matrix[i][i] = int(m * 1.5)
         return (matrix, int(m * 1.5))
 
-    def cal_force_directed_positions(self, constraints_dict):
-        p = ForceDirectedLayout.cal_layout(self.nx_g.nodes(data=True), self.nx_g.edges(),
+    def cal_inner_positions(self, constraints_dict):
+        p = ForceDirectedLayout.cal_rd_layout(self.nx_g.nodes(data=True), self.nx_g.edges(), constraints_dict)
+        for i, e in enumerate(self.nx_g.nodes()):
+            if e in p:
+                self.nx_g.node[e]["x"] = p[e]["x"]
+                self.nx_g.node[e]["y"] = p[e]["y"]
+                self.nx_g.node[e]["visible"] = 1
+
+    def cal_outer_positions(self, constraints_dict):
+        p = ForceDirectedLayout.cal_fd_layout(self.nx_g.nodes(data=True), self.nx_g.edges(),
                                            self.width, self.height, constraints_dict)
         for i, e in enumerate(self.nx_g.nodes()):
             if e in p:
@@ -210,8 +219,11 @@ class NXGraph(AbstractGraph):
             #self.nx_g.node["cluster" + str(i)]["cluster"] = i
         for e in self.nx_g.nodes():
             if type(e) is int:
-                if self.nx_g.node[e]["out_degree"] > self.ADJUST_NUMBER:
-                    self.nx_g.node[e]["size"] = 1
+                #if self.nx_g.node[e]["out_degree"] > self.ADJUST_NUMBER:
+                if self.nx_g.node[e]["out_degree"] > 0:
+                    self.nx_g.node[e]["external"] = 1
+                else:
+                    self.nx_g.node[e]["external"] = 0
                 #else:
                     #cluster = self.nx_g.node[e]["cluster"]
                     #self.nx_g.node["cluster" + str(cluster)]["size"] += 1
@@ -242,8 +254,10 @@ class NXGraph(AbstractGraph):
                 #self.nx_g.remove_edge(e[0], e[1])
             else:
                 self.nx_g.remove_edge(e[0], e[1])
+
         for e in self.nx_g.nodes():
-            if (self.nx_g.node[e]["out_degree"] <= self.ADJUST_NUMBER or self.nx_g.node[e]["size"] == 0):
+            #if (self.nx_g.node[e]["out_degree"] <= self.ADJUST_NUMBER or self.nx_g.node[e]["size"] == 0):
+            if 0 < self.nx_g.node[e]["out_degree"] <= self.ADJUST_NUMBER:
                 self.nx_g.remove_node(e)
 
     @classmethod

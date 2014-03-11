@@ -1,5 +1,5 @@
-var width = 960;
-var height = 540;
+var width = 1000;
+var height = 1000;
 var color = d3.scale.category20();
 
 var svg = d3.select('#paint_zone')

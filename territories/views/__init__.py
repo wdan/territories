@@ -33,12 +33,13 @@ def get_voronoi_data_r():
         clustered_graph = NXGraph()
         clustered_graph.nx_g = generator.convert2nx(cv)
         return get_json(original_graph, clustered_graph)
-        
+
 
 def get_json(original_graph, clustered_graph):
     clustered_graph.cal_mds_positions()
     s = clustered_graph.cal_cluster_voronoi_positions()
     v = Voronoi(s)
-    c_d = v.get_constraints_dict()
-    original_graph.reduce_graph(c_d)
+    c_l_d = v.get_linear_constraints_dict()
+    c_p_d = v.get_polygon_constraints_dict()
+    original_graph.reduce_graph(c_l_d, c_p_d)
     return "{\"cluster\":" + NXGraph.to_json(clustered_graph.nx_g) + ", \"voronoi\": "+ v.to_json() + ",\"original\":"+ NXGraph.to_json(original_graph.nx_g) +"}"

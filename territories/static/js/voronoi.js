@@ -23,7 +23,7 @@ function draw_voronoi() {
             }
 
 //            draw_hulls(reduced_nodes, polygons);
-            draw_contour(reduced_nodes, polygons);
+            //draw_contour(reduced_nodes, polygons);
 
             cluster_dict = {};
             var xlist = [];

@@ -7,7 +7,7 @@ from territories.models.graph_generator import GraphGenerator
 
 @territories.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('territories.html')
 
 
 @territories.route('/_get_graph_data')

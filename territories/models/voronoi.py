@@ -6,14 +6,15 @@ from polygon import Polygon
 
 from constraint import Constraint
 
+
 class Voronoi(object):
 
-    def __init__(self, data):
+    def __init__(self, data, shrink):
         data = json.loads(data)
         self.polygons = []
         self.point_cluster_dict = {}
         for n in data["nodes"]:
-            self.polygons.append(Polygon(n["cluster"], n["x"], n["y"]))
+            self.polygons.append(Polygon(n["cluster"], n["x"], n["y"], shrink))
         for i, e in enumerate(data["polygons"]):
             cluster_id = self.polygons[i].cluster
             for point in e:

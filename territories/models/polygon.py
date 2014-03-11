@@ -6,18 +6,17 @@ from util import interp, rotate
 
 class Polygon(object):
 
-    SCALE = 50
-
-    def __init__(self, cluster_id, x, y):
+    def __init__(self, cluster_id, x, y, shrink):
         self.edge_list = []
         self.cluster = cluster_id
         self.mid_x = x
         self.mid_y = y
+        self.shrink = shrink
 
     def add_edge(self, x1, y1, x2, y2, tgt_cluster_id):
         edge_dict = {}
-        (xA, yA) = interp(self.mid_x, self.mid_y, x1, y1, self.SCALE)
-        (xB, yB) = interp(self.mid_x, self.mid_y, x2, y2, self.SCALE)
+        (xA, yA) = interp(self.mid_x, self.mid_y, x1, y1, self.shrink)
+        (xB, yB) = interp(self.mid_x, self.mid_y, x2, y2, self.shrink)
         edge_dict["x1"] = xA
         edge_dict["y1"] = yA
         edge_dict["x2"] = xB

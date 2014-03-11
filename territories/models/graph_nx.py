@@ -19,7 +19,7 @@ class NXGraph(AbstractGraph):
     ADJUST_NUMBER = 0
     MAX_SIZE = 1000
 
-    def __init__(self, g_type="all", width=960, height=720):
+    def __init__(self, g_type="all", width=960, height=540):
         self.width = width
         self.height = height
         self.nx_g = nx.Graph()

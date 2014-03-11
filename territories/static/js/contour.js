@@ -13,7 +13,7 @@ function draw_contour(nodes, polygons){
 
 
     var scale = 50;
-    var pix = 10;
+    var pix = 2;
 
     data = {};
     cluster_list = [];

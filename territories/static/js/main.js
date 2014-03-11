@@ -1,6 +1,6 @@
-var width = 1200;
-var height = 1200;
-var color = d3.scale.category10();
+var width = 960;
+var height = 540;
+var color = d3.scale.category20();
 
 var svg = d3.select('#paint_zone')
             .append('svg')

@@ -33,7 +33,7 @@ def get_voronoi_data_r():
         clustered_graph = NXGraph()
         clustered_graph.nx_g = generator.convert2nx(cv)
         return get_json(original_graph, clustered_graph)
-
+        
 
 def get_json(original_graph, clustered_graph):
     clustered_graph.cal_mds_positions()

@@ -4,3 +4,4 @@
 .sass-cache
 python_igraph.egg-info/
 venv/
+.idea/

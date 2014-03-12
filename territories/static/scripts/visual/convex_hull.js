@@ -10,7 +10,7 @@ LG.visual.ConvexHull = function(Visualization){
         console.log('[LOG] Init Convex Hull');
         Visualization.call(this, dat, svg, dataManager, className);
 
-        this.node = dataManager.getBoundaryNode();
+        this.node = dataManager.getVisibleBoundaryNode();
         this.polygon = dataManager.polygon;
 
         this.data = {};

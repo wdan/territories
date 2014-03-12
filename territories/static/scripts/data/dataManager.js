@@ -12,7 +12,8 @@ LG.data.DataManager = function(){
         this.height = undefined;
         this.shrink = undefined;
         this.rate = undefined;
-        this.boundaryNode = undefined;
+        this.visibleBoundaryNode = undefined;
+        this.externalBoundaryNode = undefined;
         this.boundaryEdge = undefined;
     };
 
@@ -58,7 +59,8 @@ LG.data.DataManager = function(){
                     async: false,
                     success: function(data){
                         _this.original = data;
-                        _this.boundaryNode = undefined;
+                        _this.visibleBoundaryNode = undefined;
+                        _this.externalBoundaryNode = undefined;
                         _this.boundaryEdge = undefined;
                         console.log('[LOG] Data Transmission Done.');
                         console.log(data);
@@ -67,18 +69,43 @@ LG.data.DataManager = function(){
             }
         },
 
-        getBoundaryNode : {
+        getExternalBoundaryNode : {
+
             value : function(){
-                if (this.boundaryNode == undefined){
+
+                if (this.externalBoundaryNode == undefined){
+                    var node = [];
+                    var node_list = this.original.nodes;
+                    for(var i=0;i<node_list.length;i++){
+                        if(node_list[i].external == 1) node.push(node_list[i]);
+                    }
+                    this.externalBoundaryNode = node;
+                }
+
+                console.log('external nodes');
+                console.log(this.externalBoundaryNode);
+                return this.externalBoundaryNode;
+
+
+            }
+
+        },
+
+        getVisibleBoundaryNode : {
+            value : function(){
+                if (this.visibleBoundaryNode == undefined){
                     var node = [];
                     var node_list = this.original.nodes;
                     for(var i=0;i<node_list.length;i++){
                         if(node_list[i].external == 1 && node_list[i].visible == 1) node.push(node_list[i]);
                     }
-                    this.boundaryNode = node;
+                    this.visibleBoundaryNode = node;
                 }
 
-                return this.boundaryNode;
+
+                console.log('visible nodes');
+                console.log(this.visibleBoundaryNode);
+                return this.visibleBoundaryNode;
 
             }
         },

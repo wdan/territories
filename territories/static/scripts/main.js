@@ -23,11 +23,11 @@ $('#dataTypeList').change(function(){
         svg = d3.select('#paint_zone').append('svg')
             .attr('width', width)
             .attr('height', height);
-        dataManager.getPolygon(val, width, height, 50, 1.0);
+        dataManager.getPolygon(val, width, height, 50, 0.1);
         dataManager.getOriginal();
 
-        var hull = new LG.visual.ConvexHull(gui, svg, dataManager, 'convex_hull');
-        hull.display();
+//        var hull = new LG.visual.ConvexHull(gui, svg, dataManager, 'convex_hull');
+//        hull.display();
 
         var boundary_contour = new LG.visual.BoundaryContour(gui, svg, dataManager, 'boundary_contour');
         boundary_contour.display();

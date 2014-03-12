@@ -8,7 +8,7 @@ LG.visual.BoundaryNode = function(Visualization){
         console.log('[LOG] Init Boundary Node');
         Visualization.call(this, dat, svg, dataManager, className);
 
-        this.data = dataManager.getBoundaryNode();
+        this.data = dataManager.getVisibleBoundaryNode();
         this.boundary_node_r = 5;
         this.boundary_node_opacity = 0.5;
         this.control();

@@ -219,9 +219,9 @@ class NXGraph(AbstractGraph):
             elif self.nx_g.node[e]["external"] == 0:
                 inner_nodes_dict[e] = self.nx_g.node[e]
         sorted_o_f_n = sorted(outer_nodes_dict.items(), key=lambda (k, v): v["out_degree"])
-        sorted_o_f_n = sorted_o_f_n[-int(len(sorted_o_f_n) * rate):]
         for e in sorted_o_f_n:
             self.nx_g.node[e[0]]["visible"] = 0
+        sorted_o_f_n = sorted_o_f_n[-int(len(sorted_o_f_n) * rate):]
         sorted_o_f_n = dict(sorted_o_f_n)
         sorted_i_f_n = inner_nodes_dict
         return (sorted_i_f_n, sorted_o_f_n)

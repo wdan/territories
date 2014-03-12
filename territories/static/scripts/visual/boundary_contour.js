@@ -47,6 +47,8 @@ LG.visual.BoundaryContour = function(Visualization){
                 for(i=0;i<this.node.length;i++){
                     this.data[this.node[i].cluster].push({x:this.node[i].x, y:this.node[i].y});
                 }
+
+                console.log(this.data);
             }
         },
 
@@ -62,7 +64,7 @@ LG.visual.BoundaryContour = function(Visualization){
                 for(var i=0;i<this.cluster_list.length;i++){
                     var cid = this.cluster_list[i];
                     if(this.data[cid].length!=0){
-                        new LG.visual.ContourMap(this.data[cid], this.svg.append('g').attr('class', this.className),
+                        LG.visual.ContourMap(this.data[cid], this.svg.append('g').attr('class', this.className),
                             this.contour_pix, this.contour_scale, this.classColor[cid]);
                     }
                 }

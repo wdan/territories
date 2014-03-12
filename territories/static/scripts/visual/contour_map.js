@@ -3,9 +3,7 @@
  */
 
 
-LG.visual.ContourMap = function(){
-
-    return function(data, svg, pix, scale, color){
+LG.visual.ContourMap = function(data, svg, pix, scale, color){
         var maxValue = 300;
         var start = 10;
         var end = 300;
@@ -69,8 +67,6 @@ LG.visual.ContourMap = function(){
             .attr("d", d3.svg.line()
                 .x(function(d) { return x(d.x); })
                 .y(function(d) { return y(d.y); }));
-
-    };
 
     function kernelDensityEstimator(kernel, grid) {
         return function(sample){

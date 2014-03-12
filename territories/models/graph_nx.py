@@ -41,9 +41,9 @@ class NXGraph(AbstractGraph):
 
     def reduce_graph(self, rate, c_l_d, c_p_d):
         self.cal_degree()
-        (inner_nodes_dict, outer_nodes_dict) = self.adjust_nodes(rate)
+        (inner_nodes_dict, outer_nodes_dict) = self.adjust_nodes()
         (inner_edges_dict, outer_edges_dict) = self.adjust_edges()
-        self.cal_outer_positions(outer_nodes_dict, outer_edges_dict, c_l_d)
+        self.cal_outer_positions(rate, outer_nodes_dict, outer_edges_dict, c_l_d)
         self.cal_inner_positions(inner_nodes_dict, inner_edges_dict, c_p_d)
 
     def init_d_cluster(self):
@@ -98,16 +98,22 @@ class NXGraph(AbstractGraph):
                 self.nx_g.node[e]["x"] = p[e]["x"]
                 self.nx_g.node[e]["y"] = p[e]["y"]
 
-    def cal_outer_positions(self, outer_nodes_dict, outer_edges_dict, constraints_dict):
+    def cal_outer_positions(self, rate, outer_nodes_dict, outer_edges_dict, constraints_dict):
         p = ForceDirectedLayout.cal_fd_layout(outer_nodes_dict, outer_edges_dict,
                                               self.width, self.height, constraints_dict)
         for i, e in enumerate(outer_nodes_dict.keys()):
             if e in p:
+                p[e]["out_degree"] = self.nx_g.node[e]["out_degree"]
                 self.nx_g.node[e]["x"] = p[e]["x"]
                 self.nx_g.node[e]["y"] = p[e]["y"]
+        p = sorted(p.items(), key=lambda (k, v): v["out_degree"])
+        p = dict(p[-int(len(p) * rate):])
+        for i, e in enumerate(outer_nodes_dict.keys()):
+            if e in p:
                 self.nx_g.node[e]["visible"] = 1
             else:
                 self.nx_g.node[e]["visible"] = 0
+
         for i, e in enumerate(outer_edges_dict.keys()):
             cluster1 = self.nx_g.node[e[0]]["cluster"]
             cluster2 = self.nx_g.node[e[1]]["cluster"]
@@ -210,7 +216,7 @@ class NXGraph(AbstractGraph):
                             tgt_cluster = cluster_key
                     self.nx_g.node[e]["tgt_cluster"] = tgt_cluster
 
-    def adjust_nodes(self, rate):
+    def adjust_nodes(self):
         outer_nodes_dict = {}
         inner_nodes_dict = {}
         for e in self.nx_g.nodes():
@@ -221,7 +227,6 @@ class NXGraph(AbstractGraph):
         sorted_o_f_n = sorted(outer_nodes_dict.items(), key=lambda (k, v): v["out_degree"])
         for e in sorted_o_f_n:
             self.nx_g.node[e[0]]["visible"] = 0
-        sorted_o_f_n = sorted_o_f_n[-int(len(sorted_o_f_n) * rate):]
         sorted_o_f_n = dict(sorted_o_f_n)
         sorted_i_f_n = inner_nodes_dict
         return (sorted_i_f_n, sorted_o_f_n)

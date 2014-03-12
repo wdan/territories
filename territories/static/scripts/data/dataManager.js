@@ -13,6 +13,7 @@ LG.data.DataManager = function(){
         this.shrink = undefined;
         this.rate = undefined;
         this.boundaryNode = undefined;
+        this.boundaryEdge = undefined;
     };
 
     Object.defineProperties(DataManager.prototype, {
@@ -58,6 +59,7 @@ LG.data.DataManager = function(){
                     success: function(data){
                         _this.original = data;
                         _this.boundaryNode = undefined;
+                        _this.boundaryEdge = undefined;
                         console.log('[LOG] Data Transmission Done.');
                         console.log(data);
                     }
@@ -77,6 +79,22 @@ LG.data.DataManager = function(){
                 }
 
                 return this.boundaryNode;
+
+            }
+        },
+
+        getEdge : {
+            value : function(){
+                if (this.boundaryEdge == undefined){
+                    var edge = [];
+                    var edge_list = this.original.links;
+                    for(var i=0;i<edge_list.length;i++){
+                        if(edge_list[i].visible == 1) edge.push(edge_list[i]);
+                    }
+                    this.boundaryEdge = edge;
+                }
+
+                return this.boundaryEdge;
 
             }
         }

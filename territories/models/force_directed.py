@@ -100,8 +100,9 @@ class ForceDirectedLayout(object):
                         #else:
                             #vector_i_x += float(i_x - j_x) / d * math.log(max(d - cls.dis, 1))
                             #vector_i_y += float(i_y - j_y) / d * math.log(max(d - cls.dis, 1))
-                new_i_x = i_x + vector_i_x * cls.c
-                (new_i_x, new_i_y) = c.get_y(degree, new_i_x)
+                vector_i_x *= cls.c
+                vector_i_y *= cls.c
+                (new_i_x, new_i_y) = c.cal_next(degree, i_x, i_y, vector_i_x, vector_i_y)
                 new_positions.append({"id": reduced_nodes[i][0], "x": new_i_x, "y": new_i_y, "cluster": i_cluster})
             positions = new_positions
         res = {}

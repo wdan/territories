@@ -10,6 +10,7 @@ width = 0
 height = 0
 v = None
 generator = None
+rate = 1
 
 
 @territories.route('/')
@@ -32,24 +33,19 @@ def get_voronoi_data_d():
 
 @territories.route('/get_polygon')
 def get_aggregate():
+    global v, rate, generator
     width = int(request.args.get('width', 1000))
     height = int(request.args.get('height', 1000))
     shrink = int(request.args.get('shrink', 50))
     rate = float(request.args.get('rate', 1))
-    global generator
     generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
     g = generator.get_ig()
     cv = generator.community_detection(g)
     clustered_graph = NXGraph('r_cluster', width, height)
     clustered_graph.nx_g = generator.convert2nx(cv)
-    clustered_graph.cal_mds_positions()
     s = clustered_graph.cal_cluster_voronoi_positions()
-    global v
     v = Voronoi(s, shrink)
-    print 'aggregate'
-    print generator
     return v.to_json()
-    #return get_json(original_graph, clustered_graph)
 
 
 @territories.route('/get_original')
@@ -58,14 +54,5 @@ def get_original():
     original_graph.nx_g = generator.get_nx()
     c_l_d = v.get_linear_constraints_dict()
     c_p_d = v.get_polygon_constraints_dict()
-    original_graph.reduce_graph(c_l_d, c_p_d)
+    original_graph.reduce_graph(rate, c_l_d, c_p_d)
     return NXGraph.to_json(original_graph.nx_g)
-
-def get_json(original_graph, clustered_graph):
-    clustered_graph.cal_mds_positions()
-    s = clustered_graph.cal_cluster_voronoi_positions()
-    v = Voronoi(s)
-    c_l_d = v.get_linear_constraints_dict()
-    c_p_d = v.get_polygon_constraints_dict()
-    original_graph.reduce_graph(c_l_d, c_p_d)
-    return "{\"cluster\":" + NXGraph.to_json(clustered_graph.nx_g) + ", \"voronoi\": "+ v.to_json() + ",\"original\":"+ NXGraph.to_json(original_graph.nx_g) +"}"

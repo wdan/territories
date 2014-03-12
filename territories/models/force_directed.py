@@ -13,18 +13,14 @@ class ForceDirectedLayout(object):
     dis = 20
 
     @classmethod
-    def cal_rd_layout(cls, nodes, edges, constraints_dict):
-        reduced_nodes = []
-        for e in nodes:
-            if e[1]["external"] == 0:
-                reduced_nodes.append(e)
+    def cal_rd_layout(cls, nodes_dict, edges_dict, constraints_dict):
         positions = []
-        for e in reduced_nodes:
-            d = constraints_dict[e[1]["cluster"]]
+        for e in nodes_dict.keys():
+            d = constraints_dict[nodes_dict[e]["cluster"]]
             bounding_box = d["bounding_box"]
             points = d["points"]
             t_dict = {}
-            t_dict["id"] = e[0]
+            t_dict["id"] = e
             x = uniform(bounding_box[0], bounding_box[2])
             y = uniform(bounding_box[1], bounding_box[3])
             while not inside_polygon(x, y, points):
@@ -45,27 +41,26 @@ class ForceDirectedLayout(object):
         reduced_nodes = []
         reduced_edges = []
         positions = []
-        for e in nodes:
-            if e[1]["external"] == 1:
-                src_cluster = e[1]["cluster"]
-                tgt_cluster = e[1]["tgt_cluster"]
-                if (src_cluster, tgt_cluster) in constraints_dict:
-                    reduced_nodes.append(e)
-                    c = constraints_dict[(src_cluster, tgt_cluster)]
-                    (t_x, t_y) = c.get_random_coordinate(e[1]["out_degree"])
-                    positions.append({"x": t_x, "y": t_y, "cluster": src_cluster})
+        for e in nodes.keys():
+            src_cluster = nodes[e]["cluster"]
+            tgt_cluster = nodes[e]["tgt_cluster"]
+            if (src_cluster, tgt_cluster) in constraints_dict:
+                reduced_nodes.append((e, nodes[e]))
+                c = constraints_dict[(src_cluster, tgt_cluster)]
+                (t_x, t_y) = c.get_random_coordinate(nodes[e]["out_degree"])
+                positions.append({"x": t_x, "y": t_y, "cluster": src_cluster})
         n = len(reduced_nodes)
-        node_dict = {}
+        nodes_dict = {}
         edges_dict = {}
         for i, e in enumerate(reduced_nodes):
-            node_dict[e[0]] = i
+            nodes_dict[e[0]] = i
             edges_dict[i] = []
 
         for i, e in enumerate(edges):
-            if e[0] in node_dict and e[1] in node_dict:
+            if e[0] in nodes_dict and e[1] in nodes_dict:
                 reduced_edges.append((e[0], e[1]))
-                src_index = node_dict[e[0]]
-                tgt_index = node_dict[e[1]]
+                src_index = nodes_dict[e[0]]
+                tgt_index = nodes_dict[e[1]]
                 if src_index not in edges_dict:
                     edges_dict[src_index] = []
                 edges_dict[src_index].append(tgt_index)

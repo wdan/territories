@@ -32,14 +32,13 @@ class Polygon(object):
         dict_res["cluster"] = self.cluster
         dict_res["mid_x"] = self.mid_x
         dict_res["mid_y"] = self.mid_y
-        dict_res["points"] = self.points
+        dict_res["points"] = self.points(0)
         area = self.get_width_and_height()
         dict_res["width"] = area[0]
         dict_res["height"] = area[1]
         return dict_res
 
-    @property
-    def points(self):
+    def points(self, shrink):
         points = []
         min_y = sys.maxint
         index = -1
@@ -50,7 +49,8 @@ class Polygon(object):
                 index = i
         self.edge_list = rotate(self.edge_list, index)
         for e in self.edge_list:
-            points.append({"x": e["x1"], "y": e["y1"]})
+            (t_x, t_y) = interp(self.mid_x, self.mid_y, e["x1"], e["y1"], shrink)
+            points.append({"x": t_x, "y": t_y})
         return points
 
     def get_width_and_height(self):
@@ -60,7 +60,7 @@ class Polygon(object):
     def get_bounding_box(self):
         min_x, max_x = sys.maxint, 1 - sys.maxint
         min_y, max_y = min_x, max_x
-        for p in self.points:
+        for p in self.points(0):
             if p["x"] > max_x:
                 max_x = p["x"]
             if p["x"] < min_x:

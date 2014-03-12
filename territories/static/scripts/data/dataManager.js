@@ -6,12 +6,13 @@ LG.data.DataManager = function(){
     var DataManager = function(){
         console.log('[LOG] Data manager initialized');
         this.dataName = '';
-        this.aggregate = {};
+        this.polygon = {};
         this.original = {};
         this.width = undefined;
         this.height = undefined;
         this.shrink = undefined;
         this.rate = undefined;
+        this.boundaryNode = undefined;
     };
 
     Object.defineProperties(DataManager.prototype, {
@@ -35,7 +36,7 @@ LG.data.DataManager = function(){
                     dataType: 'json',
                     async: false,
                     success: function(data){
-                        _this.aggregate = data;
+                        _this.polygon = data;
                         console.log('[LOG] Data Transmission Done.');
                         console.log(data);
                     }
@@ -46,18 +47,37 @@ LG.data.DataManager = function(){
         getOriginal : {
             value : function(){
                 var _this = this;
+
                 console.log('[LOG] Get Original Data.');
                 console.log('[URL] /get_original');
+
                 $.ajax({
                     url: '/get_original',
                     dataType: 'json',
-                    async: true,
+                    async: false,
                     success: function(data){
                         _this.original = data;
+                        _this.boundaryNode = undefined;
                         console.log('[LOG] Data Transmission Done.');
                         console.log(data);
                     }
                 });
+            }
+        },
+
+        getBoundaryNode : {
+            value : function(){
+                if (this.boundaryNode == undefined){
+                    var node = [];
+                    var node_list = this.original.nodes;
+                    for(var i=0;i<node_list.length;i++){
+                        if(node_list[i].external == 1 && node_list[i].visible == 1) node.push(node_list[i]);
+                    }
+                    this.boundaryNode = node;
+                }
+
+                return this.boundaryNode;
+
             }
         }
 

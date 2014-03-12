@@ -30,20 +30,24 @@ def get_voronoi_data_d():
     return get_json(original_graph, clustered_graph)
 
 
-@territories.route('/get_aggregate')
+@territories.route('/get_polygon')
 def get_aggregate():
-    width = request.args.get('width', 1000)
-    height = request.args.get('width', 1000)
-    shrink = request.args.get('shrink', 50)
-    rate = request.args.get('rate', 1)
+    width = int(request.args.get('width', 1000))
+    height = int(request.args.get('height', 1000))
+    shrink = int(request.args.get('shrink', 50))
+    rate = float(request.args.get('rate', 1))
+    global generator
     generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
     g = generator.get_ig()
     cv = generator.community_detection(g)
-    clustered_graph = NXGraph(width, height)
+    clustered_graph = NXGraph('r_cluster', width, height)
     clustered_graph.nx_g = generator.convert2nx(cv)
     clustered_graph.cal_mds_positions()
     s = clustered_graph.cal_cluster_voronoi_positions()
+    global v
     v = Voronoi(s, shrink)
+    print 'aggregate'
+    print generator
     return v.to_json()
     #return get_json(original_graph, clustered_graph)
 

@@ -40,7 +40,7 @@ def get_aggregate():
     rate = float(request.args.get('rate', 1))
     generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
     g = generator.get_ig()
-    cv = generator.community_detection(g)
+    cv = GraphGenerator.community_detection(g)
     clustered_graph = NXGraph('r_cluster', width, height)
     clustered_graph.nx_g = generator.convert2nx(cv)
     s = clustered_graph.cal_cluster_voronoi_positions()

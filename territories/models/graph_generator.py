@@ -39,7 +39,8 @@ class GraphGenerator(object):
         for v in self.__ig__.vs:
             v["size"] = 1
 
-    def community_detection(self, g):
+    @classmethod
+    def community_detection(cls, g):
         cl = g.community_fastgreedy()
         cv = cl.as_clustering()
         cluster_graph = cv.cluster_graph(combine_edges='sum', combine_vertices='sum')
@@ -94,6 +95,6 @@ class GraphGenerator(object):
 if __name__ == '__main__':
     generator = GraphGenerator(4, 12)
     g = generator.get_ig()
-    cv = generator.community_detection(g)
+    cv = GraphGenerator.community_detection(g)
     original_graph = generator.get_nx()
     clustered_graph = generator.convert2nx(cv)

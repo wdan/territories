@@ -26,7 +26,7 @@ class GraphGenerator(object):
         for f in xrange(n_c - 1):
             for t in range(f + 1, n_c):
                 flag = randint(0, 100)
-                if flag > 40:
+                if flag > 60:
                     for j in xrange(int((n_list[f] * n_list[t] / 2.0) * p_btw_c)):
                         self.__ig__.add_edge(randint(sum_list[f+1] - n_list[f] + 1, sum_list[f+1]),
                                              randint(sum_list[t+1] - n_list[t] + 1, sum_list[t+1]))

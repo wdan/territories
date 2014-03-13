@@ -41,6 +41,7 @@ class ForceDirectedLayout(object):
         reduced_nodes = []
         reduced_edges = []
         positions = []
+        print len(edges)
         for e in nodes.keys():
             src_cluster = nodes[e]["cluster"]
             tgt_cluster = nodes[e]["tgt_cluster"]
@@ -67,6 +68,7 @@ class ForceDirectedLayout(object):
                 if tgt_index not in edges_dict:
                     edges_dict[tgt_index] = []
                 edges_dict[tgt_index].append(src_index)
+        print len(reduced_edges)
 
         for k in xrange(cls.iter_num):
             new_positions = []
@@ -85,8 +87,8 @@ class ForceDirectedLayout(object):
                         j_x = positions[j]["x"]
                         j_y = positions[j]["y"]
                         d = cls.cal_distance(i_x, i_y, j_x, j_y)
-                        #vector_i_x += float(i_x - j_x) / pow(d, 3) * 1
-                        #vector_i_y += float(i_y - j_y) / pow(d, 3) * 1
+                        vector_i_x += float(i_x - j_x) / pow(d, 3) * 300
+                        vector_i_y += float(i_y - j_y) / pow(d, 3) * 300
                 for j in edges_dict[i]:
                     if (i != j):
                         src_cluster_j = reduced_nodes[j][1]["cluster"]
@@ -95,8 +97,8 @@ class ForceDirectedLayout(object):
                         j_y = positions[j]["y"]
                         d = cls.cal_distance(i_x, i_y, j_x, j_y)
                         if src_cluster_j == tgt_cluster_i and src_cluster_i == tgt_cluster_j and (src_cluster_i, tgt_cluster_i) in constraints_dict:
-                            vector_i_x += float(j_x - i_x) / d * math.log(max(d - cls.dis, 1))
-                            vector_i_y += float(j_y - i_y) / d * math.log(max(d - cls.dis, 1))
+                            vector_i_x += float(j_x - i_x) / d * math.log(max(d, 1))
+                            vector_i_y += float(j_y - i_y) / d * math.log(max(d, 1))
                         #else:
                             #vector_i_x += float(i_x - j_x) / d * math.log(max(d - cls.dis, 1))
                             #vector_i_y += float(i_y - j_y) / d * math.log(max(d - cls.dis, 1))

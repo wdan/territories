@@ -15,6 +15,7 @@ LG.data.DataManager = function(){
         this.visibleBoundaryNode = undefined;
         this.externalBoundaryNode = undefined;
         this.boundaryEdge = undefined;
+        this.insideNode = undefined;
     };
 
     Object.defineProperties(DataManager.prototype, {
@@ -62,6 +63,7 @@ LG.data.DataManager = function(){
                         _this.visibleBoundaryNode = undefined;
                         _this.externalBoundaryNode = undefined;
                         _this.boundaryEdge = undefined;
+                        _this.insideNode = undefined;
                         console.log('[LOG] Data Transmission Done.');
                         console.log(data);
                     }
@@ -114,6 +116,21 @@ LG.data.DataManager = function(){
                 }
 
                 return this.boundaryEdge;
+            }
+        },
+
+        getInsideNode : {
+            value : function(){
+                if (this.insideNode == undefined){
+                    var node = [];
+                    var node_list = this.original.nodes;
+                    for(var i=0;i<node_list.length;i++){
+                        if(node_list[i].external == 0) node.push(node_list[i]);
+                    }
+                    this.insideNode = node;
+                }
+
+                return this.insideNode;
             }
         }
 

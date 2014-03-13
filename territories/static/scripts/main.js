@@ -41,5 +41,8 @@ $('#dataTypeList').change(function(){
         var boundary_edge = new LG.visual.BoundaryEdge(gui, svg, dataManager, 'boundary_edge');
         boundary_edge.display();
 
+        var inside_node = new LG.visual.InsideNode(gui, svg, dataManager, 'inside_node');
+        inside_node.display();
+
     }
 });

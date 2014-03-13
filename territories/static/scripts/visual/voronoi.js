@@ -8,12 +8,10 @@ LG.visual.Voronoi = function(Visualization){
         console.log('[LOG] Init Voronoi');
         Visualization.call(this, dat, svg, dataManager, className);
         this.data = dataManager.polygon;
-        this.voronoi_color_set = false;
+        this.voronoi_color_set = true;
         this.voronoi_fill = '#4682B4';
         this.color_scale = d3.scale.linear().domain([0, 1]).range(['white', this.voronoi_fill]);
         this.voronoi_opacity = 1.0;
-//        this.voronoi_stroke = '#4682B4';
-//        this.voronoi_stroke_width = 3;
         this.draw_mid_node = false;
         this.control();
     };
@@ -31,24 +29,10 @@ LG.visual.Voronoi = function(Visualization){
                 folder.addColor(this, 'voronoi_fill').onChange(function(){
 
                     if(!_this.voronoi_color_set){
-//                        _this.voronoi_stroke = _this.voronoi_fill;
                         _this.color_scale = d3.scale.linear().domain([0, 1]).range(['white', _this.voronoi_fill]);
                         _this.update();
                     }
                 });
-
-//                Visualization.prototype.addControl.call(this, 0, 'voronoi_color_set', function(){
-//                    _this.update();
-//                });
-
-//                Visualization.prototype.addControl.call(this, 1, 'voronoi_fill', function(){
-//
-//                    if(!_this.voronoi_color_set){
-////                        _this.voronoi_stroke = _this.voronoi_fill;
-//                        _this.color_scale = d3.scale.linear().domain([0, 1]).range(['white', _this.voronoi_fill]);
-//                        _this.update();
-//                    }
-//                });
 
                 folder.add(this, 'voronoi_opacity', 0, 1).step(0.1).onFinishChange(function(){
                     _this.update();
@@ -57,11 +41,6 @@ LG.visual.Voronoi = function(Visualization){
                 folder.add(this, 'draw_mid_node').onFinishChange(function(){
                     _this.middle_node();
                 });
-//                Visualization.prototype.addControl.call(this, 0, 'draw_mid_node', function(){
-//                    _this.middle_node();
-//                });
-
-//                this.datList.push(tmp);
             }
         },
 
@@ -76,13 +55,7 @@ LG.visual.Voronoi = function(Visualization){
                             return _this.color_scale(c);
                         }
                     })
-//                    .style('stroke', function(d){
-//                        if (_this.voronoi_color_set) return _this.classColor[d.cluster];
-//                        else return _this.voronoi_stroke;
-//                    })
-                    .style('fill-opacity', _this.voronoi_opacity)
-//                    .style('stroke-opacity', _this.voronoi_opacity)
-//                    .style('stroke-width', _this.voronoi_stroke_width+'px');
+                    .style('fill-opacity', _this.voronoi_opacity);
             }
         },
 

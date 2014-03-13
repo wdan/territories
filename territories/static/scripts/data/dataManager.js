@@ -77,16 +77,12 @@ LG.data.DataManager = function(){
                     var node = [];
                     var node_list = this.original.nodes;
                     for(var i=0;i<node_list.length;i++){
-                        if(node_list[i].external == 1) node.push(node_list[i]);
+                        if(node_list[i].external == 1 && node_list[i].x != undefined) node.push(node_list[i]);
                     }
                     this.externalBoundaryNode = node;
                 }
 
-                console.log('external nodes');
-                console.log(this.externalBoundaryNode);
                 return this.externalBoundaryNode;
-
-
             }
 
         },
@@ -102,11 +98,7 @@ LG.data.DataManager = function(){
                     this.visibleBoundaryNode = node;
                 }
 
-
-                console.log('visible nodes');
-                console.log(this.visibleBoundaryNode);
                 return this.visibleBoundaryNode;
-
             }
         },
 
@@ -122,7 +114,6 @@ LG.data.DataManager = function(){
                 }
 
                 return this.boundaryEdge;
-
             }
         }
 

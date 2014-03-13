@@ -38,7 +38,7 @@ class Constraint(object):
         sin_theta = abs(yB - yA) / dis
         v = vx * cos_theta + vy * sin_theta
         x = px + cos_theta * v
-        y = py + sin_theta * v
+        (x, y) = self.get_y(degree, x)
         return (x, y)
 
     def get_y(self, degree, x):

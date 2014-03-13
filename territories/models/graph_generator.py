@@ -41,6 +41,8 @@ class GraphGenerator(object):
 
     @classmethod
     def community_detection(cls, g):
+        #cl = g.community_walktrap()
+        #cl = g.community_edge_betweenness()
         cl = g.community_fastgreedy()
         cv = cl.as_clustering()
         cluster_graph = cv.cluster_graph(combine_edges='sum', combine_vertices='sum')
@@ -61,7 +63,8 @@ class GraphGenerator(object):
         layout = g.layout("kk")
         ig.plot(g, layout=layout)
 
-    def convert2nx(self, g):
+    @classmethod
+    def convert2nx(cls, g):
         nx_graph = nx.Graph()
         for v in g.vs:
             nx_graph.add_node(v.index)

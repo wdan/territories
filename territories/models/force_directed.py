@@ -41,7 +41,6 @@ class ForceDirectedLayout(object):
         reduced_nodes = []
         reduced_edges = []
         positions = []
-        print len(edges)
         for e in nodes.keys():
             src_cluster = nodes[e]["cluster"]
             tgt_cluster = nodes[e]["tgt_cluster"]
@@ -68,7 +67,6 @@ class ForceDirectedLayout(object):
                 if tgt_index not in edges_dict:
                     edges_dict[tgt_index] = []
                 edges_dict[tgt_index].append(src_index)
-        print len(reduced_edges)
 
         for k in xrange(cls.iter_num):
             new_positions = []

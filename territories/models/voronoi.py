@@ -75,7 +75,7 @@ class Voronoi(object):
             cluster = p.cluster
             constraints_dict[cluster] = {}
             constraints_dict[cluster]["bounding_box"] = p.get_bounding_box()
-            constraints_dict[cluster]["points"] = p.points(0)
+            constraints_dict[cluster]["points"] = p.points(10)
         return constraints_dict
 
     def to_dict(self):

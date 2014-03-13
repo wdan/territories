@@ -48,6 +48,8 @@ def get_aggregate():
         orig = GraphImporter("").get_hugo()
     elif name == "book":
         orig = GraphImporter("").get_books()
+    elif name == "dblp":
+        orig = GraphImporter("").get_dblp_os()
     g = orig.copy()
     cv = GraphGenerator.community_detection(GraphImporter.remove_attributes(g))
     clustered_graph = NXGraph('r_cluster', width, height)
@@ -61,7 +63,6 @@ def get_aggregate():
 def get_original():
     original_graph = NXGraph(width, height)
     original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
-    print original_graph.nx_g.nodes(data=True)
     c_l_d = v.get_linear_constraints_dict()
     c_p_d = v.get_polygon_constraints_dict()
     original_graph.reduce_graph(rate, c_l_d, c_p_d)

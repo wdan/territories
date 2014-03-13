@@ -56,7 +56,7 @@ class GraphImporter(object):
             v["size"] = 1
         return g
 
-    def generate_sub(g, data, venueIDList):
+    def generate_sub(self, g, data, venueIDList):
 
         paper_list = {}
         author_list = {}
@@ -105,7 +105,7 @@ class GraphImporter(object):
 
         data = sio.loadmat('territories/data/dblp.mat')
 
-        return generate_sub(g, data, [853, 1074, 1615, 1451, 890])
+        return self.generate_sub(g, data, [853, 1074, 1615, 1451, 890])
 
     @classmethod
     def add_attributes(cls, orig, g):
@@ -115,5 +115,5 @@ class GraphImporter(object):
         for attr in orig.edge_attributes():
             for e in orig.es:
                 g.es[e.index][attr] = e[attr]
-        del g.vs["id"]
+        #del g.vs["id"]
         return g

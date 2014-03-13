@@ -32,3 +32,14 @@ class GraphImporter(object):
         for v in g.vs:
             v["size"] = 1
         return g
+
+    def get_hugo(self):
+        g = ig.load("territories/data/lesmis.gml")
+        del g.vs['id']
+        del g.es['value']
+        g.simplify(loops=False)
+        for e in g.es:
+            e["weight"] = 1
+        for v in g.vs:
+            v["size"] = 1
+        return g

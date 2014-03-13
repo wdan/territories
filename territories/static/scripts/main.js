@@ -23,7 +23,7 @@ $('#dataTypeList').change(function(){
         svg = d3.select('#paint_zone').append('svg')
             .attr('width', width)
             .attr('height', height);
-        dataManager.getPolygon(val, width, height, 50, 1.0);
+        dataManager.getPolygon(val, width, height, 80, 1.0);
         dataManager.getOriginal();
 
         var hull = new LG.visual.ConvexHull(gui, svg, dataManager, 'convex_hull');

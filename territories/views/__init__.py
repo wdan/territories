@@ -41,7 +41,7 @@ def get_aggregate():
     rate = float(request.args.get('rate', 1))
     #generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
     #g = generator.get_ig()
-    g = GraphImporter("").get_citation()
+    g = GraphImporter("").get_hugo()
     cv = GraphGenerator.community_detection(g)
     clustered_graph = NXGraph('r_cluster', width, height)
     clustered_graph.nx_g = GraphGenerator.convert2nx(cv)

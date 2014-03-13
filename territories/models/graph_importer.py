@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import igraph as ig
+import scipy.io as sio
 
 
 class GraphImporter(object):
@@ -32,3 +33,63 @@ class GraphImporter(object):
         for v in g.vs:
             v["size"] = 1
         return g
+
+    def get_dblp_1984(self):
+        g = ig.Graph.Read_Pajek('territories/data/1984.net')
+        for e in g.es:
+            e["weight"] = 1
+        for v in g.vs:
+            v["size"] = 1
+
+        return g
+
+    def generate_sub(g, data, venueIDList):
+
+        paper_list = {}
+        author_list = {}
+        for venue in venueIDList:
+            paper_list[venue] = []
+            author_list[venue] = []
+
+        paper_venue = data['paper_venue']
+        paper_author = data['paper_author'].tocsr()
+
+        n = paper_venue.size
+        for i in xrange(n):
+            v = paper_venue[i][0]
+            if v in paper_list:
+                paper_list[v].append(i)
+
+        g.vs[0]['class'] = {}
+        total_author_list = []
+        for venue in paper_list.keys():
+            paper = paper_list[venue]
+            for ID in paper:
+                cols = paper_author.getrow(ID).nonzero()[1]
+                author_list[venue] += list(cols)
+                total_author_list += list(cols)
+                for authorID in cols:
+                    authorID = int(authorID)
+                    if g.vs[authorID]['class'] is None:
+                        g.vs[authorID]['class'] = {}
+                    if int(venue) not in g.vs[authorID]['class']:
+                        g.vs[authorID]['class'][int(venue)] = 0
+                    g.vs[authorID]['class'][int(venue)] += 1
+
+        for venue in paper_list.keys():
+            print(str(venue)+": Author nums:")
+            print(len(set(author_list[venue])))
+
+        print('Total number:')
+        print(len(set(total_author_list)))
+        total_author_list = list(set(total_author_list))
+
+        return g.induced_subgraph(total_author_list)
+
+    def get_dblp_os(self):
+        g = ig.Graph.Read_Pajek('territories/data/dblp-all.net')
+        g.simplify(loops=False)
+
+        data = sio.loadmat('territories/data/dblp.mat')
+
+        return generate_sub(g, data, [853, 1074, 1615, 1451, 890])

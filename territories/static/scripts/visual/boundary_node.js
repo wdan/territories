@@ -46,8 +46,8 @@ LG.visual.BoundaryNode = function(Visualization){
                     .data(this.data)
                     .enter()
                     .append('circle')
-                    .attr('cx', function(d){return d.x})
-                    .attr('cy', function(d){return d.y})
+                    .attr('cx', function(d){return d.x;})
+                    .attr('cy', function(d){return d.y;})
                     .style('fill', function(d){
                         return _this.classColor[d.cluster];
                     });

@@ -270,7 +270,7 @@ class NXGraph(AbstractGraph):
                     else:
                         self.nx_g.edge[e[0]][e[1]]["visible"] = 0
             else:
-                self.nx_g.edge[e[0]][e[1]]["visible"] = 0
+                self.nx_g.edge[e[0]][e[1]]["visible"] = 1
                 inner_edges_dict[(e[0], e[1])] = self.nx_g.edge[e[0]][e[1]]
         return (inner_edges_dict, outer_edges_dict)
 

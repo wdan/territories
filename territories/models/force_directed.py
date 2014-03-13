@@ -85,8 +85,8 @@ class ForceDirectedLayout(object):
                         j_x = positions[j]["x"]
                         j_y = positions[j]["y"]
                         d = cls.cal_distance(i_x, i_y, j_x, j_y)
-                        vector_i_x += float(i_x - j_x) / pow(d, 3)
-                        vector_i_y += float(i_y - j_y) / pow(d, 3)
+                        vector_i_x += float(i_x - j_x) / pow(d, 3) * 100
+                        vector_i_y += float(i_y - j_y) / pow(d, 3) * 100
                 for j in edges_dict[i]:
                     if (i != j):
                         src_cluster_j = reduced_nodes[j][1]["cluster"]

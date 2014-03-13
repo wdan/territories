@@ -34,6 +34,11 @@ class GraphImporter(object):
             v["size"] = 1
         return g
 
+    def get_school(self):
+        g = ig.load("territories/data/data_school_day_1.gml")
+        g.simplify(loops=False)
+        return g
+
     def get_hugo(self):
         g = ig.load("territories/data/lesmis.gml")
         g.simplify(loops=False)
@@ -43,6 +48,14 @@ class GraphImporter(object):
         g = ig.load("territories/data/polbooks.gml")
         g.simplify(loops=False)
         return g
+
+    def get_dblp_os(self):
+        #g = ig.load("territories/data/dblp.net")
+        #g.simplify(loops=False)
+        #return g
+        g = ig.Graph.Read_Pajek('territories/data/dblp-all.net')
+        data = sio.loadmat('territories/data/dblp.mat')
+        return self.generate_sub(g, data, [853, 1074, 1615, 1451, 890])
 
     @classmethod
     def remove_attributes(cls, g):
@@ -99,14 +112,6 @@ class GraphImporter(object):
 
         return g.induced_subgraph(total_author_list)
 
-    def get_dblp_os(self):
-        g = ig.Graph.Read_Pajek('territories/data/dblp-all.net')
-        g.simplify(loops=False)
-
-        data = sio.loadmat('territories/data/dblp.mat')
-
-        return self.generate_sub(g, data, [853, 1074, 1615, 1451, 890])
-
     @classmethod
     def add_attributes(cls, orig, g):
         for attr in orig.vertex_attributes():
@@ -115,5 +120,4 @@ class GraphImporter(object):
         for attr in orig.edge_attributes():
             for e in orig.es:
                 g.es[e.index][attr] = e[attr]
-        #del g.vs["id"]
         return g

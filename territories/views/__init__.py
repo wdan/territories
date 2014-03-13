@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+import networkx as nx
+
 from flask import render_template
 from flask import request
 from territories import territories
@@ -13,6 +17,7 @@ g = None
 orig = None
 name = ""
 rate = 1
+detection = False
 
 
 @territories.route('/')
@@ -35,25 +40,39 @@ def get_voronoi_data_d():
 
 @territories.route('/get_polygon')
 def get_aggregate():
-    global orig, g, v, name, rate, generator
+    global detection, orig, g, v, name, rate, generator
     name = request.args.get('name', 'random')
     width = int(request.args.get('width', 1000))
     height = int(request.args.get('height', 1000))
     shrink = int(request.args.get('shrink', 50))
     rate = float(request.args.get('rate', 1))
+    detection = False
     if name == "random":
         generator = GraphGenerator(12, 20, edge_pr_btw_com=0.02, low=0.2, high=2)
         orig = generator.get_ig()
+        detection = True
     elif name == "hugo":
         orig = GraphImporter("").get_hugo()
+        del orig.vs["id"]
+        detection = True
     elif name == "book":
         orig = GraphImporter("").get_books()
+        del orig.vs["id"]
+        detection = True
+    elif name == "school":
+        orig = GraphImporter("").get_school()
+        del orig.vs["id"]
     elif name == "dblp":
         orig = GraphImporter("").get_dblp_os()
     g = orig.copy()
-    cv = GraphGenerator.community_detection(GraphImporter.remove_attributes(g))
-    clustered_graph = NXGraph('r_cluster', width, height)
-    clustered_graph.nx_g = GraphGenerator.convert2nx(cv)
+    if detection:
+        cv = GraphGenerator.community_detection(GraphImporter.remove_attributes(g))
+        clustered_graph = NXGraph('r_cluster', width, height)
+        clustered_graph.nx_g = GraphGenerator.convert2nx(cv)
+    else:
+        g = GraphGenerator.convert2nx(g)
+        clustered_graph = NXGraph('r_cluster', width, height)
+        clustered_graph.nx_g = NXGraph.mark_community(g)
     s = clustered_graph.cal_cluster_voronoi_positions()
     v = Voronoi(s, shrink)
     return v.to_json()
@@ -62,7 +81,10 @@ def get_aggregate():
 @territories.route('/get_original')
 def get_original():
     original_graph = NXGraph(width, height)
-    original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
+    if detection:
+        original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
+    else:
+        original_graph.nx_g = g
     c_l_d = v.get_linear_constraints_dict()
     c_p_d = v.get_polygon_constraints_dict()
     original_graph.reduce_graph(rate, c_l_d, c_p_d)

@@ -182,6 +182,48 @@ class NXGraph(AbstractGraph):
         self.nx_g.graph["community-num"] = n
         for key in res.keys():
             self.nx_g.node[key]["cluster"] = res[key]
+
+    @classmethod
+    def mark_community(cls, g):
+        clustered_graph = nx.Graph()
+        community_dict = {}
+        community_size_dict = {}
+        node2community_dict = {}
+        cnt = 0
+        for n in g.nodes():
+            community = g.node[n]["class"]
+            if type(community) is dict:
+                c_list = sorted(community.items(), key=lambda (k, v): v)
+                community = c_list[-1][0]
+            if community not in community_dict:
+                community_dict[community] = cnt
+                community_size_dict[community] = 0
+                cnt += 1
+            community_size_dict[community] += 1
+            community_id = community_dict[community]
+            node2community_dict[n] = community_id
+            g.node[n]["cluster"] = community_id
+
+        for key in community_dict.keys():
+            cluster_id = community_dict[key]
+            clustered_graph.add_node(cluster_id)
+            clustered_graph.node[cluster_id]["size"] = community_size_dict[key]
+        edges_dict = {}
+        for e in g.edges():
+            src_id = node2community_dict[e[0]]
+            tgt_id = node2community_dict[e[1]]
+            if src_id == tgt_id:
+                continue
+            if src_id > tgt_id:
+                src_id, tgt_id = tgt_id, src_id
+            if (src_id, tgt_id) not in edges_dict:
+                edges_dict[(src_id, tgt_id)] = 0
+            edges_dict[(src_id, tgt_id)] += 1
+        for (k, v) in edges_dict.items():
+            clustered_graph.add_edge(k[0], k[1])
+            clustered_graph.edge[k[0]][k[1]]["weight"] = v
+        return clustered_graph
+
     def cal_degree(self, constraints_dict):
         edges = self.nx_g.edges()
         node_dict = {}

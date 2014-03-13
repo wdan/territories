@@ -40,7 +40,7 @@ class NXGraph(AbstractGraph):
         self.import_communities()
 
     def reduce_graph(self, rate, c_l_d, c_p_d):
-        self.cal_degree()
+        self.cal_degree(c_l_d)
         (inner_nodes_dict, outer_nodes_dict) = self.adjust_nodes()
         (inner_edges_dict, outer_edges_dict) = self.adjust_edges()
         self.cal_outer_positions(rate, outer_nodes_dict, outer_edges_dict, c_l_d)
@@ -117,10 +117,10 @@ class NXGraph(AbstractGraph):
         for i, e in enumerate(outer_edges_dict.keys()):
             cluster1 = self.nx_g.node[e[0]]["cluster"]
             cluster2 = self.nx_g.node[e[1]]["cluster"]
-            if ((cluster1, cluster2) in constraints_dict) and e[0] in p and e[1] in p:
-                self.nx_g.edge[e[0]][e[1]]["visible"] = 1
-            else:
-                self.nx_g.edge[e[0]][e[1]]["visible"] = 0
+            #if ((cluster1, cluster2) in constraints_dict) and e[0] in p and e[1] in p:
+            self.nx_g.edge[e[0]][e[1]]["visible"] = 1
+            #else:
+                #self.nx_g.edge[e[0]][e[1]]["visible"] = 0
 
     def cal_cluster_voronoi_positions(self):
         self.cal_mds_positions()
@@ -182,39 +182,59 @@ class NXGraph(AbstractGraph):
         self.nx_g.graph["community-num"] = n
         for key in res.keys():
             self.nx_g.node[key]["cluster"] = res[key]
-
-    def cal_degree(self):
-        nodes = self.nx_g.nodes()
-        for e in nodes:
-            neighbors = self.nx_g.neighbors(e)
-            indegree = 0
-            outdegree = 0
-            tgt_cluster_edge_num_dict = {}
-            for neighbor in neighbors:
-                if self.nx_g.node[e]["cluster"] == self.nx_g.node[neighbor]["cluster"]:
-                    indegree += 1
-                else:
-                    outdegree += 1
-                    tgt_cluster_id = self.nx_g.node[neighbor]["cluster"]
-                    if tgt_cluster_id not in tgt_cluster_edge_num_dict:
-                        tgt_cluster_edge_num_dict[tgt_cluster_id] = 0
-                    tgt_cluster_edge_num_dict[tgt_cluster_id] += 1
-            if indegree + outdegree == 0:
-                self.nx_g.remove_node(e)
+    def cal_degree(self, constraints_dict):
+        edges = self.nx_g.edges()
+        node_dict = {}
+        for e in edges:
+            node0 = self.nx_g.node[e[0]]
+            node1 = self.nx_g.node[e[1]]
+            if e[0] not in node_dict:
+                node_dict[e[0]] = {}
+                node_dict[e[0]]["in_degree"] = 0
+                node_dict[e[0]]["out_degree"] = 0
+                node_dict[e[0]]["tgt_clusters"] = {}
+            if e[1] not in node_dict:
+                node_dict[e[1]] = {}
+                node_dict[e[1]]["in_degree"] = 0
+                node_dict[e[1]]["out_degree"] = 0
+                node_dict[e[1]]["tgt_clusters"] = {}
+            if node0["cluster"] == node1["cluster"]:
+                node_dict[e[0]]["in_degree"] += 1
+                node_dict[e[1]]["in_degree"] += 1
             else:
-                self.nx_g.node[e]["in_degree"] = indegree
-                self.nx_g.node[e]["out_degree"] = outdegree
-                self.nx_g.node[e]["external"] = 0
-                self.nx_g.node[e]["visible"] = 1
-                if outdegree > 0:
-                    self.nx_g.node[e]["external"] = 1
-                    cluster_max = 0
-                    tgt_cluster = -1
-                    for cluster_key in tgt_cluster_edge_num_dict.keys():
-                        if cluster_max < tgt_cluster_edge_num_dict[cluster_key]:
-                            cluster_max = tgt_cluster_edge_num_dict[cluster_key]
-                            tgt_cluster = cluster_key
-                    self.nx_g.node[e]["tgt_cluster"] = tgt_cluster
+                node_dict[e[0]]["out_degree"] += 1
+                node_dict[e[1]]["out_degree"] += 1
+                if node0["cluster"] not in node_dict[e[1]]["tgt_clusters"]:
+                    node_dict[e[1]]["tgt_clusters"][node0["cluster"]] = 0
+                node_dict[e[1]]["tgt_clusters"][node0["cluster"]] += 1
+                if node1["cluster"] not in node_dict[e[0]]["tgt_clusters"]:
+                    node_dict[e[0]]["tgt_clusters"][node1["cluster"]] = 0
+                node_dict[e[0]]["tgt_clusters"][node1["cluster"]] += 1
+        for n in self.nx_g.nodes():
+            if n not in node_dict:
+                self.nx_g.remove_node(n)
+                continue
+            if node_dict[n]["in_degree"] + node_dict[n]["out_degree"] == 0:
+                self.nx_g.remove_node(n)
+                continue
+            self.nx_g.node[n]["visible"] = 1
+            self.nx_g.node[n]["external"] = 0
+            self.nx_g.node[n]["in_degree"] = node_dict[n]["in_degree"]
+            self.nx_g.node[n]["out_degree"] = node_dict[n]["out_degree"]
+            src_cluster = self.nx_g.node[n]["cluster"]
+            if self.nx_g.node[n]["out_degree"] > 0:
+                self.nx_g.node[n]["external"] = 1
+                max_tgt = 0
+                index = -1
+                for key in node_dict[n]["tgt_clusters"].keys():
+                    if max_tgt < node_dict[n]["tgt_clusters"][key] and (src_cluster, key) in constraints_dict:
+                        max_tgt = node_dict[n]["tgt_clusters"][key]
+                        index = key
+                if index == -1:
+                    self.nx_g.node[n]["out_degree"] = 0
+                    self.nx_g.node[n]["external"] = 0
+                else:
+                    self.nx_g.node[n]["tgt_cluster"] = index
 
     def adjust_nodes(self):
         outer_nodes_dict = {}
@@ -240,10 +260,11 @@ class NXGraph(AbstractGraph):
             src_cluster0 = self.nx_g.node[e[0]]["cluster"]
             src_cluster1 = self.nx_g.node[e[1]]["cluster"]
             if num0 > 0 and num1 > 0:
-                if (num0 > self.ADJUST_NUMBER and num1 > self.ADJUST_NUMBER):
+                if num0 > self.ADJUST_NUMBER and num1 > self.ADJUST_NUMBER:
                     tgt_cluster0 = self.nx_g.node[e[0]]["tgt_cluster"]
                     tgt_cluster1 = self.nx_g.node[e[1]]["tgt_cluster"]
-                    if src_cluster0 == tgt_cluster1 and src_cluster1 == tgt_cluster0:
+                    #if src_cluster0 == tgt_cluster1 and src_cluster1 == tgt_cluster0:
+                    if src_cluster0 != src_cluster1:
                         self.nx_g.edge[e[0]][e[1]]["visible"] = 1
                         outer_edges_dict[(e[0], e[1])] = self.nx_g.edge[e[0]][e[1]]
                     else:

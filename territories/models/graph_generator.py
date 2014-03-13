@@ -26,7 +26,7 @@ class GraphGenerator(object):
         for f in xrange(n_c - 1):
             for t in range(f + 1, n_c):
                 flag = randint(0, 100)
-                if flag > 40:
+                if flag > 60:
                     for j in xrange(int((n_list[f] * n_list[t] / 2.0) * p_btw_c)):
                         self.__ig__.add_edge(randint(sum_list[f+1] - n_list[f] + 1, sum_list[f+1]),
                                              randint(sum_list[t+1] - n_list[t] + 1, sum_list[t+1]))
@@ -39,7 +39,10 @@ class GraphGenerator(object):
         for v in self.__ig__.vs:
             v["size"] = 1
 
-    def community_detection(self, g):
+    @classmethod
+    def community_detection(cls, g):
+        #cl = g.community_walktrap()
+        #cl = g.community_edge_betweenness()
         cl = g.community_fastgreedy()
         cv = cl.as_clustering()
         cluster_graph = cv.cluster_graph(combine_edges='sum', combine_vertices='sum')
@@ -60,7 +63,8 @@ class GraphGenerator(object):
         layout = g.layout("kk")
         ig.plot(g, layout=layout)
 
-    def convert2nx(self, g):
+    @classmethod
+    def convert2nx(cls, g):
         nx_graph = nx.Graph()
         for v in g.vs:
             nx_graph.add_node(v.index)
@@ -94,6 +98,6 @@ class GraphGenerator(object):
 if __name__ == '__main__':
     generator = GraphGenerator(4, 12)
     g = generator.get_ig()
-    cv = generator.community_detection(g)
+    cv = GraphGenerator.community_detection(g)
     original_graph = generator.get_nx()
     clustered_graph = generator.convert2nx(cv)

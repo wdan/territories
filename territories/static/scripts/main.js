@@ -29,8 +29,8 @@ $('#dataTypeList').change(function(){
         var hull = new LG.visual.ConvexHull(gui, svg, dataManager, 'convex_hull');
         hull.display();
 
-//        var boundary_contour = new LG.visual.BoundaryContour(gui, svg, dataManager, 'boundary_contour');
-//        boundary_contour.display();
+        //var boundary_contour = new LG.visual.BoundaryContour(gui, svg, dataManager, 'boundary_contour');
+        //boundary_contour.display();
 
         var voronoi = new LG.visual.Voronoi(gui, svg, dataManager, 'voronoi');
         voronoi.display();

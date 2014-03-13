@@ -8,9 +8,9 @@ from util import inside_polygon
 
 class ForceDirectedLayout(object):
 
-    iter_num = 200
+    iter_num = 100
     c = 0.5
-    dis = 20
+    dis = 10
 
     @classmethod
     def cal_rd_layout(cls, nodes_dict, edges_dict, constraints_dict):
@@ -85,8 +85,8 @@ class ForceDirectedLayout(object):
                         j_x = positions[j]["x"]
                         j_y = positions[j]["y"]
                         d = cls.cal_distance(i_x, i_y, j_x, j_y)
-                        #vector_i_x += float(i_x - j_x) / pow(d, 3)
-                        #vector_i_y += float(i_y - j_y) / pow(d, 3)
+                        #vector_i_x += float(i_x - j_x) / pow(d, 3) * 1
+                        #vector_i_y += float(i_y - j_y) / pow(d, 3) * 1
                 for j in edges_dict[i]:
                     if (i != j):
                         src_cluster_j = reduced_nodes[j][1]["cluster"]
@@ -100,8 +100,9 @@ class ForceDirectedLayout(object):
                         #else:
                             #vector_i_x += float(i_x - j_x) / d * math.log(max(d - cls.dis, 1))
                             #vector_i_y += float(i_y - j_y) / d * math.log(max(d - cls.dis, 1))
-                new_i_x = i_x + vector_i_x * cls.c
-                (new_i_x, new_i_y) = c.get_y(degree, new_i_x)
+                vector_i_x *= cls.c
+                vector_i_y *= cls.c
+                (new_i_x, new_i_y) = c.cal_next(degree, i_x, i_y, vector_i_x, vector_i_y)
                 new_positions.append({"id": reduced_nodes[i][0], "x": new_i_x, "y": new_i_y, "cluster": i_cluster})
             positions = new_positions
         res = {}

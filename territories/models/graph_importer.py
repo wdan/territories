@@ -34,13 +34,26 @@ class GraphImporter(object):
             v["size"] = 1
         return g
 
-    def get_dblp_1984(self):
-        g = ig.Graph.Read_Pajek('territories/data/1984.net')
+    def get_hugo(self):
+        g = ig.load("territories/data/lesmis.gml")
+        g.simplify(loops=False)
+        return g
+
+    def get_books(self):
+        g = ig.load("territories/data/polbooks.gml")
+        g.simplify(loops=False)
+        return g
+
+    @classmethod
+    def remove_attributes(cls, g):
+        for attr in g.vertex_attributes():
+            del g.vs[attr]
+        for attr in g.edge_attributes():
+            del g.es[attr]
         for e in g.es:
             e["weight"] = 1
         for v in g.vs:
             v["size"] = 1
-
         return g
 
     def generate_sub(g, data, venueIDList):
@@ -93,3 +106,14 @@ class GraphImporter(object):
         data = sio.loadmat('territories/data/dblp.mat')
 
         return generate_sub(g, data, [853, 1074, 1615, 1451, 890])
+
+    @classmethod
+    def add_attributes(cls, orig, g):
+        for attr in orig.vertex_attributes():
+            for v in orig.vs:
+                g.vs[v.index][attr] = v[attr]
+        for attr in orig.edge_attributes():
+            for e in orig.es:
+                g.es[e.index][attr] = e[attr]
+        del g.vs["id"]
+        return g

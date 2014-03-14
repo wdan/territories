@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import networkx as nx
+import json
 
 from flask import render_template
 from flask import request
@@ -17,6 +18,7 @@ g = None
 orig = None
 name = ""
 rate = 1
+clustered_graph = None
 detection = False
 
 
@@ -31,16 +33,9 @@ def get_data():
     return NXGraph.to_json(graph.nx_g)
 
 
-@territories.route('/_get_voronoi_data_d')
-def get_voronoi_data_d():
-    clustered_graph = NXGraph('d_cluster')
-    original_graph = NXGraph('')
-    return get_json(original_graph, clustered_graph)
-
-
 @territories.route('/get_polygon')
 def get_aggregate():
-    global detection, orig, g, v, name, rate, generator
+    global detection, orig, g, v, name, rate, generator, clustered_graph
     name = request.args.get('name', 'random')
     width = int(request.args.get('width', 1000))
     height = int(request.args.get('height', 1000))
@@ -84,6 +79,17 @@ def get_aggregate():
     s = clustered_graph.cal_cluster_voronoi_positions()
     v = Voronoi(s, shrink)
     return v.to_json()
+
+
+@territories.route('/get_cluster_name')
+def get_cluster_name():
+    res = {}
+    for n in clustered_graph.nx_g.nodes():
+        if "cluster-name" in clustered_graph.nx_g.node[n]:
+            res[n] = clustered_graph.nx_g.node[n]["cluster-name"]
+        else:
+            res[n] = clustered_graph.nx_g.node[n]["cluster"]
+    return json.dumps(res)
 
 
 @territories.route('/get_original')

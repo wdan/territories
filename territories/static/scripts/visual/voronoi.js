@@ -101,8 +101,18 @@ LG.visual.Voronoi = function(Visualization){
                             return "SIGGRAPH";
                         }else if(tmp == 3078){
                             return "SIGKDD";
+                        }else if(tmp == 1074){
+                            return "SOSP";
+                        }else if(tmp == 1615){
+                            return "ASPLOS";
+                        }else if(tmp == 1451){
+                            return "PPOPP";
+                        }else if(tmp == 890){
+                            return "ISCA";
+                        }else if(tmp == 853){
+                            return "HPCA";
                         }else{
-                            return "Unknown";
+                            return "";
                         }
                     })
                     .attr('text-anchor', 'middle')

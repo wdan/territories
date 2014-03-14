@@ -63,8 +63,7 @@ LG.visual.BoundaryContour = function(Visualization){
 
                 for(var i=0;i<this.cluster_list.length;i++){
                     var cid = this.cluster_list[i];
-                    console.log('contour');
-                    console.log(this.data[cid]);
+
                     if(this.data[cid].length!=0){
                         LG.visual.ContourMap(this.data[cid], this.svg.append('g').attr('class', this.className),
                             this.contour_pix, this.contour_scale, this.classColor[cid]);

@@ -39,6 +39,11 @@ class GraphImporter(object):
         g.simplify(loops=False)
         return g
 
+    def get_football(self):
+        g = ig.load("territories/data/football.gml")
+        g.simplify(loops=False)
+        return g
+
     def get_hugo(self):
         g = ig.load("territories/data/lesmis.gml")
         g.simplify(loops=False)

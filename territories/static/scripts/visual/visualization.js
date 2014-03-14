@@ -7,7 +7,7 @@ LG.visual.Visualization = function(){
         this.dat = dat;
         this.svg = svg.append('g').attr('class', className);
         this.className = className;
-        this.classColor = colorbrewer.Set1[9];
+        this.classColor = colorbrewer.Paired[12];
         //this.classColor = colorbrewer.Pastel1[9];
     };
 

@@ -59,6 +59,9 @@ def get_aggregate():
         orig = GraphImporter("").get_books()
         del orig.vs["id"]
         detection = True
+    elif name == "football":
+        orig = GraphImporter("").get_football()
+        del orig.vs["id"]
     elif name == "school":
         orig = GraphImporter("").get_school()
         del orig.vs["id"]

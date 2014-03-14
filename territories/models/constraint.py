@@ -7,7 +7,7 @@ from random import uniform
 
 class Constraint(object):
 
-    C = -15
+    C = -10
 
     def __init__(self, x1, y1, x2, y2, mid_x, mid_y):
         if x1 > x2:

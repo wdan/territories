@@ -41,8 +41,8 @@ class NXGraph(AbstractGraph):
 
     def reduce_graph(self, rate, c_l_d, c_p_d):
         self.cal_degree(c_l_d)
-        (inner_nodes_dict, outer_nodes_dict) = self.adjust_nodes()
         (inner_edges_dict, outer_edges_dict) = self.adjust_edges()
+        (inner_nodes_dict, outer_nodes_dict) = self.adjust_nodes()
         self.cal_outer_positions(rate, outer_nodes_dict, outer_edges_dict, c_l_d)
         self.cal_inner_positions(inner_nodes_dict, inner_edges_dict, c_p_d)
 
@@ -117,10 +117,10 @@ class NXGraph(AbstractGraph):
         for i, e in enumerate(outer_edges_dict.keys()):
             cluster1 = self.nx_g.node[e[0]]["cluster"]
             cluster2 = self.nx_g.node[e[1]]["cluster"]
-            #if ((cluster1, cluster2) in constraints_dict) and e[0] in p and e[1] in p:
-            self.nx_g.edge[e[0]][e[1]]["visible"] = 1
-            #else:
-                #self.nx_g.edge[e[0]][e[1]]["visible"] = 0
+            if ((cluster1, cluster2) in constraints_dict) and e[0] in p and e[1] in p:
+                self.nx_g.edge[e[0]][e[1]]["visible"] = 1
+            else:
+                self.nx_g.edge[e[0]][e[1]]["visible"] = 0
 
     def cal_cluster_voronoi_positions(self):
         self.cal_mds_positions()
@@ -310,10 +310,25 @@ class NXGraph(AbstractGraph):
                         self.nx_g.edge[e[0]][e[1]]["visible"] = 1
                         outer_edges_dict[(e[0], e[1])] = self.nx_g.edge[e[0]][e[1]]
                     else:
+                        if src_cluster0 != src_cluster1:
+                            self.nx_g.node[e[0]]["out_degree"] -= 1
+                            if self.nx_g.node[e[0]]["out_degree"] == 0:
+                                self.nx_g.node[e[0]]["external"] = 0
+                            self.nx_g.node[e[1]]["out_degree"] -= 1
+                            if self.nx_g.node[e[1]]["out_degree"] == 0:
+                                self.nx_g.node[e[1]]["external"] = 0
                         self.nx_g.edge[e[0]][e[1]]["visible"] = 0
+            elif num0 > 0 or num1 > 0:
+                if src_cluster0 == src_cluster1:
+                    self.nx_g.edge[e[0]][e[1]]["visible"] = 1
+                else:
+                    self.nx_g.edge[e[0]][e[1]]["visible"] = 0
             else:
-                self.nx_g.edge[e[0]][e[1]]["visible"] = 1
-                inner_edges_dict[(e[0], e[1])] = self.nx_g.edge[e[0]][e[1]]
+                if src_cluster0 == src_cluster1:
+                    self.nx_g.edge[e[0]][e[1]]["visible"] = 1
+                    inner_edges_dict[(e[0], e[1])] = self.nx_g.edge[e[0]][e[1]]
+                else:
+                    self.nx_g.edge[e[0]][e[1]]["visible"] = 0
         return (inner_edges_dict, outer_edges_dict)
 
     @classmethod

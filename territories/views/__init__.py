@@ -65,8 +65,10 @@ def get_aggregate():
     elif name == "school":
         orig = GraphImporter("").get_school()
         del orig.vs["id"]
-    elif name == "dblp":
+    elif name == "dblp-os":
         orig = GraphImporter("").get_dblp_os()
+    elif name == "dblp-theory":
+        orig = GraphImporter("").get_dblp_theory()
     g = orig.copy()
     if detection:
         cv = GraphGenerator.community_detection(GraphImporter.remove_attributes(g))

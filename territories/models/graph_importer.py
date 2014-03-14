@@ -54,13 +54,19 @@ class GraphImporter(object):
         g.simplify(loops=False)
         return g
 
-    def get_dblp_os(self):
+    def get_dblp(self, venue_list):
         #g = ig.load("territories/data/dblp.net")
         #g.simplify(loops=False)
         #return g
         g = ig.Graph.Read_Pajek('territories/data/dblp-all.net')
         data = sio.loadmat('territories/data/dblp.mat')
-        return self.generate_sub(g, data, [853, 1074, 1615, 1451, 890])
+        return self.generate_sub(g, data, venue_list)
+
+    def get_dblp_os(self):
+        return self.get_dblp([853, 1074, 1615, 1451, 890])
+
+    def get_dblp_theory(self):
+        return self.get_dblp([1082, 758, 1069, 1305, 1480])
 
     @classmethod
     def remove_attributes(cls, g):

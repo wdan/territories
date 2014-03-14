@@ -44,5 +44,8 @@ $('#dataTypeList').change(function(){
         var inside_node = new LG.visual.InsideNode(gui, svg, dataManager, 'inside_node');
         inside_node.display();
 
+        var node_label = new LG.visual.NodeLabel(gui, svg, dataManager, 'node_label');
+        node_label.display();
+
     }
 });

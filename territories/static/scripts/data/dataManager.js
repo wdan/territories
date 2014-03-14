@@ -16,6 +16,7 @@ LG.data.DataManager = function(){
         this.externalBoundaryNode = undefined;
         this.boundaryEdge = undefined;
         this.insideNode = undefined;
+        this.clusterName = {};
     };
 
     Object.defineProperties(DataManager.prototype, {
@@ -47,6 +48,27 @@ LG.data.DataManager = function(){
             }
         },
 
+        getClusterName : {
+            value : function(){
+                var _this = this;
+
+                console.log('[LOG] Get Cluster Name.');
+                console.log('[URL] /get_cluster_name');
+
+                $.ajax({
+                    url: '/get_cluster_name',
+                    dataType: 'json',
+                    async: false,
+                    success: function(data){
+                        _this.clusterName = data;
+                        console.log('[LOG] Data Transmission Done.');
+                        console.log(data);
+                    }
+                });
+
+            }
+        },
+
         getOriginal : {
             value : function(){
                 var _this = this;
@@ -68,6 +90,13 @@ LG.data.DataManager = function(){
                         console.log(data);
                     }
                 });
+            }
+        },
+
+        getlabel : {
+            value : function(){
+                console.log(this.clusterName);
+                return this.clusterName;
             }
         },
 

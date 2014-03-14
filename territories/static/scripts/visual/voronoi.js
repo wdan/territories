@@ -8,6 +8,7 @@ LG.visual.Voronoi = function(Visualization){
         console.log('[LOG] Init Voronoi');
         Visualization.call(this, dat, svg, dataManager, className);
         this.data = dataManager.polygon;
+        this.label = dataManager.getlabel();
         this.voronoi_color_set = true;
         this.voronoi_fill = '#4682B4';
         this.color_scale = d3.scale.linear().domain([0, 1]).range(['white', this.voronoi_fill]);
@@ -77,6 +78,40 @@ LG.visual.Voronoi = function(Visualization){
                         .exit()
                         .remove();
                 }
+            }
+        },
+
+        showLabel : {
+            value : function(){
+                var _this = this;
+
+                this.svg.selectAll('text')
+                    .data(this.data)
+                    .enter()
+                    .append('text')
+                    .text(function(d){
+
+                        var tmp = _this.label[d.cluster];
+
+                        if( tmp == 2308){
+                            return "VAST";
+                        }else if(tmp == 1984){
+                            return "INFOVIS";
+                        }else if(tmp == 1512){
+                            return "SIGGRAPH";
+                        }else if(tmp == 3078){
+                            return "SIGKDD";
+                        }else{
+                            return "Unknown";
+                        }
+                    })
+                    .attr('text-anchor', 'middle')
+                    .attr("x", function(d){
+                        return d.mid_x;
+                    })
+                    .attr("y", function(d){
+                        return d.mid_y;
+                    })
             }
         },
 

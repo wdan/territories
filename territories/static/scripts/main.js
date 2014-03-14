@@ -25,6 +25,7 @@ $('#dataTypeList').change(function(){
             .attr('height', height);
         dataManager.getPolygon(val, width, height, 80, 1);
         dataManager.getOriginal();
+        dataManager.getClusterName();
 
         var hull = new LG.visual.ConvexHull(gui, svg, dataManager, 'convex_hull');
         hull.display();
@@ -34,6 +35,7 @@ $('#dataTypeList').change(function(){
 
         var voronoi = new LG.visual.Voronoi(gui, svg, dataManager, 'voronoi');
         voronoi.display();
+        voronoi.showLabel();
 
         var boundary_node = new LG.visual.BoundaryNode(gui, svg, dataManager, 'boundary_node');
         boundary_node.display();

@@ -307,8 +307,8 @@ class NXGraph(AbstractGraph):
                 if num0 > self.ADJUST_NUMBER and num1 > self.ADJUST_NUMBER:
                     tgt_cluster0 = self.nx_g.node[e[0]]["tgt_cluster"]
                     tgt_cluster1 = self.nx_g.node[e[1]]["tgt_cluster"]
-                    if src_cluster0 == tgt_cluster1 and src_cluster1 == tgt_cluster0:
-                    #if src_cluster0 != src_cluster1:
+                    #if src_cluster0 == tgt_cluster1 and src_cluster1 == tgt_cluster0:
+                    if src_cluster0 != src_cluster1:
                         self.nx_g.edge[e[0]][e[1]]["visible"] = 1
                         outer_edges_dict[(e[0], e[1])] = self.nx_g.edge[e[0]][e[1]]
                     else:

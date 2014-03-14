@@ -15,8 +15,8 @@ LG.visual.BoundaryContour = function(Visualization){
         this.getData();
         this.contour_pix = 2;
         this.contour_scale = 50;
+        this.show = true;
         this.control();
-
     };
 
     BoundaryContour.prototype = Object.create(Visualization.prototype, {
@@ -29,6 +29,9 @@ LG.visual.BoundaryContour = function(Visualization){
                     _this.display();
                 });
                 folder.add(this, 'contour_scale', 5, 100).step(5).onFinishChange(function(){
+                    _this.display();
+                });
+                folder.add(this, 'show').onFinishChange(function(){
                     _this.display();
                 });
             }
@@ -47,8 +50,6 @@ LG.visual.BoundaryContour = function(Visualization){
                 for(i=0;i<this.node.length;i++){
                     this.data[this.node[i].cluster].push({x:this.node[i].x, y:this.node[i].y});
                 }
-
-                console.log(this.data);
             }
         },
 
@@ -61,12 +62,14 @@ LG.visual.BoundaryContour = function(Visualization){
                     .exit()
                     .remove();
 
-                for(var i=0;i<this.cluster_list.length;i++){
-                    var cid = this.cluster_list[i];
+                if(this.show){
+                    for(var i=0;i<this.cluster_list.length;i++){
+                        var cid = this.cluster_list[i];
 
-                    if(this.data[cid].length!=0){
-                        LG.visual.ContourMap(this.data[cid], this.svg.append('g').attr('class', this.className),
-                            this.contour_pix, this.contour_scale, this.classColor[cid]);
+                        if(this.data[cid].length!=0){
+                            LG.visual.ContourMap(this.data[cid], this.svg.append('g').attr('class', this.className),
+                                this.contour_pix, this.contour_scale, this.classColor[cid]);
+                        }
                     }
                 }
             }

@@ -62,11 +62,65 @@ class GraphImporter(object):
         data = sio.loadmat('territories/data/dblp.mat')
         return self.generate_sub(g, data, venue_list)
 
+    def get_dblp_paper(self, venueIDList):
+        g = ig.Graph()
+        data = sio.loadmat('territories/data/dblp.mat')
+        paper_venue = data['paper_venue']
+        paper_author = data['paper_author'].tocsr()
+        author_paper = data['paper_author'].tocsc()
+
+        paper_list = {}
+        for venue in venueIDList:
+            paper_list[venue] = []
+
+        n = paper_venue.size
+        paper_id_dict = {}
+        paper_venue_dict = {}
+        count = 0
+        for i in xrange(n):
+            v = paper_venue[i][0]
+            if v in paper_list:
+                paper_id_dict[i] = count
+                paper_venue_dict[count] = int(v)
+                count += 1
+                paper_list[int(v)].append(i)
+
+        g.add_vertices(len(paper_id_dict))
+
+        for v in g.vs:
+            v['class'] = paper_venue_dict[v.index]
+
+        author_list = set()
+        for paper_id in paper_id_dict.keys():
+            cols = paper_author.getrow(paper_id).nonzero()[1]
+            for i in cols:
+                author_list.add(i)
+
+        author_list = list(author_list)
+
+        for author_id in author_list:
+            rows = author_paper.getcol(author_id).nonzero()[0]
+            l = [(paper_id_dict[i], paper_id_dict[j]) for i in rows for j in rows if i>j and i in paper_id_dict and j in paper_id_dict]
+            if len(l) > 0:
+                g.add_edges(l)
+
+        g.simplify(loops=False)
+
+        return g
+
     def get_dblp_os(self):
         return self.get_dblp([853, 1074, 1615, 1451, 890])
 
+    def get_dblp_os_paper(self):
+        return self.get_dblp_paper([853, 1074, 1615, 1451, 890])
+
     def get_dblp_theory(self):
         return self.get_dblp([1082, 758, 1069, 1305, 1480])
+
+    def get_dblp_sub(self, g, rate):
+#        veq = g.vs.select(_degree_gt = (1 - rate) * g.maxdegree())
+        veq = g.vs.select(_degree_gt = 10)
+        return g.induced_subgraph(veq)
 
     @classmethod
     def remove_attributes(cls, g):

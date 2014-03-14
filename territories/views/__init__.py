@@ -67,8 +67,9 @@ def get_aggregate():
         del orig.vs["id"]
     elif name == "dblp-os":
         orig = GraphImporter("").get_dblp_os()
-    elif name == "dblp-theory":
-        orig = GraphImporter("").get_dblp_theory()
+        #orig = GraphImporter("").get_dblp_sub(orig, rate)
+    elif name == "dblp-os-paper":
+        orig = GraphImporter("").get_dblp_os_paper()
     g = orig.copy()
     if detection:
         cv = GraphGenerator.community_detection(GraphImporter.remove_attributes(g))
@@ -92,5 +93,5 @@ def get_original():
         original_graph.nx_g = g
     c_l_d = v.get_linear_constraints_dict()
     c_p_d = v.get_polygon_constraints_dict()
-    original_graph.reduce_graph(rate, c_l_d, c_p_d)
+    original_graph.reduce_graph(1, c_l_d, c_p_d)
     return NXGraph.to_json(original_graph.nx_g)

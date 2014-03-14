@@ -208,6 +208,8 @@ class NXGraph(AbstractGraph):
             cluster_id = community_dict[key]
             clustered_graph.add_node(cluster_id)
             clustered_graph.node[cluster_id]["size"] = community_size_dict[key]
+            clustered_graph.node[cluster_id]["cluster-name"] = key
+
         edges_dict = {}
         for e in g.edges():
             src_id = node2community_dict[e[0]]

@@ -115,7 +115,7 @@ class GraphImporter(object):
         return self.get_dblp_paper([853, 1074, 1615, 1451, 890])
 
     def get_dblp_vis_paper(self):
-        return self.get_dblp_paper([2308, 1984, 1512, 3078])
+        return self.get_dblp_paper([2308, 1984, 1512, 3078, 2960])
 
     def get_dblp_theory(self):
         return self.get_dblp([1082, 758, 1069, 1305, 1480])

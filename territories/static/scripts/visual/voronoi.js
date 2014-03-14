@@ -101,6 +101,8 @@ LG.visual.Voronoi = function(Visualization){
                             return "SIGGRAPH";
                         }else if(tmp == 3078){
                             return "SIGKDD";
+                        }else if(tmp == 2960){
+                            return "TVCG";
                         }else{
                             return "Unknown";
                         }

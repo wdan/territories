@@ -24,7 +24,7 @@ LG.visual.BoundaryEdge = function(Visualization){
                         +'L' + _this.node[d.target].x + ' ' + _this.node[d.target].y;
                     })
                     .style('stroke', 'black')
-                    .style('stroke-opacity', 0.2);
+                    .style('stroke-opacity', 0.1);
             }
         }
     });

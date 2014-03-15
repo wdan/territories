@@ -51,6 +51,9 @@ LG.visual.BoundaryNode = function(Visualization){
                     //.attr('label', function(d){return d.label;})
                     .style('fill', function(d){
                         return _this.classColor[d.cluster];
+                    })
+                    .on('click', function(d){
+                        console.log(d.paper_name);
                     });
 
                 this.update();

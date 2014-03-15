@@ -88,7 +88,7 @@ def get_cluster_name():
         if "cluster-name" in clustered_graph.nx_g.node[n]:
             res[n] = clustered_graph.nx_g.node[n]["cluster-name"]
         else:
-            res[n] = clustered_graph.nx_g.node[n]["cluster"]
+            res[n] = clustered_graph.nx_g.node[n]["id"]
     return json.dumps(res)
 
 

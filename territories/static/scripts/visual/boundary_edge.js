@@ -55,8 +55,14 @@ LG.visual.BoundaryEdge = function(Visualization){
         display : {
             value : function(){
 
+                var startTime = new Date().getTime();
                 var fundling = d3.ForceEdgeBundling().nodes(this.node).edges(this.data);
                 var results = fundling();
+
+                var endTime = new Date().getTime();
+
+                console.log('time');
+                console.log(endTime-startTime);
 
                 var d3line = d3.svg.line()
                     .x(function(d){return d.x;})

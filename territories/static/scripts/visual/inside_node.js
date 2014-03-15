@@ -56,21 +56,19 @@ LG.visual.InsideNode = function(Visualization){
                     .append('circle')
                     .attr('stroke', '#fff')
                     .attr('fill', function(d){
-
                         return _this.classColor[d.cluster];
-
                     })
                     .attr('cx', function(d){
                         return d.x;
                     })
                     .attr('cy', function(d){
                         return d.y;
+                    })
+                    .on('click', function(d){
+                        console.log(d.paper_name);
                     });
 
                 this.update();
-
-
-
 
             }
         }

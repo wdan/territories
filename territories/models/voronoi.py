@@ -14,7 +14,7 @@ class Voronoi(object):
         self.polygons = []
         self.point_cluster_dict = {}
         for n in data["nodes"]:
-            self.polygons.append(Polygon(n["cluster"], n["x"], n["y"], shrink))
+            self.polygons.append(Polygon(n["cluster"], n["x"], n["y"], 0))
         for i, e in enumerate(data["polygons"]):
             cluster_id = self.polygons[i].cluster
             for point in e:

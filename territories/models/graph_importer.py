@@ -68,6 +68,7 @@ class GraphImporter(object):
         paper_venue = data['paper_venue']
         paper_author = data['paper_author'].tocsr()
         author_paper = data['paper_author'].tocsc()
+        paper_name = data['paper_name']
 
         paper_list = {}
         for venue in venueIDList:
@@ -75,12 +76,14 @@ class GraphImporter(object):
 
         n = paper_venue.size
         paper_id_dict = {}
+        id_paper_dict = {}
         paper_venue_dict = {}
         count = 0
         for i in xrange(n):
             v = paper_venue[i][0]
             if v in paper_list:
                 paper_id_dict[i] = count
+                id_paper_dict[count] = i
                 paper_venue_dict[count] = int(v)
                 count += 1
                 paper_list[int(v)].append(i)
@@ -89,6 +92,7 @@ class GraphImporter(object):
 
         for v in g.vs:
             v['class'] = paper_venue_dict[v.index]
+            v['paper_name'] = str(paper_name[id_paper_dict[v.index]][0][0])
 
         author_list = set()
         for paper_id in paper_id_dict.keys():

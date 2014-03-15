@@ -111,6 +111,8 @@ LG.visual.Voronoi = function(Visualization){
                             return "ISCA";
                         }else if(tmp == 853){
                             return "HPCA";
+                        }else if(tmp == 2960){
+                            return "TVCG";
                         }else{
                             return "";
                         }

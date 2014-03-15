@@ -184,7 +184,17 @@ LG.visual.Voronoi = function(Visualization){
                         }else if(tmp == 1512){
                             return "SIGGRAPH";
                         }else if(tmp == 3078){
-                            return "SIGKDD"
+                            return "SIGKDD";
+                        }else if(tmp == 1074){
+                            return "SOSP";
+                        }else if(tmp == 1615){
+                            return "ASPLOS";
+                        }else if(tmp == 1451){
+                            return "PPOPP";
+                        }else if(tmp == 890){
+                            return "ISCA";
+                        }else if(tmp == 853){
+                            return "HPCA";
                         }else if(tmp == 2960){
                             return "TVCG";
                         }else{

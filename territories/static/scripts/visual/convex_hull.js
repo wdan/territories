@@ -5,9 +5,9 @@
 
 LG.visual.ConvexHull = function(Visualization){
 
-    var ConvexHull = function(dat, svg, dataManager, className){
+    var ConvexHull = function(dat, svg, dataManager, sandBox, className){
         console.log('[LOG] Init Convex Hull');
-        Visualization.call(this, dat, svg, dataManager, className);
+        Visualization.call(this, dat, svg, dataManager, sandBox, className);
         this.node = dataManager.getVisibleBoundaryNode();
         this.polygon = dataManager.polygon;
         this.data = {};

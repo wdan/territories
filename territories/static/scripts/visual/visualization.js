@@ -3,12 +3,13 @@
  */
 
 LG.visual.Visualization = function(){
-    var Visualization = function(dat, svg, dataManager, className){
+    var Visualization = function(dat, svg, dataManager, sandBox, className){
         this.dat = dat;
         this.svg = svg.append('g').attr('class', className);
+        this.sandBox = sandBox;
         this.className = className;
-        this.classColor = colorbrewer.Paired[12];
-//        this.classColor = colorbrewer.Pastel1[9];
+//        this.classColor = colorbrewer.Paired[12];
+        this.classColor = colorbrewer.Pastel1[9];
     };
 
     Object.defineProperties(Visualization.prototype, {

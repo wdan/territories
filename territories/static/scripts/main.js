@@ -3,6 +3,7 @@
  */
 
 var dataManager = new LG.data.DataManager();
+var sandBox = new LG.control.SandBox();
 //var visList = [];
 //var width = Math.floor($(window).width()*0.8);
 var height = Math.floor($(window).height()*0.8);
@@ -24,6 +25,7 @@ $('#dataTypeList').change(function(){
             .attr('width', width)
             .attr('height', height);
         dataManager.getPolygon(val, width, height, 40, 1);
+        dataManager.getConstraints();
 //        dataManager.getOriginal();
         dataManager.getClusterName();
 
@@ -33,9 +35,14 @@ $('#dataTypeList').change(function(){
 //        var boundary_contour = new LG.visual.BoundaryContour(gui, svg, dataManager, 'boundary_contour');
 //        boundary_contour.display();
 
-        var voronoi = new LG.visual.Voronoi(gui, svg, dataManager, 'voronoi');
+        var voronoi = new LG.visual.Voronoi(gui, svg, dataManager, sandBox, 'voronoi');
+        sandBox.add('voronoi', voronoi);
+
+        var river_node = new LG.visual.RiverNode(gui, svg, dataManager, sandBox, 'river_node');
+        sandBox.add('river_node', river_node);
+
         voronoi.display();
-        voronoi.showLabel();
+        river_node.display();
 //
 //        var boundary_node = new LG.visual.BoundaryNode(gui, svg, dataManager, 'boundary_node');
 //        boundary_node.display();

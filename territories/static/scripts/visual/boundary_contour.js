@@ -4,10 +4,10 @@
 
 LG.visual.BoundaryContour = function(Visualization){
 
-    var BoundaryContour = function(dat, svg, dataManager, className){
+    var BoundaryContour = function(dat, svg, dataManager, sandBox, className){
 
         console.log('[LOG] Init Boundary Contour');
-        Visualization.call(this, dat, svg, dataManager, className);
+        Visualization.call(this, dat, svg, dataManager, sandBox, className);
         this.polygon = dataManager.polygon;
         this.node = dataManager.getExternalBoundaryNode();
         this.data = {};

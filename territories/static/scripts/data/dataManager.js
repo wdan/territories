@@ -7,6 +7,7 @@ LG.data.DataManager = function(){
         console.log('[LOG] Data manager initialized');
         this.dataName = '';
         this.polygon = {};
+        this.constraints = {};
         this.original = {};
         this.width = undefined;
         this.height = undefined;
@@ -23,13 +24,14 @@ LG.data.DataManager = function(){
         getPolygon : {
             value: function(dataName, width, height, shrink, rate){
                 var _this = this;
+                var startTime = new Date().getTime();
+
                 this.dataName = dataName;
                 this.width = width;
                 this.height = height;
                 if (shrink == undefined){this.shrink = 50;}else{this.shrink = shrink;}
                 if (rate == undefined){this.rate = 1.0;}else{this.rate = rate}
 
-                console.log('[LOG] Get Polygon Data : ' + this.dataName);
                 console.log('[URL] /get_polygon?name=' + this.dataName + '&width=' + this.width + '&height='
                     + this.height + '&shrink=' + this.shrink + '&rate=' + this.rate);
 
@@ -40,8 +42,29 @@ LG.data.DataManager = function(){
                     dataType: 'json',
                     async: false,
                     success: function(data){
+                        var endTime = new Date().getTime();
                         _this.polygon = data;
-                        console.log('[LOG] Data Transmission Done.');
+                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.log(data);
+                    }
+                });
+            }
+        },
+
+        getConstraints : {
+            value : function(){
+                var _this = this;
+                var startTime = new Date().getTime();
+                console.log('[LOG] Get Constraints');
+                console.log('[URL] /get_constraints');
+                $.ajax({
+                    url: '/get_constraints',
+                    dataType: 'json',
+                    async: false,
+                    success: function(data){
+                        var endTime = new Date().getTime();
+                        _this.constraints = data;
+                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                     }
                 });
@@ -51,17 +74,16 @@ LG.data.DataManager = function(){
         getClusterName : {
             value : function(){
                 var _this = this;
-
-                console.log('[LOG] Get Cluster Name.');
+                var startTime = new Date().getTime();
                 console.log('[URL] /get_cluster_name');
-
                 $.ajax({
                     url: '/get_cluster_name',
                     dataType: 'json',
                     async: false,
                     success: function(data){
+                        var endTime = new Date().getTime();
                         _this.clusterName = data;
-                        console.log('[LOG] Data Transmission Done.');
+                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                     }
                 });
@@ -72,31 +94,23 @@ LG.data.DataManager = function(){
         getOriginal : {
             value : function(){
                 var _this = this;
-
-                console.log('[LOG] Get Original Data.');
+                var startTime = new Date().getTime();
                 console.log('[URL] /get_original');
-
                 $.ajax({
                     url: '/get_original',
                     dataType: 'json',
                     async: false,
                     success: function(data){
+                        var endTime = new Date().getTime();
                         _this.original = data;
                         _this.visibleBoundaryNode = undefined;
                         _this.externalBoundaryNode = undefined;
                         _this.boundaryEdge = undefined;
                         _this.insideNode = undefined;
-                        console.log('[LOG] Data Transmission Done.');
+                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                     }
                 });
-            }
-        },
-
-        getlabel : {
-            value : function(){
-                console.log(this.clusterName);
-                return this.clusterName;
             }
         },
 
@@ -108,7 +122,7 @@ LG.data.DataManager = function(){
                     var node = [];
                     var node_list = this.original.nodes;
                     for(var i=0;i<node_list.length;i++){
-                        if(node_list[i].external == 1 && node_list[i].x != undefined) node.push(node_list[i]);
+                        if(node_list[i]['external'] == 1 && node_list[i].x != undefined) node.push(node_list[i]);
                     }
                     this.externalBoundaryNode = node;
                 }
@@ -124,7 +138,7 @@ LG.data.DataManager = function(){
                     var node = [];
                     var node_list = this.original.nodes;
                     for(var i=0;i<node_list.length;i++){
-                        if(node_list[i].external == 1 && node_list[i].visible == 1) node.push(node_list[i]);
+                        if(node_list[i]['external'] == 1 && node_list[i].visible == 1) node.push(node_list[i]);
                     }
                     this.visibleBoundaryNode = node;
                 }
@@ -154,7 +168,7 @@ LG.data.DataManager = function(){
                     var node = [];
                     var node_list = this.original.nodes;
                     for(var i=0;i<node_list.length;i++){
-                        if(node_list[i].external == 0) node.push(node_list[i]);
+                        if(node_list[i]['external'] == 0) node.push(node_list[i]);
                     }
                     this.insideNode = node;
                 }

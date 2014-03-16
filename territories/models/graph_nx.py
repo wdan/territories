@@ -279,6 +279,7 @@ class NXGraph(AbstractGraph):
                     self.nx_g.node[n]["out_degree"] = 0
                     self.nx_g.node[n]["external"] = 0
                 else:
+                    self.nx_g.node[n]["out_degree"] = max_tgt
                     self.nx_g.node[n]["tgt_cluster"] = index
 
     def adjust_nodes(self):
@@ -380,6 +381,8 @@ class NXGraph(AbstractGraph):
                     point_item["in_degree"] = g.node[n]["in_degree"]
                     point_item["out_degree"] = g.node[n]["out_degree"]
                     point_item["cluster"] = g.node[n]["cluster"]
+                    if "label" in g.node[n]:
+                        point_item["label"] = g.node[n]["label"]
                     res_item["points"].append(point_item)
                 res_dic.append(res_item)
         return res_dic

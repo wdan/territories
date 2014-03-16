@@ -92,7 +92,7 @@ class GraphImporter(object):
 
         for v in g.vs:
             v['class'] = paper_venue_dict[v.index]
-            v['paper_name'] = str(paper_name[id_paper_dict[v.index]][0][0])
+            v['label'] = str(paper_name[id_paper_dict[v.index]][0][0])
 
         author_list = set()
         for paper_id in paper_id_dict.keys():
@@ -151,6 +151,7 @@ class GraphImporter(object):
 
         paper_venue = data['paper_venue']
         paper_author = data['paper_author'].tocsr()
+        author_name = data['author_name']
 
         n = paper_venue.size
         for i in xrange(n):
@@ -168,6 +169,7 @@ class GraphImporter(object):
                 total_author_list += list(cols)
                 for authorID in cols:
                     authorID = int(authorID)
+                    g.vs[authorID]['label'] = str(author_name[authorID][0][0])
                     if g.vs[authorID]['class'] is None:
                         g.vs[authorID]['class'] = {}
                     if int(venue) not in g.vs[authorID]['class']:

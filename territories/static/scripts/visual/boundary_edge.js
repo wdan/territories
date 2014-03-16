@@ -4,9 +4,9 @@
 
 LG.visual.BoundaryEdge = function(Visualization){
 
-    var BoundaryEdge = function(dat, svg, dataManager, className){
+    var BoundaryEdge = function(dat, svg, dataManager, sandBox, className){
         console.log('[LOG] Init Boundary Edge');
-        Visualization.call(this, dat, svg, dataManager, className);
+        Visualization.call(this, dat, svg, dataManager, sandBox, className);
         this.data = dataManager.getEdge();
         this.node = dataManager.original.nodes;
         this.opacity = 0.1;

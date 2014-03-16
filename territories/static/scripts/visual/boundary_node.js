@@ -3,10 +3,10 @@
  */
 
 LG.visual.BoundaryNode = function(Visualization){
-    var BoundaryNode = function(dat, svg, dataManager, className){
+    var BoundaryNode = function(dat, svg, dataManager, sandBox, className){
 
         console.log('[LOG] Init Boundary Node');
-        Visualization.call(this, dat, svg, dataManager, className);
+        Visualization.call(this, dat, svg, dataManager, sandBox, className);
 
         this.data = dataManager.getVisibleBoundaryNode();
         this.boundary_node_r = 5;

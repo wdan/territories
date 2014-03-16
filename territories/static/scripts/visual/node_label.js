@@ -4,9 +4,9 @@
 
 LG.visual.NodeLabel = function(Visualization){
 
-    var NodeLabel = function(dat, svg, dataManager, className){
+    var NodeLabel = function(dat, svg, dataManager, sandBox, className){
         console.log('[LOG] Init Node Label');
-        Visualization.call(this, dat, svg, dataManager, className);
+        Visualization.call(this, dat, svg, dataManager, sandBox, className);
         this.show = false;
         this.data = dataManager.getVisibleBoundaryNode();
         this.control();

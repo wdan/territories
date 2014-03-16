@@ -4,10 +4,10 @@
 
 LG.visual.InsideNode = function(Visualization){
 
-    var InsideNode = function(dat, svg, dataManager, className){
+    var InsideNode = function(dat, svg, dataManager, sandBox, className){
 
         console.log('[LOG] Init Inside Node');
-        Visualization.call(this, dat, svg, dataManager, className);
+        Visualization.call(this, dat, svg, dataManager, sandBox, className);
         this.data = dataManager.getInsideNode();
         this.r = 3;
         this.stroke_width = 1;

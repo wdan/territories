@@ -7,3 +7,5 @@ var LG = LG || {};
 LG.data = LG.data || {};
 
 LG.visual = LG.visual || {};
+
+LG.control = LG.control || {};

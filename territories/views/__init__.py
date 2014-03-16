@@ -81,6 +81,18 @@ def get_aggregate():
     return v.to_json()
 
 
+@territories.route('/get_constraints')
+def get_constraints():
+    original_graph = NXGraph(width, height)
+    c_l_d = v.get_linear_constraints_dict()
+    if detection:
+        original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
+    else:
+        original_graph.nx_g = g
+    original_graph.reduce_graph(c_l_d)
+    return original_graph.get_constraints_nodes(c_l_d)
+
+
 @territories.route('/get_cluster_name')
 def get_cluster_name():
     res = {}
@@ -88,7 +100,7 @@ def get_cluster_name():
         if "cluster-name" in clustered_graph.nx_g.node[n]:
             res[n] = clustered_graph.nx_g.node[n]["cluster-name"]
         else:
-            res[n] = clustered_graph.nx_g.node[n]["id"]
+            return json.dumps(res)
     return json.dumps(res)
 
 

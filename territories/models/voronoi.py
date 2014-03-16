@@ -65,7 +65,7 @@ class Voronoi(object):
                 if e["tgt_cluster"] is not None:
                     cluster_tgt = e["tgt_cluster"]
                     c = Constraint(e["x1"], e["y1"], e["x2"], e["y2"],
-                                   p.mid_x, p.mid_y)
+                                   p.mid_x, p.mid_y, cluster_src, cluster_tgt)
                     constraints_dict[(cluster_src, cluster_tgt)] = c
         return constraints_dict
 

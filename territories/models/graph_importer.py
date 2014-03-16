@@ -126,7 +126,7 @@ class GraphImporter(object):
 
     def get_dblp_sub(self, g, rate):
 #        veq = g.vs.select(_degree_gt = (1 - rate) * g.maxdegree())
-        veq = g.vs.select(_degree_gt = 10)
+        veq = g.vs.select(_degree_gt=10)
         return g.induced_subgraph(veq)
 
     @classmethod

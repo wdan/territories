@@ -10,7 +10,7 @@ from graph_generator import GraphGenerator
 from data_politicsuk import PoliticsUK as DataSet
 from force_directed import ForceDirectedLayout
 from mds import MDSLayout
-from util import translate
+from util import translate, jsonize
 
 
 class NXGraph(AbstractGraph):
@@ -39,12 +39,13 @@ class NXGraph(AbstractGraph):
         self.import_edges()
         self.import_communities()
 
-    def reduce_graph(self, rate, c_l_d, c_p_d):
+    #def reduce_graph(self, rate, c_l_d, c_p_d):
+    def reduce_graph(self, c_l_d):
         self.cal_degree(c_l_d)
-        (inner_edges_dict, outer_edges_dict) = self.adjust_edges()
-        (inner_nodes_dict, outer_nodes_dict) = self.adjust_nodes()
-        self.cal_outer_positions(rate, outer_nodes_dict, outer_edges_dict, c_l_d)
-        self.cal_inner_positions(inner_nodes_dict, inner_edges_dict, c_p_d)
+        #(inner_edges_dict, outer_edges_dict) = self.adjust_edges()
+        #(inner_nodes_dict, outer_nodes_dict) = self.adjust_nodes()
+        #self.cal_outer_positions(rate, outer_nodes_dict, outer_edges_dict, c_l_d)
+        #self.cal_inner_positions(inner_nodes_dict, inner_edges_dict, c_p_d)
 
     def init_d_cluster(self):
         self.nx_g.clear()
@@ -336,3 +337,49 @@ class NXGraph(AbstractGraph):
     @classmethod
     def to_json(cls, g):
         return json_graph.dumps(g)
+
+    @jsonize
+    def get_constraints_nodes(self, constraints):
+        g = self.nx_g
+        cluster_dic = {}
+        mid_dic = {}
+        for n in g.nodes():
+            if g.node[n]["external"] > 0:
+                src_c = g.node[n]["cluster"]
+                tgt_c = g.node[n]["tgt_cluster"]
+                if (src_c, tgt_c) not in cluster_dic:
+                    cluster_dic[(src_c, tgt_c)] = []
+                cluster_dic[(src_c, tgt_c)].append(n)
+        for c in constraints.keys():
+            cluster = c[0]
+            constraint = constraints[c]
+            if cluster not in mid_dic:
+                mid_dic[cluster] = {}
+                mid_dic[cluster]["x"] = constraint.mid_x
+                mid_dic[cluster]["y"] = constraint.mid_y
+        res_dic = []
+        for c in constraints.keys():
+            src_c = c[0]
+            tgt_c = c[1]
+            constraint = constraints[c]
+            if (src_c, tgt_c) in cluster_dic:
+                res_item = {}
+                res_item["src_cluster"] = src_c
+                res_item["tgt_cluster"] = tgt_c
+                res_item["x1"] = constraint.x1
+                res_item["y1"] = constraint.y1
+                res_item["x2"] = constraint.x2
+                res_item["y2"] = constraint.y2
+                res_item["src_cluster_x"] = mid_dic[src_c]["x"]
+                res_item["src_cluster_y"] = mid_dic[src_c]["y"]
+                res_item["tgt_cluster_x"] = mid_dic[tgt_c]["x"]
+                res_item["tgt_cluster_y"] = mid_dic[tgt_c]["y"]
+                res_item["points"] = []
+                for n in cluster_dic[src_c, tgt_c]:
+                    point_item = {}
+                    point_item["in_degree"] = g.node[n]["in_degree"]
+                    point_item["out_degree"] = g.node[n]["out_degree"]
+                    point_item["cluster"] = g.node[n]["cluster"]
+                    res_item["points"].append(point_item)
+                res_dic.append(res_item)
+        return res_dic

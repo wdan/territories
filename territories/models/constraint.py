@@ -9,7 +9,7 @@ class Constraint(object):
 
     C = -10
 
-    def __init__(self, x1, y1, x2, y2, mid_x, mid_y):
+    def __init__(self, x1, y1, x2, y2, mid_x, mid_y, src_c, tgt_c):
         if x1 > x2:
             x1, x2 = x2, x1
             y1, y2 = y2, y1
@@ -19,6 +19,8 @@ class Constraint(object):
         self.y2 = y2
         self.mid_x = mid_x
         self.mid_y = mid_y
+        self.src_cluster = src_c
+        self.tgt_cluster = tgt_c
 
     def get_constraint(self, degree):
         degree = min(degree, 3)

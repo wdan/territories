@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import math
+import json
+from functools import wraps
+
+
+def jsonize(func):
+    @wraps(func)
+    def _(*a, **kw):
+        return json.dumps(func(*a, **kw))
+    return _
 
 
 def translate(value, leftMin, leftMax, rightMin, rightMax):

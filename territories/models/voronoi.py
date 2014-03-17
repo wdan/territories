@@ -9,7 +9,7 @@ from constraint import Constraint
 
 class Voronoi(object):
 
-    def __init__(self, data, shrink):
+    def __init__(self, data):
         data = json.loads(data)
         self.polygons = []
         self.point_cluster_dict = {}

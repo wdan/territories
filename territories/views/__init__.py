@@ -103,16 +103,17 @@ def get_constraints():
     return original_graph.get_constraints_nodes(c_l_d)
 
 
-@territories.route('/get_cluster_name')
-def get_cluster_name():
+@territories.route('/get_cluster_attr')
+def get_cluster_attr():
     res = {}
+    res["cluster_name"] = {}
+    res["cluster_quality"] = {}
     for n in clustered_graph.nx_g.nodes():
         if "cluster-name" in clustered_graph.nx_g.node[n]:
-            res[n] = clustered_graph.nx_g.node[n]["cluster-name"]
-        else:
-            return json.dumps(res)
+            res["cluster_name"][n] = clustered_graph.nx_g.node[n]["cluster-name"]
+        if "quality" in clustered_graph.nx_g.node[n]:
+            res["cluster_quality"][n] = clustered_graph.nx_g.node[n]["quality"]
     return json.dumps(res)
-
 
 @territories.route('/get_original')
 def get_original():

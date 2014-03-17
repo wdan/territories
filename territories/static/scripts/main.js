@@ -24,7 +24,7 @@ $('#dataTypeList').change(function(){
         svg = d3.select('#paint_zone').append('svg')
             .attr('width', width)
             .attr('height', height);
-        dataManager.getPolygon(val, width, height, 40, 1);
+        dataManager.getPolygon(val, width, height, 1);
         dataManager.getConstraints();
 //        dataManager.getOriginal();
         dataManager.getClusterName();
@@ -57,4 +57,9 @@ $('#dataTypeList').change(function(){
 //        node_label.display();
 
     }
+});
+
+$('#update_cluster').click(function(){
+    dataManager.getNewPosition();
+    dataManager.getConstraints();
 });

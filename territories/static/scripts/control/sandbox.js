@@ -7,6 +7,7 @@ LG.control.SandBox = function(){
     var SandBox = function(){
         console.log('[LOG] SandBox initialized');
         this.module = {};
+        this.exchangeCluster = [];
     };
 
     Object.defineProperties(SandBox.prototype, {
@@ -31,6 +32,18 @@ LG.control.SandBox = function(){
                 if(target_obj instanceof LG.visual.RiverNode){
                     target_obj.update_scale(data);
                 }
+            }
+        },
+
+        addClusterQueue : {
+            value : function(data){
+                if(this.exchangeCluster.length!=1){
+                    this.exchangeCluster.shift();
+                }
+                this.exchangeCluster.push(data);
+
+                console.log('add_Cluster_queue');
+                console.log(this.exchangeCluster);
             }
         }
 

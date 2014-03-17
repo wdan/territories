@@ -221,11 +221,16 @@ LG.visual.Voronoi = function(Visualization){
                     .exit()
                     .remove();
 
+                var _this = this;
+
                 this.svg.selectAll('.poly')
                     .data(this.data)
                     .enter()
                     .append('path')
-                    .attr('class', 'poly');
+                    .attr('class', 'poly')
+                    .on('click', function(d){
+                        _this.sandBox.addClusterQueue(d['cluster']);
+                    });
                 this.update();
             }
         }

@@ -6,3 +6,5 @@ python_igraph.egg-info/
 venv/
 .idea/
 territories/data/dblp/
+territories/data/dblp-all.net
+territories/data/dblp.mat

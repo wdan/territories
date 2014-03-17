@@ -11,7 +11,6 @@ LG.data.DataManager = function(){
         this.original = {};
         this.width = undefined;
         this.height = undefined;
-        this.shrink = undefined;
         this.rate = undefined;
         this.visibleBoundaryNode = undefined;
         this.externalBoundaryNode = undefined;
@@ -22,24 +21,45 @@ LG.data.DataManager = function(){
 
     Object.defineProperties(DataManager.prototype, {
         getPolygon : {
-            value: function(dataName, width, height, shrink, rate){
+            value: function(dataName, width, height, rate){
                 var _this = this;
                 var startTime = new Date().getTime();
 
                 this.dataName = dataName;
                 this.width = width;
                 this.height = height;
-                if (shrink == undefined){this.shrink = 50;}else{this.shrink = shrink;}
                 if (rate == undefined){this.rate = 1.0;}else{this.rate = rate}
 
                 console.log('[URL] /get_polygon?name=' + this.dataName + '&width=' + this.width + '&height='
-                    + this.height + '&shrink=' + this.shrink + '&rate=' + this.rate);
+                    + this.height + '&rate=' + this.rate);
 
                 $.ajax({
                     url: '/get_polygon?name=' + _this.dataName + '&width=' + _this.width + '&height='
-                        + _this.height + '&shrink=' + _this.shrink + '&rate=' + _this.rate,
+                        + _this.height + '&rate=' + _this.rate,
 
                     dataType: 'json',
+                    async: false,
+                    success: function(data){
+                        var endTime = new Date().getTime();
+                        _this.polygon = data;
+                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.log(data);
+                    }
+                });
+            }
+        },
+
+        getNewPosition : {
+            value : function(exchangeCluster){
+                var _this = this;
+                var startTime = new Date().getTime();
+                console.log('[LOG] Get New Position');
+                console.log('[URL] /select_voronoi?src=' + exchangeCluster[0] + '&tgt=' + exchangeCluster[1]);
+
+                $.ajax({
+                    url: '/select_voronoi?src=' + exchangeCluster[0] + '&tgt=' + exchangeCluster[1],
+
+                    dataType:'json',
                     async: false,
                     success: function(data){
                         var endTime = new Date().getTime();

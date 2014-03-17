@@ -67,6 +67,8 @@ def get_aggregate():
         orig = GraphImporter("").get_dblp_os_paper()
     elif name == "dblp-vis-paper":
         orig = GraphImporter("").get_dblp_vis_paper()
+    elif name == 'dblp-vis-big':
+        orig = GraphImporter("").get_dblp_vis_big()
     g = orig.copy()
     if detection:
         cv = GraphGenerator.community_detection(GraphImporter.remove_attributes(g))

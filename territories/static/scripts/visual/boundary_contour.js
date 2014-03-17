@@ -10,6 +10,7 @@ LG.visual.BoundaryContour = function(Visualization){
         Visualization.call(this, dat, svg, dataManager, sandBox, className);
         this.polygon = dataManager.polygon;
         this.node = dataManager.getExternalBoundaryNode();
+//        this.node = dataManager
         this.data = {};
         this.cluster_list = [];
         this.getData();

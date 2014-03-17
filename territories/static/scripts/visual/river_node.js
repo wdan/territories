@@ -29,7 +29,7 @@ LG.visual.RiverNode = function(Visualization){
                 folder.add(this, 'x_margin', 0, 1).step(0.01).onFinishChange(function(){
                     _this.display();
                 });
-                folder.add(this, 'y_margin', 0.5, 1).step(0.01).onFinishChange(function(){
+                folder.add(this, 'y_margin', 0, 1).step(0.01).onFinishChange(function(){
                     _this.display();
                 });
             }
@@ -49,7 +49,9 @@ LG.visual.RiverNode = function(Visualization){
                     var points = this.data[i]['points'];
                     var src = {x:river['src_cluster_x'], y:river['src_cluster_y']};
                     var tgt = {x:river['tgt_cluster_x'], y:river['tgt_cluster_y']};
-                    var base = collapse(river, this.y_margin);
+                    var p1 = {x:river['x1'], y:river['y1']};
+                    var p2 = {x:river['x2'], y:river['y2']};
+                    var base = collapse(src, tgt, p1, p2, this.y_margin);
                     var max_degree = d3.max(points, function(d){return d['in_degree'] + d['out_degree']});
 
                     for(var j=0;j<points.length;j++){
@@ -78,6 +80,7 @@ LG.visual.RiverNode = function(Visualization){
                         .style('fill', this.classColor[river['src_cluster']])
                         .on('click', function(d){
                             console.log(d['label']);
+                            console.log(d['in_degree']+':'+d['out_degree']);
                         });
                     this.update();
                 }
@@ -100,33 +103,30 @@ LG.visual.RiverNode = function(Visualization){
         }
     });
 
-    var collapse = function(river, margin){
+     var collapse = function(src, tgt, p1, p2, margin){
         var point1 = {}, point2 = {};
-        if(river['y1'] >= river['y2']){
+        var right = {
+            x: tgt.y - src.y,
+            y: -(tgt.x - src.x)
+        };
 
-            point1 = {
-                x : river['x1'],
-                y : river['y1']
-            };
+        var src2p1 = {
+            x : p1.x - src.x,
+            y : p1.y - src.y
+        };
 
-            point2 = {
-                x : river['x2'],
-                y : river['y2']
-            };
+        if(right.x*src2p1.x + right.y*src2p1.y > 0){
+            point1 = p1;
+            point2 = p2;
         }else{
-            point2 = {
-                x : river['x1'],
-                y : river['y1']
-            };
-
-            point1 = {
-                x : river['x2'],
-                y : river['y2']
-            };
+            point1 = p2;
+            point2 = p1;
         }
+
+        var tmp = (1-margin) / 2;
         return {
-            start : vector_scale(point1, point2, margin),
-            end : vector_scale(point1, point2, 1-margin)
+            start : vector_scale(point1, point2, tmp),
+            end : vector_scale(point1, point2, 1-tmp)
         }
     };
 
@@ -142,7 +142,12 @@ LG.visual.RiverNode = function(Visualization){
         }
         var p1 = vector_len(origin, base.start, scale(degree_rate));
         var p2 = vector_len(origin, base.end, scale(degree_rate));
-        return vector_scale(p1, p2, (p['out_degree'] + p['in_degree'])/max_degree);
+//        var degree_scale;
+//        if(Math.random()>0.5) degree_scale = 0.5 * (2 - (p['out_degree'] + p['in_degree'])/max_degree);
+//        else degree_scale = 0.5 * ((p['out_degree'] + p['in_degree'])/max_degree);
+
+        var degree_scale = 0.45 * ((p['out_degree'] + p['in_degree'])/max_degree);
+        return vector_scale(p1, p2, degree_scale);
 
     };
 

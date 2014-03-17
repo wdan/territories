@@ -74,12 +74,68 @@ LG.visual.Voronoi = function(Visualization){
             }
         },
 
+
+
+        update_data : {
+
+            value : function(){
+                var _this = this;
+                update_helper(this.data, this.dataManager.polygon);
+                this.svg.selectAll('.poly')
+                    .transition()
+                    .duration(1000)
+                    .attr('d', function(d){
+                        var points = expand(d['points'], {x: d['mid_x'], y:d['mid_y']}, _this.scale);
+                        points = subdivision_k(points, _this.subdivision);
+
+                        var s = 'M ' + points[0].x + ' ' + points[0].y;
+                        for(var j=1;j< points.length;j++){
+                            s += ' L ' + points[j].x + ' ' + points[j].y;
+                        }
+                        s += 'Z';
+                        return s;
+                    });
+
+                this.svg.selectAll('circle')
+                    .transition()
+                    .duration(1000)
+                    .attr('cx', function(d) {return d['mid_x'];})
+                    .attr('cy', function(d) {return d['mid_y'];});
+
+                this.svg.selectAll('text')
+                    .transition()
+                    .duration(1000)
+                    .attr("x", function(d){
+                            return d['mid_x'];
+                    })
+                    .attr("y", function(d){
+                        return d['mid_y'];
+                    });
+
+                this.svg.selectAll('.dash')
+                    .transition()
+                    .duration(1000)
+                    .attr('d', function(d){
+                        var points = d['points'];
+                        var mid = {x: d['mid_x'], y:d['mid_y']};
+                        var s = '';
+                        var n = points.length;
+                        for(var i=0;i<n;i++){
+                            s += 'M ' + mid.x + ' ' + mid.y;
+                            s += 'L ' + points[i].x + " " + points[i].y;
+                            s += 'L ' + points[(i+1)%n].x + " " + points[(i+1)%n].y;
+                        }
+                        return s;
+                    });
+            }
+        },
+
         update : {
             value : function(){
                 var _this = this;
                 this.svg.selectAll('.poly')
-//                    .transition()
-//                    .duration(1000)
+                    .transition()
+                    .duration(1000)
                     .attr('d', function(d){
                         var points = expand(d['points'], {x: d['mid_x'], y:d['mid_y']}, _this.scale);
                         points = subdivision_k(points, _this.subdivision);
@@ -108,7 +164,9 @@ LG.visual.Voronoi = function(Visualization){
             value : function(){
                 if(this.draw_mid_node){
                     this.svg.selectAll('circle')
-                        .data(this.data)
+                        .data(this.data, function(d){
+                            return d['cluster'];
+                        })
                         .enter()
                         .append('circle')
                         .attr('r', 5)
@@ -132,36 +190,13 @@ LG.visual.Voronoi = function(Visualization){
                     var _this = this;
 
                     this.svg.selectAll('text')
-                        .data(this.data)
+                        .data(this.data, function(d){
+                            return d['cluster'];
+                        })
                         .enter()
                         .append('text')
                         .text(function(d){
-                            var tmp = _this.clusterName[d.cluster];
-                            if( tmp == 2308){
-                                return "VAST";
-                            }else if(tmp == 1984){
-                                return "INFOVIS";
-                            }else if(tmp == 1512){
-                                return "SIGGRAPH";
-                            }else if(tmp == 3078){
-                                return "SIGKDD";
-                            }else if(tmp == 1074){
-                                return "SOSP";
-                            }else if(tmp == 1615){
-                                return "ASPLOS";
-                            }else if(tmp == 1451){
-                                return "PPOPP";
-                            }else if(tmp == 890){
-                                return "ISCA";
-                            }else if(tmp == 853){
-                                return "HPCA";
-                            }else if(tmp == 2960){
-                                return "TVCG";
-                            }else if(tmp == undefined){
-                                return "";
-                            }else{
-                                return tmp;
-                            }
+                            return _this.clusterName[d.cluster];
                         })
                         .attr('text-anchor', 'middle')
                         .attr("x", function(d){
@@ -183,7 +218,9 @@ LG.visual.Voronoi = function(Visualization){
             value : function(){
                 if(this.draw_dashed_line){
                     this.svg.selectAll('.dash')
-                        .data(this.data)
+                        .data(this.data, function(d){
+                            return d['cluster'];
+                        })
                         .enter()
                         .append('path')
                         .attr('class', 'dash')
@@ -224,17 +261,48 @@ LG.visual.Voronoi = function(Visualization){
                 var _this = this;
 
                 this.svg.selectAll('.poly')
-                    .data(this.data)
+                    .data(this.data, function(d){
+                        console.log(d['cluster']);
+                        return d['cluster'];
+                    })
                     .enter()
                     .append('path')
                     .attr('class', 'poly')
                     .on('click', function(d){
                         _this.sandBox.addClusterQueue(d['cluster']);
-                    });
+                    })
+//                    .style('fill', function(d){
+//                        if (_this.color_set) return _this.classColor[d.cluster];
+//                        else{
+//                            var c = Math.random();
+//                            return _this.color_scale(c);
+//                        }
+//                    })
+                    .style('fill-opacity', _this.opacity);
                 this.update();
             }
         }
     });
+
+    var update_helper = function(data, poly){
+
+        var n = poly.length;
+        var dict = {};
+        for(var i=0;i<n;i++){
+            var p = poly[i];
+            dict[p['cluster']] = i;
+        }
+
+        for(i=0;i<n;i++){
+            var cluster = data[i]['cluster'];
+            data[i]['height'] = poly[dict[cluster]]['height'];
+            data[i]['width'] = poly[dict[cluster]]['width'];
+            data[i]['mid_x'] = poly[dict[cluster]]['mid_x'];
+            data[i]['mid_y'] = poly[dict[cluster]]['mid_y'];
+            data[i]['points'] = poly[dict[cluster]]['points'];
+
+        }
+    };
 
     var subdivision_k = function(points, k){
 

@@ -91,10 +91,11 @@ class NXGraph(AbstractGraph):
             matrix[index1][index0] = int(weight)
             if m < weight:
                 m = weight
-        index0 = node_dict[e[0]]
-        index1 = node_dict[e[1]]
-        matrix[index0][index1] = max_weight
-        matrix[index1][index0] = max_weight
+        if src != -1 and src != None:
+            index0 = node_dict[src]
+            index1 = node_dict[tgt]
+            matrix[index0][index1] = max_weight * 1.5
+            matrix[index1][index0] = max_weight * 1.5
         for i in xrange(n):
             matrix[i][i] = int(m * 1.5)
         return (matrix, int(m * 1.5))

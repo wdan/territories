@@ -30,8 +30,8 @@ class DBLP(object):
             else:
                 self.g = self.generate_graph_author()
 
-        self.venue_name = self.read_venue_file()
-        print self.venue_name
+        # self.venue_name = self.read_venue_file()
+        # print self.venue_name
 
     def read_graph_author(self, graph_str):
         try:
@@ -56,28 +56,28 @@ class DBLP(object):
         graph_file.close()
         return g
 
-    def read_venue_file(self):
-        try:
-            venue_file = open(self.path+self.file_name+'_venue.txt')
-        except IOError:
-            print 'The file '+self.path+self.file_name+'_venue.txt'+' does not exist!'
-            return None
+    # def read_venue_file(self):
+    #     try:
+    #         venue_file = open(self.path+self.file_name+'_venue.txt')
+    #     except IOError:
+    #         print 'The file '+self.path+self.file_name+'_venue.txt'+' does not exist!'
+    #         return None
+    #
+    #     r = {}
+    #     for line in venue_file:
+    #         words = line.split('\t')
+    #         id = int(words[0])
+    #         name = str(words[1]).rstrip('\n')
+    #         r[id] = name
+    #
+    #     venue_file.close()
+    #     return r
 
-        r = {}
-        for line in venue_file:
-            words = line.split('\t')
-            id = int(words[0])
-            name = str(words[1]).rstrip('\n')
-            r[id] = name
-
-        venue_file.close()
-        return r
-
-    def write_venue_file(self, data):
-        venue_file = open(self.path+self.file_name+'_venue.txt', 'w')
-        for id in self.venue_id_list:
-            venue_file.write(str(id)+'\t'+str(data[id-1][0][0])+'\n')
-        venue_file.close()
+    # def write_venue_file(self, data):
+    #     venue_file = open(self.path+self.file_name+'_venue.txt', 'w')
+    #     for id in self.venue_id_list:
+    #         venue_file.write(str(id)+'\t'+str(data[id-1][0][0])+'\n')
+    #     venue_file.close()
 
     def generate_graph_author(self):
         # load dblp.mat
@@ -86,7 +86,8 @@ class DBLP(object):
         paper_author_csr = data['paper_author'].tocsr()
         author_name = data['author_name']
         venue_name = data['venue_name']
-        self.write_venue_file(venue_name)
+
+        # self.write_venue_file(venue_name)
 
         # venueID ---> paper list(paper ID)
         paper_list = {}
@@ -140,8 +141,8 @@ class DBLP(object):
             v['class'] = {}
             graph_file.write(str(v.index)+'\t'+label+'\n')
             for venue, count in class_dict[id_author_dict[v.index]].items():
-                v['class'][str(venue)] = count
-                graph_file.write(str(venue) + '\t' + str(count) + '\t')
+                v['class'][str(venue_name[venue-1][0][0])] = count
+                graph_file.write(str(venue_name[venue-1][0][0]) + '\t' + str(count) + '\t')
             graph_file.write('\n')
 
         graph_file.close()
@@ -163,7 +164,7 @@ class DBLP(object):
         paper_author_csr = paper_author.tocsr()
         author_paper_csc = paper_author.tocsc()
         venue_name = data['venue_name']
-        self.write_venue_file(venue_name)
+        # self.write_venue_file(venue_name)
         # parse node
         paper_list = {}
         for venue in self.venue_id_list:
@@ -188,7 +189,7 @@ class DBLP(object):
 
         graph_file = open(self.path+self.file_name+'.txt', 'w')
         for v in g.vs:
-            cluster = paper_venue_dict[v.index]
+            cluster = str(venue_name[paper_venue_dict[v.index]-1][0][0])
             label = str(paper_name[id_paper_dict[v.index]][0][0])
             v['class'] = cluster
             v['label'] = label
@@ -230,7 +231,7 @@ class DBLP(object):
         for r in graph_file:
             lines = r.split('\t')
             id = int(lines[0])
-            cluster = int(lines[1])
+            cluster = str(lines[1])
             label = str(lines[2]).rstrip('\n')
             g.vs[id]['class'] = cluster
             g.vs[id]['label'] = label

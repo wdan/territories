@@ -91,18 +91,18 @@ LG.data.DataManager = function(){
             }
         },
 
-        getClusterName : {
+        getClusterAttr : {
             value : function(){
                 var _this = this;
                 var startTime = new Date().getTime();
-                console.log('[URL] /get_cluster_name');
+                console.log('[URL] /get_cluster_attr');
                 $.ajax({
-                    url: '/get_cluster_name',
+                    url: '/get_cluster_attr',
                     dataType: 'json',
                     async: false,
                     success: function(data){
                         var endTime = new Date().getTime();
-                        _this.clusterName = data;
+                        _this.clusterAttr = data;
                         console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                     }

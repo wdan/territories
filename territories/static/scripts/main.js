@@ -38,11 +38,11 @@ $('#dataTypeList').change(function(){
         var voronoi = new LG.visual.Voronoi(gui, svg, dataManager, sandBox, 'voronoi');
         sandBox.add('voronoi', voronoi);
 
-        var river_node = new LG.visual.RiverNode(gui, svg, dataManager, sandBox, 'river_node');
-        sandBox.add('river_node', river_node);
+//        var river_node = new LG.visual.RiverNode(gui, svg, dataManager, sandBox, 'river_node');
+//        sandBox.add('river_node', river_node);
 
         voronoi.display();
-        river_node.display();
+//        river_node.display();
 //
 //        var boundary_node = new LG.visual.BoundaryNode(gui, svg, dataManager, 'boundary_node');
 //        boundary_node.display();
@@ -60,6 +60,11 @@ $('#dataTypeList').change(function(){
 });
 
 $('#update_cluster').click(function(){
-    dataManager.getNewPosition();
-    dataManager.getConstraints();
+    if(sandBox.exchangeCluster.length==2){
+        dataManager.getNewPosition(sandBox.exchangeCluster);
+        dataManager.getConstraints();
+        sandBox.update_data_All();
+    }else{
+        console.log('[WARNING] Please select two groups.');
+    }
 });

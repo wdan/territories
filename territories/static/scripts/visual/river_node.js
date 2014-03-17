@@ -35,6 +35,18 @@ LG.visual.RiverNode = function(Visualization){
             }
         },
 
+        update_data : {
+            value : function(){
+//                this.data = this.dataManager.constraints;
+
+//                var n = this.data.length;
+
+
+
+
+            }
+        },
+
         display : {
             value : function(){
                 this.svg.selectAll('circle')

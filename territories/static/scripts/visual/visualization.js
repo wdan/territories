@@ -8,6 +8,7 @@ LG.visual.Visualization = function(){
         this.svg = svg.append('g').attr('class', className);
         this.sandBox = sandBox;
         this.className = className;
+        this.dataManager = dataManager;
 //        this.classColor = colorbrewer.Paired[12];
         this.classColor = colorbrewer.Pastel1[9];
     };

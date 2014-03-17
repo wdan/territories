@@ -35,8 +35,8 @@ def get_data():
 
 @territories.route('/select_voronoi')
 def select_voronoi():
-    src = int(request.args.get('src', None))
-    tgt = int(request.args.get('tgt', None))
+    src = int(request.args.get('src', -1))
+    tgt = int(request.args.get('tgt', -1))
     s = clustered_graph.cal_cluster_voronoi_positions(src, tgt)
     v = Voronoi(s)
     return v.to_json()

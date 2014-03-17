@@ -18,6 +18,26 @@ LG.control.SandBox = function(){
             }
         },
 
+        update_data_All : {
+            value : function(){
+                for(var key in this.module){
+                    if(this.module.hasOwnProperty(key)){
+                        this.module[key].update_data();
+                    }
+                }
+            }
+        },
+
+        updateAll : {
+            value : function(){
+                for(var key in this.module){
+                    if(this.module.hasOwnProperty(key)){
+                        this.module[key].update();
+                    }
+                }
+            }
+        },
+
         remove : {
             value : function(className){
                 if(className in this.module){
@@ -41,9 +61,6 @@ LG.control.SandBox = function(){
                     this.exchangeCluster.shift();
                 }
                 this.exchangeCluster.push(data);
-
-                console.log('add_Cluster_queue');
-                console.log(this.exchangeCluster);
             }
         }
 

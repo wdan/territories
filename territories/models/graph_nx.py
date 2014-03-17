@@ -236,7 +236,10 @@ class NXGraph(AbstractGraph):
                 edges_dict[(src_id, tgt_id)] = 0
             if src_id not in outer_edges_dict:
                 outer_edges_dict[src_id] = 0
+            if tgt_id not in outer_edges_dict:
+                outer_edges_dict[tgt_id] = 0
             outer_edges_dict[src_id] += 1
+            outer_edges_dict[tgt_id] += 1
             edges_dict[(src_id, tgt_id)] += 1
 
         for n in clustered_graph.nodes():

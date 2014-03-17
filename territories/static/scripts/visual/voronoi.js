@@ -10,7 +10,11 @@ LG.visual.Voronoi = function(Visualization){
 
         // data
         this.data = dataManager.polygon;
-        this.clusterName = dataManager.clusterName;
+        this.clusterName = dataManager.clusterAttr['cluster_name'];
+//        this.quality = dataManager.clusterAttr['cluster_quality'];
+        this.get_quality();
+        console.log('quality');
+        console.log(this.quality);
 
         // control color
         this.color_set = true;
@@ -30,6 +34,23 @@ LG.visual.Voronoi = function(Visualization){
     };
 
     Voronoi.prototype = Object.create(Visualization.prototype, {
+
+        get_quality : {
+            value : function(){
+                var q = this.dataManager.clusterAttr['cluster_quality'];
+                var tmp = Object.keys(q).map(function(key){return q[key];});
+                var max_quality = d3.max(tmp);
+                var min_quality = d3.min(tmp);
+                var scale = d3.scale.quantize().domain([max_quality, min_quality]).range([0,1,2,3]);
+                this.quality = {};
+                for(var key in q){
+                    if(q.hasOwnProperty(key)){
+                        this.quality[key] = scale(q[key]);
+                    }
+                }
+
+            }
+        },
 
         control : {
             value : function(){
@@ -83,10 +104,15 @@ LG.visual.Voronoi = function(Visualization){
                 update_helper(this.data, this.dataManager.polygon);
                 this.svg.selectAll('.poly')
                     .transition()
-                    .duration(1000)
+                    .duration(1500)
                     .attr('d', function(d){
                         var points = expand(d['points'], {x: d['mid_x'], y:d['mid_y']}, _this.scale);
-                        points = subdivision_k(points, _this.subdivision);
+                        if($.isEmptyObject(_this.quality)){
+                            points = subdivision_k(points, _this.subdivision);
+                        }
+                        else{
+                            points = subdivision_k(points, _this.quality[d['cluster']]);
+                        }
 
                         var s = 'M ' + points[0].x + ' ' + points[0].y;
                         for(var j=1;j< points.length;j++){
@@ -98,13 +124,13 @@ LG.visual.Voronoi = function(Visualization){
 
                 this.svg.selectAll('circle')
                     .transition()
-                    .duration(1000)
+                    .duration(1500)
                     .attr('cx', function(d) {return d['mid_x'];})
                     .attr('cy', function(d) {return d['mid_y'];});
 
                 this.svg.selectAll('text')
                     .transition()
-                    .duration(1000)
+                    .duration(1500)
                     .attr("x", function(d){
                             return d['mid_x'];
                     })
@@ -114,7 +140,7 @@ LG.visual.Voronoi = function(Visualization){
 
                 this.svg.selectAll('.dash')
                     .transition()
-                    .duration(1000)
+                    .duration(1500)
                     .attr('d', function(d){
                         var points = d['points'];
                         var mid = {x: d['mid_x'], y:d['mid_y']};
@@ -138,7 +164,12 @@ LG.visual.Voronoi = function(Visualization){
                     .duration(1000)
                     .attr('d', function(d){
                         var points = expand(d['points'], {x: d['mid_x'], y:d['mid_y']}, _this.scale);
-                        points = subdivision_k(points, _this.subdivision);
+                        if($.isEmptyObject(_this.quality)){
+                            points = subdivision_k(points, _this.subdivision);
+                        }
+                        else{
+                            points = subdivision_k(points, _this.quality[d['cluster']]);
+                        }
 
                         var s = 'M ' + points[0].x + ' ' + points[0].y;
                         for(var j=1;j< points.length;j++){
@@ -259,10 +290,8 @@ LG.visual.Voronoi = function(Visualization){
                     .remove();
 
                 var _this = this;
-
                 this.svg.selectAll('.poly')
                     .data(this.data, function(d){
-                        console.log(d['cluster']);
                         return d['cluster'];
                     })
                     .enter()
@@ -271,13 +300,21 @@ LG.visual.Voronoi = function(Visualization){
                     .on('click', function(d){
                         _this.sandBox.addClusterQueue(d['cluster']);
                     })
-//                    .style('fill', function(d){
-//                        if (_this.color_set) return _this.classColor[d.cluster];
-//                        else{
-//                            var c = Math.random();
-//                            return _this.color_scale(c);
-//                        }
-//                    })
+                    .attr('d', function(d){
+                        var n = d['points'].length;
+                        var s = 'M'+ d['mid_x'] + ' ' + d['mid_y'];
+                        for(var i=1;i<n;i++){
+                            s += 'L'+ d['mid_x'] + ' ' + d['mid_y'];
+                        }
+                        return s;
+                    })
+                    .style('fill', function(d){
+                        if (_this.color_set) return _this.classColor[d.cluster];
+                        else{
+                            var c = Math.random();
+                            return _this.color_scale(c);
+                        }
+                    })
                     .style('fill-opacity', _this.opacity);
                 this.update();
             }
@@ -300,7 +337,6 @@ LG.visual.Voronoi = function(Visualization){
             data[i]['mid_x'] = poly[dict[cluster]]['mid_x'];
             data[i]['mid_y'] = poly[dict[cluster]]['mid_y'];
             data[i]['points'] = poly[dict[cluster]]['points'];
-
         }
     };
 

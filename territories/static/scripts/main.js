@@ -27,7 +27,7 @@ $('#dataTypeList').change(function(){
         dataManager.getPolygon(val, width, height, 1);
         dataManager.getConstraints();
 //        dataManager.getOriginal();
-        dataManager.getClusterName();
+        dataManager.getClusterAttr();
 
 //        var hull = new LG.visual.ConvexHull(gui, svg, dataManager, 'convex_hull');
 //        hull.display();
@@ -38,11 +38,11 @@ $('#dataTypeList').change(function(){
         var voronoi = new LG.visual.Voronoi(gui, svg, dataManager, sandBox, 'voronoi');
         sandBox.add('voronoi', voronoi);
 
-//        var river_node = new LG.visual.RiverNode(gui, svg, dataManager, sandBox, 'river_node');
-//        sandBox.add('river_node', river_node);
+        var river_node = new LG.visual.RiverNode(gui, svg, dataManager, sandBox, 'river_node');
+        sandBox.add('river_node', river_node);
 
         voronoi.display();
-//        river_node.display();
+        river_node.display();
 //
 //        var boundary_node = new LG.visual.BoundaryNode(gui, svg, dataManager, 'boundary_node');
 //        boundary_node.display();

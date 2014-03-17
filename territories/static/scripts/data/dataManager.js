@@ -16,7 +16,7 @@ LG.data.DataManager = function(){
         this.externalBoundaryNode = undefined;
         this.boundaryEdge = undefined;
         this.insideNode = undefined;
-        this.clusterName = {};
+        this.clusterAttr = {};
     };
 
     Object.defineProperties(DataManager.prototype, {

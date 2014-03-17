@@ -27,34 +27,90 @@ LG.visual.RiverNode = function(Visualization){
                    _this.update();
                 });
                 folder.add(this, 'x_margin', 0, 1).step(0.01).onFinishChange(function(){
-                    _this.display();
+                    _this.update();
                 });
                 folder.add(this, 'y_margin', 0, 1).step(0.01).onFinishChange(function(){
-                    _this.display();
+                    _this.update();
                 });
             }
         },
 
         update_data : {
             value : function(){
-//                this.data = this.dataManager.constraints;
-
-//                var n = this.data.length;
-
-
-
-
+                this.data = this.dataManager.constraints;
+                this.svg.selectAll('circle')
+                    .transition()
+                    .duration(2000)
+                    .attr('r', 0)
+                    .style('opacity', 0);
+                this.display();
             }
         },
 
         display : {
             value : function(){
-                this.svg.selectAll('circle')
+                this.svg.selectAll('g')
                     .data([])
                     .exit()
                     .remove();
                 var n = this.data.length;
 
+                for(var i=0; i<n; i++){
+
+                    var river = this.data[i];
+                    var points = this.data[i]['points'];
+//                    var src = {x:river['src_cluster_x'], y:river['src_cluster_y']};
+//                    var tgt = {x:river['tgt_cluster_x'], y:river['tgt_cluster_y']};
+//                    var p1 = {x:river['x1'], y:river['y1']};
+//                    var p2 = {x:river['x2'], y:river['y2']};
+//                    var base = collapse(src, tgt, p1, p2, this.y_margin);
+//                    var max_degree = d3.max(points, function(d){return d['in_degree'] + d['out_degree']});
+//
+//                    for(var j=0;j<points.length;j++){
+//                        var p = points[j];
+//                        var pos = layout(src, tgt, base, this.scale * this.x_margin, p, max_degree);
+//                        p['x'] = pos.x;
+//                        p['y'] = pos.y;
+//                    }
+//
+//                    var degree_scale = d3.scale.linear().domain([0, max_degree]).range([2, 10]);
+                    this.svg.append('g')
+                        .attr('id', 'river'+river['src_cluster'] + '-' + river['tgt_cluster'])
+                        .selectAll('circle')
+                        .data(points)
+                        .enter()
+                        .append('circle')
+//                        .attr('r', function(d){
+//                            return degree_scale(d['in_degree']+d['out_degree']);
+//                        })
+//                        .attr('cx', function(d){
+//                            return d.x;
+//                        })
+//                        .attr('cy', function(d){
+//                            return d.y;
+//                        })
+                        .style('fill', this.classColor[river['src_cluster']])
+                        .style('opacity', 0)
+                        .on('click', function(d){
+                            console.log(d['label']);
+                            console.log(d['in_degree']+':'+d['out_degree']);
+                        });
+                    this.update();
+                }
+            }
+        },
+
+        update_scale : {
+            value : function(scale){
+                this.scale = scale;
+                this.display();
+            }
+        },
+
+        update : {
+            value : function(){
+
+                var n = this.data.length;
                 for(var i=0; i<n; i++){
 
                     var river = this.data[i];
@@ -74,12 +130,10 @@ LG.visual.RiverNode = function(Visualization){
                     }
 
                     var degree_scale = d3.scale.linear().domain([0, max_degree]).range([2, 10]);
-                    this.svg.append('g')
-                        .attr('id', river['src_cluster'] + '-' + river['tgt_cluster'])
+                    this.svg.select('#river'+river['src_cluster'] + '-' + river['tgt_cluster'])
                         .selectAll('circle')
-                        .data(points)
-                        .enter()
-                        .append('circle')
+                        .transition()
+                        .duration(2000)
                         .attr('r', function(d){
                             return degree_scale(d['in_degree']+d['out_degree']);
                         })
@@ -90,27 +144,8 @@ LG.visual.RiverNode = function(Visualization){
                             return d.y;
                         })
                         .style('fill', this.classColor[river['src_cluster']])
-                        .on('click', function(d){
-                            console.log(d['label']);
-                            console.log(d['in_degree']+':'+d['out_degree']);
-                        });
-                    this.update();
+                        .style('opacity', this.opacity);
                 }
-            }
-        },
-
-        update_scale : {
-            value : function(scale){
-                this.scale = scale;
-                this.display();
-            }
-        },
-
-        update : {
-            value : function(){
-                this.svg.selectAll('circle')
-//                    .attr('r', this.r)
-                    .style('opacity', this.opacity);
             }
         }
     });

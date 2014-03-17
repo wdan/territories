@@ -1,0 +1,1326 @@
+0	1512	Building block shaders.
+1	1512	Ray tracing trimmed rational surface patches.
+2	1512	Accurate rendering technique based on colorimetric conception.
+3	1512	Incremental radiosity: an extension of progressive radiosity to an interactive image synthesis system.
+4	1512	Footprint evaluation for volume rendering.
+5	1512	Strength guided motion.
+6	1512	Project GROPEHaptic displays for scientific visualization.
+7	1512	A method of generating stone wall patterns.
+8	1512	Curved surfaces and coherence for non-penetrating rigid body simulation.
+9	1512	Generalized B-spline surfaces of arbitrary topology.
+10	1512	Real-time robot motion planning using rasterizing computer graphics hardware.
+11	1512	Reusable motion synthesis using state-space controllers.
+12	1512	Rapid, stable fluid dynamics for computer graphics.
+13	1512	A lighting model aiming at drive simulators.
+14	1512	Particle transport and image synthesis.
+15	1512	Antialiasing of interlaced video animation.
+16	1512	High speed high quality antialiased vector generation.
+17	1512	Parallel object-space hidden surface removal.
+18	1512	Geometric collisions for time-dependent parametric surfaces.
+19	1512	Paint by numbers: abstract image representations.
+20	1512	A model for anisotropic reflection.
+21	1512	An efficient radiosity solution for bump texture generation.
+22	1512	Comprehensible rendering of 3-D shapes.
+23	1512	Rendering CSG models with a ZZ-buffer.
+24	1512	Direct WYSIWYG painting and texturing on 3D shapes.
+25	1512	The accumulation buffer: hardware support for high-quality rendering.
+26	1512	A language for shading and lighting calculations.
+27	1512	Adaptive mesh generation for global diffuse illumination.
+28	1512	Using tolerances to guarantee valid polyhedral modeling results.
+29	1512	Fast animation and control of nonrigid structures.
+30	1512	Particle animation and rendering using data parallel computation.
+31	1512	Cone-spheres.
+32	1512	Extended free-form deformation: a sculpturing tool for 3D geometric modeling.
+33	1512	Rendering and animation of gaseous phenomena by combining fast volume and scanline A-buffer techniques.
+34	1512	Rapid controlled movement through a virtual 3D workspace.
+35	1512	Hidden curve removal for free form surfaces.
+36	1512	The rendering architecture of the DN10000VS.
+37	1512	Dynamic simulation of autonomous legged locomotion.
+38	1512	Light-water interaction using backward beam tracing.
+39	1512	Adaptive radiosity textures for bidirectional ray tracing.
+40	1512	Merging BSP trees yields polyhedral set operations.
+41	1512	Artificial reality with force-feedback: development of desktop virtual space with compact master manipulator.
+42	1512	Performance-driven facial animation.
+43	1512	An efficient antialiasing technique.
+44	1512	Artificial evolution for computer graphics.
+45	1512	Generalized implicit functions for computer graphics.
+46	1512	NC machining with G-buffer method.
+47	1512	Trichromatic approximation for computer graphics illumination models.
+48	1512	Deformable curve and surface finite-elements for free-form shape design.
+49	1512	Visibility preprocessing for interactive walkthroughs.
+50	1512	Piecewise surface flattening for non-distorted texture mapping.
+51	1512	Motion without movement.
+52	1512	Model-based matching and hinting of fonts.
+53	1512	A coherent projection approach for direct volume rendering.
+54	1512	An object-oriented framework for the integration of interactive animation techniques.
+55	1512	A rapid hierarchical radiosity algorithm.
+56	1512	Animated free-form deformation: an interactive animation technique.
+57	1512	Reaction-diffusion textures.
+58	1512	Design and simulation of opera lighting and projection effects.
+59	1512	Spectrally optimal sampling for distribution ray tracing.
+60	1512	Making radiosity usable: automatic preprocessing and meshing techniques for the generation of accurate radiosity solutions.
+61	1512	Spot noise texture synthesis for data visualization.
+62	1512	Unbiased sampling techniques for image synthesis.
+63	1512	Specifying gestures by example.
+64	1512	A global illumination solution for general reflectance distributions.
+65	1512	A progressive multi-pass method for global illumination.
+66	1512	Computer animation of knowledge-based human grasping.
+67	1512	Generating textures on arbitrary surfaces using reaction-diffusion.
+68	1512	Volumetric shape description of range data using _Blobby Model_.
+69	1512	A new simple and efficient antialiasing with subpixel masks.
+70	1512	Digital halftoning with space filling curves.
+71	1512	Automated generation of intent-based 3D Illustrations.
+72	1512	Efficient antialiased rendering of 3-D linear fractals.
+73	1512	Animation aerodynamics.
+74	1512	Sculpting: an interactive volumetric modeling technique.
+75	1512	A comprehensive physical model for light reflection.
+76	1512	Geometrically deformed models: a method for extracting closed geometric models form volume data.
+77	1512	Coping with friction for non-penetrating rigid body simulation.
+78	1512	Interactive behaviors for bipedal articulated figures.
+79	1512	Animation of dynamic legged locomotion.
+80	1512	Hierarchical splatting: a progressive refinement algorithm for volume rendering.
+81	1512	Inkwell: A 2-D animation system.
+82	1512	Convolution surfaces.
+83	1512	A simple method for extracting the natural beauty of hair.
+84	1512	Three dimensional apparel CAD system.
+85	1512	Dynamic deformation of solid primitives with constraints.
+86	1512	Surface modeling with oriented particle systems.
+87	1512	Interval arithmetic recursive subdivision for implicit functions and constructive solid geometry.
+88	1512	Generative modeling: a symbolic system for geometric modeling.
+89	1512	Through-the-lens camera control.
+90	1512	Direct manipulation of free-form deformations.
+91	1512	A collision-based model of spiral phyllotaxis.
+92	1512	Measuring and modeling anisotropic reflection.
+93	1512	A telecomputer.
+94	1512	An object-oriented 3D graphics toolkit.
+95	1512	An algorithm with linear complexity for interactive, physically-based modeling of large proteins.
+96	1512	Functional optimization for fair surface design.
+97	1512	Interactive spacetime control for animation.
+98	1512	Feature-based image metamorphosis.
+99	1512	An importance-driven radiosity algorithm.
+100	1512	CONDOR: constraint-based dataflow.
+101	1512	Using deformations to explore 3D widget design.
+102	1512	A scalable hardware render accelerator using a modified scanline algorithm.
+103	1512	Shape transformation for polyhedral objects.
+104	1512	Dynamic simulation of non-penetrating flexible bodies.
+105	1512	Dressing animated synthetic actors with complex deformable clothes.
+106	1512	Illumination from curved reflectors.
+107	1512	Smooth interpolation of orientations with angular velocity constraints using quaternions.
+108	1512	Fast shadows and lighting effects using texture mapping.
+109	1512	Pump it up: computer animation of a biomechanically based model of muscle using the finite element method.
+110	1512	Computing the antipenumbra of an area light source.
+111	1512	Re-tiling polygonal surfaces.
+112	1512	Variational surface modeling.
+113	1512	Interval analysis for computer graphics.
+114	1512	Scheduled Fourier volume morphing.
+115	1512	Sound rendering.
+116	1512	Smoothing polyhedra using implicit algebraic splines.
+117	1512	Decimation of triangle meshes.
+118	1512	PixelFlow: high-speed rendering using image composition.
+119	1512	Topological design of sculptured surfaces.
+120	1512	Modeling seashells.
+121	1512	A physically based approach to 2-D shape blending.
+122	1512	Surface reconstruction from unorganized points.
+123	1512	Merging virtual objects with the real world: seeing ultrasound imagery within the patient.
+124	1512	A fast and accurate light reflection model.
+125	1512	Predicting reflectance functions from complex surfaces.
+126	1512	Interactive inspection of solids: cross-sections and interferences.
+127	1512	High resolution virtual reality.
+128	1512	Turbulent wind fields for gaseous phenomena.
+129	1512	The applications of evolutionary and biological processes to computer art and animation.
+130	1512	Smooth transitions between bump rendering algorithms.
+131	1512	Leo: a system for cost effective 3D shaded graphics.
+132	1512	Correcting for short-range spatial non-linearities of CRT-based output devices.
+133	1512	Implementing rotation matrix constraints in Analog VLSI.
+134	1512	Graphics rendering architecture for a high performance desktop workstation.
+135	1512	Efficient, fair interpolation using Catmull-Clark surfaces.
+136	1512	The integrative use of computers in a medical university.
+137	1512	Interactive texture mapping.
+138	1512	Real virtuality: StereoLithography - rapid prototyping in 3-D.
+139	1512	Digital illusion: theme park visualization.
+140	1512	Mesh optimization.
+141	1512	Pad: an alternative approach to the computer interface.
+142	1512	Visual thinkers in an age of computer visualization: problems and possibilities.
+143	1512	Sensor-actuator networks.
+144	1512	Linear color representations for full speed spectral rendering.
+145	1512	Combining hierarchical radiosity and discontinuity meshing.
+146	1512	Imaging vector fields using line integral convolution.
+147	1512	Spatial anti-aliasing for animation sequences with spatio-temporal filtering.
+148	1512	Visualizing environmental data sets.
+149	1512	Critical art/interactive art/virtual art: rethinking computer art.
+150	1512	Space diffusion: an improved parallel halftoning technique using space-filling curves.
+151	1512	View interpolation for image synthesis.
+152	1512	Nan-o-sex and virtual seduction.
+153	1512	Painting with light.
+154	1512	Spacetime constraints revisited.
+155	1512	Motion compensated compression of computer animation frames.
+156	1512	Radiosity algorithms using higher order finite element methods.
+157	1512	Toolglass and magic lenses: the see-through interface.
+158	1512	Ubiquitous computing and augmented reality.
+159	1512	Updating computer animation (panel): an interdisciplinary approach.
+160	1512	Facilitating learning with computer graphics and multimedia.
+161	1512	Wavelet radiosity.
+162	1512	Adaptive display algorithm for interactive frame rates during visualization of complex virtual environments.
+163	1512	Reflection from layered surfaces due to subsurface scattering.
+164	1512	Discrete groups and visualization of three-dimensional manifolds.
+165	1512	On the form factor between two polygons.
+166	1512	Global visibility algorithms for illumination computations.
+167	1512	Animation of plant development.
+168	1512	VIEW: an exploratory molecular visualization system with user-definable interaction sequences.
+169	1512	Man vs. mouse.
+170	1512	How to lie and confuse with visualization.
+171	1512	Autocalibration for virtual environments tracking hardware.
+172	1512	A hierarchical illumination algorithm for surfaces with glossy reflection.
+173	1512	Merging 3-D graphics and imaging: applications and issues.
+174	1512	Multimedia and interactivity in the antipodes.
+175	1512	Display of the earth taking into account atmospheric scattering.
+176	1512	EXACT: algorithm and hardware architecture for an improved A-buffer.
+177	1512	Frequency domain volume rendering.
+178	1512	The nanomanipulator: a virtual-reality interface for a scanning tunneling microscope.
+179	1512	Hierarchical Z-buffer visibility.
+180	1512	An implicit formulation for precise contact modeling between flexible solids.
+181	1512	Surround-screen projection-based virtual reality: the design and implementation of the CAVE.
+182	1512	Galerkin radiosity: a higher order solution methodfor global illumination.
+183	1512	Interval methods for multi-point collisions between time-dependent curved surfaces.
+184	1512	Modeling soil: realtime dynamic models for soil slippage and manipulation.
+185	1512	An interactive 3D toolkit for constructing 3D widgets.
+186	1512	Radioptimization: goal based rendering.
+187	1512	2-D shape blending: an intrinsic solution to the vertex path problem.
+188	1512	Virtual reality and computer graphics programming.
+189	1512	Urban tech-gap: how the museum/university liaisons propose to create a learning ladder for visual literacy.
+190	1512	Reality Engine graphics.
+191	1512	Efficient algorithms for local and global accessibility shading.
+192	1512	Displacement mapping using flow fields.
+193	1512	3D position, attitude and shape input using video tracking of hands and lips.
+194	1512	Textures and radiosity: controlling emission and reflection with texture maps.
+195	1512	Free-form shape design using triangulated surfaces.
+196	1512	Zippered polygon meshes from range images.
+197	1512	Determinants of immersivity in virtual reality: graphics vs. action.
+198	1512	A fast shadow algorithm for area light sources using backprojection.
+199	1512	Fast computation of shadow boundaries using spatial coherence and backprojections.
+200	1512	Why is 3-D interaction so hard and what can we really do about it?
+201	1512	A clustering algorithm for radiosity in complex environments.
+202	1512	FBRAM: a new form of memory optimized for 3D graphics.
+203	1512	Fast contact force computation for nonpenetrating rigid bodies.
+204	1512	Visual simulation of lightning.
+205	1512	Predicting the drape of woven cloth using interacting particles.
+206	1512	Animating images with drawings.
+207	1512	NC milling error assessment and tool path correction.
+208	1512	Is visualization REALLY necessary?: the role of visualization in science, engineering, and medicine.
+209	1512	Wavelength dependent reflectance functions.
+210	1512	Multiresolution painting and compositing.
+211	1512	Hardware accelerated rendering of CSG and transparency.
+212	1512	Information visualization: the next frontier.
+213	1512	Fast volume rendering using a shear-warp factorization of the viewing transformation.
+214	1512	Evolving virtual creatures.
+215	1512	Exploiting networks for visualization and collaboration: no network roadblocks?
+216	1512	Synthetic topiary.
+217	1512	Polarization and birefringency considerations in rendering.
+218	1512	Reflection vector shading hardware.
+219	1512	Improving static and dynamic registration in an optical see-through HMD.
+220	1512	A virtual environment and model of the eye for surgical simulation.
+221	1512	Multiresolution curves.
+222	1512	A generalized de Casteljau approach to 3D free-form deformation.
+223	1512	Error-bounded antialiased rendering of complex environments.
+224	1512	Computer-generated pen-and-ink illustration.
+225	1512	TBAG: a high level framework for interactive, animated 3D graphics applications.
+226	1512	A framework for the analysis of error in global illumination algorithms.
+227	1512	Smooth spline surfaces over irregular meshes.
+228	1512	Low cost illumination computation using an approximation of light wavefronts.
+229	1512	Partitioning and ordering large radiosity computations.
+230	1512	Planning motions with intentions.
+231	1512	Spreadsheets for images.
+232	1512	Method of displaying optical effects within water using accumulation buffer.
+233	1512	IRIS performer: a high performance multiprocessing toolkit for real-time 3D graphics.
+234	1512	Reading the fine print: what benchmarks don_t tell you.
+235	1512	Energy preserving non-linear filters.
+236	1512	Hierarchical spacetime control.
+237	1512	Illumination in diverse codimensions.
+238	1512	Approaches to teaching introductory computer graphics.
+239	1512	Computer technology and the artistic process: how the computer industry changes the form and function of art.
+240	1512	The irradiance Jacobian for partially occluded polyhedral sources.
+241	1512	Rotated dispersed dither: a new technique for digital halftoning.
+242	1512	Interactive pen-and-ink illustration.
+243	1512	Optimization - an emerging tool in computer graphics.
+244	1512	The RADIANCE lighting simulation and rendering system.
+245	1512	Using particles to sample and control implicit surfaces.
+246	1512	Efficient techniques for interactive texture placement.
+247	1512	Bounds and error estimates for radiosity.
+248	1512	Computer graphics for architecture and design presentations: current work and trends outside the U.S.
+249	1512	A model for efficient and flexible image computing.
+250	1512	Animated conversation: rule-based generation of facial expression, gesture a spoken intonation for multiple conversational agents.
+251	1512	Computer graphics and economic transformations.
+252	1512	Computer graphics, are we forcing people to evolve?
+253	1512	Frameless rendering: double buffering considered harmful.
+254	1512	Generalization of Lambert_s reflectance model.
+255	1512	Piecewise smooth surface reconstruction.
+256	1512	Artificial fishes: physics, locomotion, perception, behavior.
+257	1512	Production for the long haul.
+258	1512	Research frontiers in virtual reality.
+259	1512	Priority rendering with a virtual reality address recalculation pipeline.
+260	1512	Accelerated MPEG compression of dynamic polygonal scenes.
+261	1512	Art and technology: very large scale integration.
+262	1512	Drawing and animation using skeletal strokes.
+263	2960	Editorials.
+264	2960	Editorial.
+265	2960	Visualization of Multidimensional Shape and Texture Features in Laser Range Data Using Complex-Valued Gabor Wavelets.
+266	2960	Multiscale Volume Representation by a DoG Wavelet.
+267	2960	A Multiscale Model for Structure-Based Volume Rendering.
+268	2960	Optimal Sampling for Hemicubes.
+269	2960	Optical Models for Direct Volume Rendering.
+270	2960	Octree-R: An Adaptive Octree for Efficient Ray Tracing.
+271	2960	Using Line Integral Convolution for Flow Visualization: Curvilinear Grids, Variable-Speed Animation, and Unsteady Flows.
+272	2960	In Memoriam: Dr. Wolfgang Krueger.
+273	2960	A Unified Hierarchical Algorithm for Global Illumination with Scattering Volumes and Object Clusters.
+274	2960	Visualization of Geometric Algorithms.
+275	2960	Obliq-3D: A High-Level, Fast-Turnaround 3D Animation System.
+276	2960	Visualization Takes its Place in the Scientific Community.
+277	2960	Hybrid Scan-Conversion of Circles.
+278	2960	Volume Rendering of DCT-Based Compressed 3D Scalar Data.
+279	2960	Automatic Isosurface Propagation Using an Extrema Graph and Sorted Boundary Cell Lists.
+280	2960	Exploiting Triangulated Surface Extraction Using Tetrahedral Decomposition.
+281	2960	On Particle Path Generation Based on Quadrilinear Interpolation and Bernstein-Bezier Polynomials.
+282	2960	Competent, Compact, Comparative Visualization of a Vortical Flow Field.
+283	2960	Calibration Requirements and Procedures for a Monitor-Based Augmented Reality System.
+284	2960	Visualizing Network Data.
+285	2960	Quaternion Frame Approach to Streamline Visualization.
+286	2960	A Predictor-Corrector Technique for Visualizing Unsteady Flow.
+287	2960	Collision Detection for Interactive Graphics Applications.
+288	2960	Grouping Volume Renderers for Enhanced Visualization in Computational Fluid Dynamics.
+289	2960	Line Art Rendering via a Coverage of Isoparametric Curves.
+290	2960	Real Time Responsive Animation with Personality.
+291	2960	Modeling and Visualization of Knitwear.
+292	2960	Specification by-Example of Virtual Agents Behavior.
+293	2960	Dynamic Color Quantization of Video Sequences.
+294	2960	Vision - An Architecture for Global Illumination Calculations.
+295	2960	Editorial.
+296	2960	Editorial.
+297	2960	Editorial.
+298	2960	A Near Optimal Isosurface Extraction Algorithm Using the Span Space.
+299	2960	Visualizing Unstructured Flow Data Using Dual Stream Functions.
+300	2960	Splatting of Non Rectilinear Volumes Through Stochastic Resampling.
+301	2960	Volumetric Data Exploration Using Interval Volume.
+302	2960	RIVA: A Versatile Parallel Rendering System for Interactive Scientific Visualization.
+303	2960	A Digital Brain Atlas for Surgical Planning, Model-Driven Segmentation, and Teaching.
+304	2960	Glyphs for Visualizing Uncertainty in Vector Fields.
+305	2960	D-NURBS: A Physics-Based Framework for Geometric Design.
+306	2960	Implementation and Analysis of an Image-Based Global Illumination Framework for Animated Environments.
+307	2960	Function Representation for Sweeping by a Moving Solid.
+308	2960	A Real-Time Photo-Realistic Visual Flythrough.
+309	2960	Theme Issue Introduction: Challenges in Visualization Research.
+310	2960	Reconstruction Error Characterization and Control: A Sampling Theory Approach.
+311	2960	Efficient Triangular Surface Approximations Using Wavelets and Quadtree Data Structures.
+312	2960	Structured Penumbral Irradiance Computation.
+313	2960	Fractal Volume Compression.
+314	2960	Image Composition Schemes for Sort-Last Polygon Rendering on 2D Mesh Multicomputers.
+315	2960	Efficient Streamline, Streamribbon, and Streamtube Constructions on Unstructured Grids.
+316	2960	A Fast Method for Estimating Discrete Field Values in Early Engineering Design.
+317	2960	Frequency Analysis of Gradient Estimators in Volume Rendering.
+318	2960	Interactive Time-Dependent Particle Tracing Using Tetrahedral Decomposition.
+319	2960	Solving Geometric Constraints By Homotopy.
+320	2960	Volume-Preserving Free-Form Solids.
+321	2960	Interactive Display of Large NURBS Models.
+322	2960	Analysis of a Parallel Volume Rendering System Based on the Shear-Warp Factorization.
+323	2960	Shape Description By Medial Surface Construction.
+324	2960	Correction: A Near Optimal Isosurface Extraction Algorithm Using the Span Space.
+325	2960	Controlled Topology Simplification.
+326	2960	Image Metamorphosis with Scattered Feature Constraints.
+327	2960	An Algorithm for the Medial Axis Transform of 3D Polyhedral Solids.
+328	2960	Feature Extraction and Iconic Visualization.
+329	2960	A Road Map To Solid Modeling.
+330	2960	Editorial.
+331	2960	Editorial.
+332	2960	Converting Discrete Images to Partitioning Trees.
+333	2960	A Visibility Matching Tone Reproduction Operator for High Dynamic Range Scenes.
+334	2960	Dynamic Free-Form Deformations for Animation Synthesis.
+335	2960	A Fast Gibbs Sampler for Synthesizing Constrained Fractals.
+336	2960	Virtual Data Visualizer.
+337	2960	Speeding Up Isosurface Extraction Using Interval Trees.
+338	2960	Complex Character Positioning Based on a Compatible Flow Model of Multiple Supports.
+339	2960	Modeling and Visualization for a Pearl-Quality Evaluation Simulator.
+340	2960	Adaptive Real-Time Level-of-Detail-Based Rendering for Polygonal Models.
+341	2960	On Approximating Contours of the Piecewise Trilinear Interpolant Using Triangular Rational-Quadratic Bezier Patches.
+342	2960	Tracking and Visualizing Turbulent 3D Features.
+343	2960	Incremental Algorithms for Collision Detection Between Polygonal Models.
+344	2960	Physically-Based Stochastic Simplification of Mathematical Knots.
+345	2960	Error and Complexity of Random Walk Monte Carlo Radiosity.
+346	2960	Multipole Expansion of the Light Vector.
+347	2960	Scattered Data Interpolation with Multilevel B-Splines.
+348	2960	Multiresolution Representation and Visualization of Volume Data.
+349	2960	Out-of-Core Streamline Visualization on Large Unstructured Meshes.
+350	2960	The Topology of Symmetric, Second-Order 3D Tensor Fields.
+351	2960	Conveying the 3D Shape of Smoothly Curving Transparent Surfaces via Texture.
+352	2960	Evaluation and Design of Filters Using a Taylor Series Expansion.
+353	2960	Fast Display of Illuminated Field Lines.
+354	2960	A Wavelet Representation of Reflectance Functions.
+355	2960	Breadth-First Ray Tracing Utilizing Uniform Spatial Subdivision.
+356	2960	The Discrete Analytical Hyperspheres.
+357	2960	On Compatible Star Decompositions of Simple Polygons.
+358	2960	Animation of Deformable Models Using Implicit Surfaces.
+359	2960	The Lazy Sweep Ray Casting Algorithm for Rendering Irregular Grids.
+360	1984	A spreadsheet approach to information visualization.
+361	1984	Coordinating declarative queries with a direct manipulation data exploration environment.
+362	1984	The structure of the information visualization design space.
+363	1984	Multidimensional detective.
+364	1984	Managing Software with New Visual Representations.
+365	1984	Metrics for effective information visualization.
+366	1984	Design and Evaluation of Incremental Data Structures and Algorithms for Dynamic Query Interfaces.
+367	1984	Visualizing Information on a Sphere.
+368	1984	Cacti: a front end for program visualization.
+369	1984	H3: laying out large directed graphs in 3D hyperbolic space.
+370	1984	Domesticating Bead: adapting an information visualization system to a financial institution.
+371	1984	Nonlinear Magnification Fields.
+372	1984	Adaptive information visualization based on the user_s multiple viewpoints-interactive 3D visualization of the WWW.
+373	1984	On Integrating Visualization Techniques for Effective Software Exploration.
+374	1984	Managing multiple focal levels in Table Lens.
+375	1984	Research Report: Volume Rendering for Relational Data.
+376	2960	A High Accuracy Volume Renderer for Unstructured Data.
+377	2960	Topology Simplification for Polygonal Virtual Environments.
+378	2960	Fast Horizon Computation at All Points of a Terrain With Visibility and Shading Applications.
+379	2960	Perception of Human Motion With Different Geometric Models.
+380	2960	Editorial.
+381	2960	Efficient Collision Detection Using Bounding Volume Hierarchies of k-DOPs.
+382	2960	Splatting Errors and Antialiasing.
+383	2960	Novel View Synthesis by Cascading Trilinear Tensors.
+384	2960	Adaptive Projection Operators in Multiresolution Scientific Visualization.
+385	2960	Structure-Significant Representation of Structured Datasets.
+386	2960	Dynamic Catmull-Clark Subdivision Surfaces.
+387	2960	Multiresolution Analysis on Irregular Surface Meshes.
+388	2960	Modeling, Animating, and Rendering Complex Scenes Using Volumetric Textures.
+389	2960	Fast Collision Detection Among Multiple Moving Spheres.
+390	2960	Memory-Efficient Ray Classification for Visibility Operations.
+391	2960	RSVP: A Geometric Toolkit for Controlled Repair of Solid Models.
+392	2960	The Information Mural: A Technique for Displaying and Navigating Large Information Spaces.
+393	2960	A New Line Integral Convolution Algorithm for Visualizing Time-Varying Flow Fields.
+394	2960	Line Art Illustrations of Parametric and Implicit Forms.
+395	2960	Ray-Tracing Triangular Trimmed Free-Form Surfaces.
+396	2960	Visualization of Scientific Video Data Using KL Decomposition.
+397	2960	Constructing Hierarchies for Triangle Meshes.
+398	2960	MIP-Map Level Selection for Texture Mapping.
+399	2960	Visualizing Nonlinear Vector Field Topology.
+400	2960	Special Issue on Visualization.
+401	2960	Efficient Polygon Clipping for an SIMD Graphics Pipeline.
+402	2960	Calibration-Free Augmented Reality.
+403	2960	Interactive Volume Navigation.
+404	1984	An Operator Interaction Framework for Visualization Systems.
+405	1984	WebPath - A Three-Dimensional Web History.
+406	1984	IVORY - An Object-Oriented Framework for Physics-Based Information Visualization in Java.
+407	1984	Geographic Visualization: Designing Manipulable Maps for Exploring Temporally Varying Georeferenced Statistics.
+408	1984	An Interactive View for Hierarchical Clustering.
+409	1984	The Shape of Shakespeare: Visualizing Text using Implicit Surfaces.
+410	1984	BiblioMapper: A Cluster-Based Information Visualization Technique.
+411	1984	Saying It in Graphics: From Intentions to Visualizations.
+412	1984	Dynamic Aggregation with Circular Visual Designs.
+413	1984	The Generalized Detail-In-Context Problem.
+414	1984	Multi-Faceted Insight Through Interoperable Visual Information Analysis Paradigms.
+415	1984	Comparative Visualization of Protein Structure-Sequence Alignments.
+416	1984	Traversal-Based Visualization of Data Structures.
+417	1984	LensBar - Visualization for Browsing and Filtering Large Lists of Data.
+418	1984	Similarity Clustering of Dimensions for an Enhanced Visualization of Multidimensional Data.
+419	1984	Algorithm Visualization For Distributed Environments.
+420	1984	Reconfigurable Disc Trees for Visualizing Large Hierarchical Information Space.
+421	1984	Visualizing Decision Table Classifiers.
+422	2960	Using Linked Volumes to Model Object Collisions, Deformation, Cutting, Carving, and Joining.
+423	2960	Edgebreaker: Connectivity Compression for Triangle Meshes.
+424	2960	Fast Projection-Based Ray-Casting Algorithm for Rendering Curvilinear Volumes.
+425	2960	Feature Extraction of Separation and Attachment Lines.
+426	2960	Alias-Free Voxelization of Geometric Objects.
+427	2960	Partitioning 3D Surface Meshes Using Watershed Segmentation.
+428	2960	Evaluation of Memoryless Simplification.
+429	2960	Simplification of Tetrahedral Meshes with Error Bounds.
+430	2960	Adaptive Projection Operators in Multiresolution Scientific Visualization.
+431	2960	Tools for Computing Tangent Curves for Linearly Varying Vector Fields over Tetrahedral Domains.
+432	2960	Ray Casting Architectures for Volume Visualization.
+433	2960	On a Construction of a Hierarchy of Best Linear Spline Approximations Using Repeated Bisection.
+434	2960	Dynamic Scene Occlusion Culling.
+435	2960	Guest Editor_s Introduction: Special Section on Visualization.
+436	2960	Efficient Skeletonization of Volumetric Objects.
+437	2960	Fast Iterative Refinement of Articulated Solid Dynamics.
+438	2960	Errata: Corrections to _On a Construction of a Hierarchy of Best Linear Spline Approximations Using Repeated Bisection_.
+439	2960	Locally Toleranced Surface Simplification.
+440	2960	Real-Time Elastic Deformations of Soft Tissues for Surgery Simulation.
+441	2960	Interactive Ray Tracing for Volume Visualization.
+442	2960	High-Quality Splatting on Rectilinear Grids with Efficient Culling of Occluded Voxels.
+443	2960	A Rule-Based Interactive Behavioral Animation System for Humanoids.
+444	2960	Acquiring a Radiance Distribution to Superimpose Virtual Objects onto a Real Scene.
+445	2960	Large Datasets at a Glance: Combining Textures and Colors in Scientific Visualization.
+446	2960	Editor_s Note.
+447	2960	The Ball-Pivoting Algorithm for Surface Reconstruction.
+448	3078	Discovering Data Mining: From Concept to Implementation (Book Review).
+449	3078	Statistics and Data Mining: Intersecting Disciplines.
+450	3078	Editorial.
+451	3078	KDD-98 Exhibits Everview.
+452	3078	SIGKDD Chair_s Message.
+453	3078	Behind-the-Scenes Data Mining: A Report on the KDD-98 Panel.
+454	3078	News and Events.
+455	3078	Report from Interface_98: Knowledge Discovery and the Interface of Computing and Statistics.
+456	3078	The Interface_98 Conference - a Resource for KDD.
+457	3078	A Survey of Data Mining and Knowledge Discovery Software Tools.
+458	3078	A Bibliography of Temporal, Spatial and Spatio-Temporal Data Mining Research.
+459	3078	Mining Sales Data using a Neural Network Model of Market Response.
+460	2960	Spectral Volume Rendering.
+461	2960	Corrections to _Compressed Progressive Meshes_.
+462	2960	Visual Discovery and Analysis.
+463	2960	Corrections to _The Prioritized-Layered Projection Algorithm for Visible Set Estimation_.
+464	2960	Analysis of Head Pose Accuracy in Augmented Reality.
+465	2960	The Prioritized-Layered Projection Algorithm for Visible Set Estimation.
+466	2960	Fast Ray-Tracing of Rectilinear Volume Data Using Distance Transforms.
+467	2960	Designing Pixel-Oriented Visualization Techniques: Theory and Applications.
+468	2960	Conformal Surface Parameterization for Texture Mapping.
+469	2960	An Order of Magnitude Faster Isosurface Rendering in Software on a PC than Using Dedicated, General Purpose Rendering Hardware.
+470	2960	Calibration-Free Augmented Reality in Perspective.
+471	2960	Graph Visualization and Navigation in Information Visualization: A Survey.
+472	2960	Perturbation Methods for Interactive Specular Reflections.
+473	2960	Interactive Virtual Relighting of Real Scenes.
+474	2960	A Functional Framework for Web-Based Information Visualization Systems.
+475	2960	Dynamic Modeling of Butterfly Subdivision Surfaces.
+476	2960	Compressed Progressive Meshes.
+477	2960	Focusing in Algorithm Explanation.
+478	2960	Guest Editor_s Introduction: Special Section on Visualization.
+479	2960	Anisotropic Diffusion in Vector Field Visualization on Euclidean Domains and Surfaces.
+480	2960	Tissue Classification Based on 3D Local Intensity Structures for Volume Rendering.
+481	2960	Perception-Based Fast Rendering and Antialiasing of Walkthrough Sequences.
+482	2960	A BRDF Postprocess to Integrate Porosity on Rendered Surfaces.
+483	2960	Accelerated Isosurface Extraction in Time-Varying Fields.
+484	2960	Strategies for Direct Volume Rendering of Diffusion Tensor Fields.
+485	2960	Structure-Based Brushes: A Mechanism for Navigating Hierarchically Organized Data and Information Spaces.
+486	2960	Editor_s Note.
+487	2960	Accessibility Analysis Using Computer Graphics Hardware.
+488	2960	A Perceptually-Driven Parallel Algorithm for Efficient Radiosity Simulation.
+489	3078	Title.
+490	3078	Systems Support for Scalable Data Mining.
+491	3078	Web Mining Research: A Survey.
+492	3078	Mining Frequent Patterns by Pattern-Growth: Methodology and Implications.
+493	3078	Editorial.
+494	3078	Postprocessing in Machine Learning and Data Mining.
+495	3078	Artificial Neural Networks - A Science in Trouble .
+496	3078	Web for Data Mining: Organizing and Interpreting the Discovered Rules using the Web.
+497	3078	Report from the Workshop on Distributed and Parallel Knowledge Discovery, ACM SIGKDD-2000.
+498	3078	News and Events.
+499	3078	Mining Patterns in Long Sequential Data with Noise.
+500	3078	Understanding the Crucial Differences Between Classification and Discovery of Association Rules - A Position Paper.
+501	3078	Data mining for hypertext: A tutorial survey.
+502	3078	Distributed Data Clustering Can Be Efficient and Exact.
+503	3078	Book Review: Data Mining Methods for Knowledge Discovery by K. Cios, W. Pedrycz and R. Swiniarski.
+504	3078	Interface _99: A Data Mining Overview.
+505	3078	Editorial.
+506	3078	Theoretical Frameworks for Data Mining.
+507	3078	Algorithms for Association Rule Mining - A General Survey and Comparison.
+508	3078	Profiling your Customers using Bayesian Networks.
+509	3078	A note on _Beyond Market Baskets: Generalizing Association Rules to Correlations_.
+510	3078	KDD-Cup 99: Knowledge Discovery In a Charitable Organization_s Donor Database.
+511	3078	WEBKDD 2000 - Web Mining for E-Commerce.
+512	3078	Interesting KDD-News from SIGMOD_99.
+513	3078	Report on MDM/KDD2000: The 1st International Workshop on Multimedia Data Mining.
+514	3078	Mining Frequent Patterns with Counting Inference.
+515	3078	Integrating Data Mining into Vertical Solutions.
+516	3078	Support Vector Machines: Hype or Hallelujah?
+517	3078	Phenomenal Data Mining: From Data to Phenomena.
+518	3078	KDD-99 Workshop on Large-Scale Parallel KDD Systems.
+519	3078	NASA Workshop on Issues in the Application of Data Mining to Scientific Data.
+520	3078	Report on WebDB_2000: 3rd International Workshop on the Web and Databases.
+521	3078	KDD-99 Classifier Learning Contest: LLSoft_s Results Overview.
+522	3078	The Segment Support Map: Scalable Mining of Frequent Itemsets.
+523	3078	Measuring Lift Quality in Database Marketing.
+524	3078	Workshop Report: 1999 ACM SIGMOD Workshop on Research Issues in Data Mining and Knowledge Discovery.
+525	3078	The MP13 Approach to the KDD_99 Classifier Learning Contest.
+526	3078	Results of the KDD_99 Classifier Learning.
+527	3078	Discovering Matrix Association from Biological Databases.
+528	3078	Winning the KDD99 Classification Cup: Bagged Boosting.
+529	3078	The UCI KDD Archive of Large Data Sets for Data Mining Research and Experimentation.
+530	3078	Concept-Based Knowledge Discovery in Texts Extracted from the Web.
+531	3078	Report on the KDD2000 Panel Personalization and Data Mining: Exploring the Synergies.
+532	3078	Knowledge Discovery in Databases: Ten years after.
+533	3078	Discovering Geographic Knowledge in Data Rich Environments: A Report on a Specialist Meeting.
+534	3078	Web Usage Mining: Discovery and Applications of Usage Patterns from Web Data.
+535	3078	Scalable Data Mining with Model Constraints.
+536	3078	KDD_99 Knowledge Discovery Contest.
+537	3078	KDD-Cup 2000 Organizers_ Report: Peeling the Onion.
+538	3078	Text Mining as Integration of Several Related Research Areas: Report on KDD_2000 Workshop on Text Mining.
+539	3078	An Efficient Data Compression Approach to the Classification Task.
+540	3078	Scalability for Clustering Algorithms Revisited.
+541	3078	WebKDD-99: Workshop on Web Usage Analysis and User Profiling.
+542	3078	Workshop Report: 2000 ACM SIGMOD Workshop on Research Issues in Data Mining and Knowledge Discovery.
+543	3078	Data Mining Models as Services on the Internet.
+544	3078	Editorial.
+545	3078	A Fine Grained Heuristic to Capture Web Navigation Patterns.
+546	3078	KDD-99: The Fifth ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.
+547	3078	Data Snooping, Dredging and Fishing: The Dark Side of Data Mining, A SIGKDD99 Panel Report.
+548	3078	KDD_99 Competition: Knowledge Discovery Contest.
+549	3078	KDD-99 Panel on Last 10 and Next 10 years.
+550	2960	Detection and Visualization of Closed Streamlines in Planar Flows.
+551	2960	Efficient Conservative Visibility Culling Using the Prioritized-Layered Projection Algorithm.
+552	2960	Hierarchical Model for Real Time Simulation of Virtual Human Crowds.
+553	2960	Cutting and Stitching: Converting Sets of Polygons to Manifold Surfaces.
+554	2960	A Graphical Representation of the State Spaces of Hierarchical Level-of-Detail Scene Descriptions.
+555	2960	Nonlinear Multiresolution Techniques with Applications to Scientific Visualization in a Haptic Environment.
+556	2960	Topology-Preserving Smoothing of Vector Fields.
+557	2960	High-Quality Texture Reconstruction from Multiple Scans.
+558	2960	A Phase Field Model for Continuous Clustering on Vector Fields.
+559	2960	Interactive Direct Rendering of Trivariate B-Spline Scalar Functions.
+560	2960	Penalized-Distance Volumetric Skeleton Algorithm.
+561	2960	Extracting Objects from Range and Radiance Images.
+562	2960	Minimally Immersive Flow Visualization.
+563	2960	Extended Specifications and Test Data Sets for Data Level Comparisons of Direct Volume Rendering Algorithms.
+564	2960	Fast Isosurface Generation Using the Volume Thinning Algorithm.
+565	2960	Parameterization and Reconstruction from 3D Scattered Points Based on Neural Network and PDE Techniques.
+566	2960	Guest Editor_s Introduction: Special Issue on Visualization 2000.
+567	2960	On Simulated Annealing and the Construction of Linear Spline Approximations for Scattered Data.
+568	2960	Visualization Exploration and Encapsulation via a Spreadsheet-Like Interface.
+569	2960	Multiresolution Methods for Nonmanifold Models.
+570	2960	Terrain Decimation through Quadtree Morphing.
+571	2960	_Meshsweeper_: Dynamic Point-to-Polygonal-Mesh Distance and Applications.
+572	2960	Preventing Self-Intersection under Free-Form Deformation.
+573	2960	A Vectorial Algorithm for Tracing Discrete Straight Lines in N-Dimensional Generalized Grids.
+574	2960	Texture Mixing and Texture Movie Synthesis Using Statistical Learning.
+575	2960	A Level-Set Approach for the Metamorphosis of Solid Models.
+576	2960	Reliable Path for Virtual Endoscopy: Ensuring Complete Examination of Human Organs.
+577	2960	An Attempt for Coloring Multichannel MR Imaging Data.
+578	2960	Volume Illustration: Nonphotorealistic Rendering of Volume Models.
+579	2960	Two-Level Volume Rendering.
+580	3078	Report on the Workshop on Research Issues in Data Mining and Knowledge Discovery Workshop (DMKD 2001).
+581	3078	Towards Long Pattern Generation in Dense Databases.
+582	3078	Genetic Subtyping using Cluster Analysis.
+583	3078	A Preprocessing Scheme for High-Cardinality Categorical Attributes in Classification and Prediction Problems.
+584	3078	KDnuggets Interview with Jesus Mena.
+585	3078	KDnuggets Interview with Usama Fayyad.
+586	3078	What_s Interesting About Cricket? - On Thresholds and Anticipation in Discovered Rules.
+587	3078	Resource Description Framework: Metadata and Its Applications.
+588	2960	Editor_s Note.
+589	2960	Guest Editor_s Introduction: Special issue on IEEE Visualization.
+590	2960	Information Visualization and Visual Data Mining.
+591	2960	ThemeRiver: Visualizing Thematic Changes in Large Document Collections.
+592	2960	General Construction of Time-Domain Filters for Orientation Data.
+593	2960	Terrain Simplification Simplified: A General Framework for View-Dependent Out-of-Core Visualization.
+594	2960	Robust Creation of Implicit Surfaces from Polygonal Meshes.
+595	2960	Multidimensional Transfer Functions for Interactive Volume Rendering.
+596	2960	Lagrangian-Eulerian Advection of Noise and Dye Textures for Unsteady Flow Visualization.
+597	2960	Vertex Data Compression through Vector Quantization.
+598	2960	A Generic Rendering System.
+599	2960	An Anatomy-Based Approach to Human Muscle Modeling and Deformation.
+600	2960	Hierarchical Pixel Bar Charts.
+601	2960	Stereoscopic View-Dependent Visualization of Terrain Height Fields.
+602	2960	EWA Splatting.
+603	2960	Texture Mapping Using Surface Flattening via Multidimensional Scaling.
+604	2960	Adding Support for High-Level Skeletal Animation.
+605	2960	VideoPlus: A Method for Capturing the Structure and Appearance of Immersive Environments.
+606	2960	The Floating Column Algorithm for Shaded, Parallel Display of Function Surfaces without Patches.
+607	2960	Dynamic Particle Coating.
+608	2960	Spatial-Temporal Antialiasing.
+609	2960	MGV: A System for Visualizing Massive Multidigraphs.
+610	2960	A Hardware-Assisted Scalable Solution for Interactive Volume Rendering of Time-Varying Data.
+611	2960	Three-Dimensional Interfaces for Querying by Example in Content-Based Image Retrieval.
+612	2960	A Geometric Comparison of Algorithms for Fusion Control in Stereoscopic HTDs.
+613	2960	A Flexible Approach for Visual Data Mining.
+614	2960	Designing Effective Transfer Functions for Volume Rendering from Photographic Volumes.
+615	2960	Polaris: A System for Query, Analysis, and Visualization of Multidimensional Relational Databases.
+616	2960	Interactive Visualization of State Transition Systems.
+617	2960	The Classification of Volumetric Display Systems: Characteristics and Predictability of the Image Space.
+618	3078	The True Lift Model - A Novel Data Mining Approach to Response Modeling in Database Marketing.
+619	3078	Feature Engineering for a Gene Regulation Prediction Task.
+620	3078	Is pushing constraints deeply into the mining algorithms really what we want?: an alternative approach for association rule mining.
+621	3078	Report on the SIGKDD 2001 Conference Panel _New Research Directions in KDD_.
+622	3078	Interactive Mining and Knowledge Reuse for the Closed-Itemset Incremental-Mining Problem.
+623	3078	Multi-Relational Data Mining: a Workshop Report.
+624	3078	Applying Data Mining to Intrusion Detection: The Quest for Automation, Efficiency, and Credibility.
+625	3078	Exploiting succinct constraints using FP-trees.
+626	3078	Learning missing values from summary constraints.
+627	3078	Cryptographic Techniques for Privacy-Preserving Data Mining.
+628	3078	Constrained frequent pattern mining: a pattern-growth view.
+629	3078	P-tree Classification of Yeast Gene Deletion Data.
+630	3078	BIOKDD 2002: Recent Advanced in Data Minig for Bioinformatics.
+631	3078	Tools for Privacy Preserving Data Mining.
+632	3078	KDD-2002 Workshop Report Fractals and Self-similarity in Data Mining: Issues and Approaches.
+633	3078	KDD Cup 2001 Report.
+634	3078	Editorial: Online, Interactive, and Anytime Data Mining.
+635	3078	Database Privacy.
+636	3078	A Perspective on Inductive Databases.
+637	3078	Automatic Scientific Text Classification Using Local Patterns: KDD Cup 2002 (Task 1).
+638	3078	SPARTAN: using constrained models for guaranteed-error semantic compression.
+639	3078	A Machine Learning Approach for the Curation of Biomedical Literature - KDD Cup 2002 (Task 1).
+640	3078	MobiMine: Monitoring the Stock Market from a PDA.
+641	3078	Background and Overview for KDD Cup 2002 Task 1: Information Extraction from Biomedical Articles.
+642	3078	Requirements for Clustering Data Streams.
+643	3078	When and How to Subsample: Report on the KDD-2001 Panel.
+644	3078	Why so many clustering algorithms: a position paper.
+645	3078	The Genomics of a Signaling Pathway: A KDD Cup Challenge Task.
+646	3078	One Class SVM for Yeast Regulation Prediction.
+647	3078	Classification trees for problems with monotonicity constraints.
+648	3078	Rule-based Extraction of Experimental Evidence in the Biomedical Domain - the Kdd Cup (Task 1).
+649	3078	Towards Effective and Interpretable Data Mining by Visual Interaction.
+650	3078	Randomization in Privacy-Preserving Data Mining.
+651	3078	Predicting the Effects of Gene Deletion.
+652	3078	Discovery in multi-attribute data with user-defined constraints.
+653	3078	A Survey on Wavelet Applications in Data Mining.
+654	3078	Visual Data Mining - KDD Workshop Report.
+655	3078	MDM/KDD 2002: Multimedia Data Mining between Promises and Problems.
+656	3078	Combining Data and Text Mining Techniques for Yeast Gene Regulation Prediction: A Case Study.
+657	3078	Report on the SIGKDD-2002 Panel The Perfect Data Mining Tool: Interactive or Automated.
+658	3078	Data Mining, National Security, Privacy and Civil Liberties.
+659	3078	WEBKDD 2002 - Web Mining for Usage Patterns a Profiles.
+660	3078	The Inference Problem: A Survey.
+661	3078	MDM/KDD: Multimedia Data Mining for the Second Time.
+662	3078	Workshop Report: The Fourth Workshop on Mining Scientific Datasets.
+663	3078	BIOKDD01: Workshop on Data Mining in Bioinformatics.
+664	3078	Mining Data Streams under Block Evolution.
+665	3078	VDM@ECML/PKDD2001: The International Workshop on Visual Data Mining at ECML/PKDD 2001.
+666	1512	Linear combination of transformations.
+667	1512	Synthesis of complex dynamic character motion from simple animations.
+668	1512	Octree textures.
+669	1512	Structural modeling of flames for a production environment.
+670	1512	Stable but responsive cloth.
+671	1512	Turning to the masters: motion capturing cartoons.
+672	1512	Articulated body deformation from range scan data.
+673	1512	Interactive geometry remeshing.
+674	1512	Level set surface editing operators.
+675	1512	Physiological measures of presence in stressful virtual environments.
+676	1512	Image-based 3D photography using opacity hulls.
+677	1512	Eyes alive.
+678	1512	Trainable videorealistic speech animation.
+679	1512	Motion capture assisted animation: texturing and synthesis.
+680	1512	A user interface for interactive cinematic shadow design.
+681	1512	Image based flow visualization.
+682	1512	Synthesis of bidirectional texture functions on arbitrary surfaces.
+683	1512	Modeling and rendering of realistic feathers.
+684	1512	Perspective shadow maps.
+685	1512	Stylization and abstraction of photographs.
+686	1512	Self-similarity based texture editing.
+687	1512	A rapid hierarchical rendering technique for translucent materials.
+688	1512	Precomputed radiance transfer for real-time rendering in dynamic, low-frequency lighting environments.
+689	1512	Jigsaw image mosaics.
+690	1512	Object-based image editing.
+691	1512	Frequency space environment map rendering.
+692	1512	Least squares conformal maps for automatic texture atlas generation.
+693	1512	A procedural approach to authoring solid models.
+694	1512	Robust treatment of collisions, contact and friction for cloth animation.
+695	1512	Shader-driven compilation of rendering assets.
+696	1512	CHARMS: a simple framework for adaptive simulation.
+697	1512	Motion texture: a two-level statistical model for character motion synthesis.
+698	1512	Integrated learning for interactive synthetic characters.
+699	1512	Geometry images.
+700	1512	DyRT: dynamic response textures for real time deformation simulation with graphics hardware.
+701	1512	Homomorphic factorization of BRDF-based lighting computation.
+702	1512	Gradient domain high dynamic range compression.
+703	1512	Video matting of complex scenes.
+704	1512	Graphical modeling and animation of ductile fracture.
+705	1512	A lighting reproduction approach to live-action compositing.
+706	1512	Fast bilateral filtering for the display of high-dynamic-range images.
+707	1512	Light field mapping: efficient representation and hardware rendering of surface light fields.
+708	1512	Interactive global illumination in dynamic scenes.
+709	1512	Animation and rendering of complex water surfaces.
+710	1512	Dual contouring of hermite data.
+711	1512	Robust epsilon visibility.
+712	1512	Improving noise.
+713	1512	Interactive skeleton-driven dynamic deformations.
+714	1512	Cut-and-paste editing of multiresolution surfaces.
+715	1512	Photographic tone reproduction for digital images.
+716	1512	Creating models of truss structures with optimization.
+717	1512	Motion graphs.
+718	1512	Hierarchical pattern mapping.
+719	1512	Interactive multiresolution hair modeling and editing.
+720	1512	Ray tracing on programmable graphics hardware.
+721	1512	The SAGE graphics architecture.
+722	1512	Interactive motion generation from examples.
+723	1512	Real-time 3D model acquisition.
+724	1512	Physically based modeling and animation of fire.
+725	1512	Progressive lossless compression of arbitrary simplicial complexes.
+726	1512	Painting and rendering textures on unparameterized models.
+727	1512	Feature-based light field morphing.
+728	1512	Chromium: a stream-processing framework for interactive rendering on clusters.
+729	1512	Transferring color to greyscale images.
+730	1512	Interactive control of avatars animated with human motion data.
+731	1512	Pointshop 3D: an interactive system for point-based surface editing.
+732	1512	WYSIWYG NPR: drawing strokes directly on 3D models.
+733	1984	Building a Visual Database for Example-based Graphics Generation.
+734	1984	SpaceTree: Supporting Exploration in Large Node Link Tree, Design Evolution and Empirical Evaluation.
+735	1984	Visualizing Biosequence Data Using Texture Mapping.
+736	1984	Beamtrees: Compact Visualization of Large Hierarchies.
+737	1984	Interactive Information Visualization of a Million Items.
+738	1984	Arc Diagrams: Visualizing Structure in Strings.
+739	1984	Visual Unrolling of Network Evolution and the Analysis of Dynamic Discourse.
+740	1984	Demystifying Venture Capital Investing.
+741	1984	Display Design for the Eye and Mind.
+742	1984	Case Study: Visualizing Sets of Evolutionary Trees.
+743	1984	InterRing: An Interactive Tool for Visually Navigating and Manipulating Hierarchical Structures.
+744	1984	Graphical Encoding for Information Visualization: An Empirical Study.
+745	1984	Visual Path Analysis.
+746	1984	A Hybrid Layout Algorithm for Sub-Quadratic Multidimensional Scaling.
+747	1984	A Space-Optimized Tree Visualization.
+748	1984	Internet Traffic: Visualization, Discovery, and Very Large Displays.
+749	1984	Process Visualization with Levels of Detail.
+750	1984	The Illusion of Perceived Metric 3D Structure.
+751	1984	Angular Brushing of Extended Parallel Coordinates.
+752	1984	Efficient Cartogram Generation: A Comparison.
+753	1984	Multiple Foci Drill-Down through Tuple and Attribute Aggregation Polyarchies in Tabular Data.
+754	1984	Visualizing Data with Bounded Uncertainty.
+755	1984	Visualization Schemas for Flexible Information Visualization.
+756	1984	Multiscale Visualization Using Data Cubes _InfoVis 2002 Best Paper_.
+757	1984	ACE: A Fast Multiscale Eigenvectors Computation for Drawing Huge Graphs.
+758	2960	Illustrative Interactive Stipple Rendering.
+759	2960	Visualizing Diffusion Tensor MR Images Using Streamtubes and Streamsurfaces.
+760	2960	Communicating Centrality in Policy Network Drawings.
+761	2960	A Model for Volume Lighting and Modeling.
+762	2960	Guest Editor_s Introduction: Special Section on Visualization.
+763	2960	Transitive Mesh Space of a Progressive Mesh.
+764	2960	Fast and Intuitive Metamorphosis of 3D Polyhedral Models Using SMCC Mesh Merging Scheme.
+765	2960	Deriving a Particle System from Continuum Mechanics for the Animation of Deformable Objects.
+766	2960	Material Interface Reconstruction.
+767	2960	Fast Multiresolution Image Operations in the Wavelet Domain.
+768	2960	An Architecture for Java-Based Real-Time Distributed Visualization.
+769	2960	A Survey of Visibility for Walkthrough Applications.
+770	2960	Global Visualization and Alignments of Whole Bacterial Genomes.
+771	2960	On Marching Cubes.
+772	2960	Editor_s Note.
+773	2960	Frame-to-Frame Coherent Animation with Two-Pass Radiosity.
+774	2960	Image-Based Techniques in a Hybrid Collision Detector.
+775	2960	Modeling and Rendering of Points with Local Geometry.
+776	2960	Three-Dimensional Flow Characterization Using Vector Pattern Matching.
+777	2960	Semantic Representation and Correspondence for State-Based Motion Transition.
+778	2960	Editor_s Note.
+779	2960	Correction to _Adding Support for High-Level Skeletal Animation_.
+780	2960	Topology Preserving Top-Down Compression of 2D Vector Fields Using Bintree and Triangular Quadtrees.
+781	2960	Computing and Rendering Point Set Surfaces.
+782	2960	External Memory Management and Simplification of Huge Meshes.
+783	2960	GraphSplatting: Visualizing Graphs as Continuous Fields.
+784	2960	Improving the Robustness and Accuracy of the Marching Cubes Algorithm for Isosurfacing.
+785	2960	Interactive Volume Rendering of Large Sparse Data Sets Using Adaptive Mesh Refinement Hierarchies.
+786	2960	Interactive Clipping Techniques for Texture-Based Volume Visualization and Volume Shading.
+787	2960	Approximating Digital 3D Shapes by Rational Gaussian Surfaces.
+788	2960	From Visual Data Exploration to Visual Data Mining: A Survey.
+789	2960	Hardware-Based View-Independent Cell Projection.
+790	2960	Dynamic Line Integral Convolution for Visualizing Streamline Evolution.
+791	2960	Adjoints and Importance in Rendering: An Overview.
+792	2960	Using Motion to Illustrate Static 3D Shape--Kinetic Visualization.
+793	2960	Texture Synthesis for 3D Shape Representation.
+794	2960	Comparing Simplification and Image-Based Techniques for 3D Client-Server Rendering Systems.
+795	2960	Simplification and Repair of Polygonal Models Using Volumetric Techniques.
+796	2960	Tricubic Interpolation of Discrete Surfaces for Binary Volumes.
+797	2960	Shadows and Soft Shadows with Participating Media Using Splatting.
+798	2960	Distributed Virtual Reality Environments Based on Rewriting Systems.
+799	2960	Realistic Rendering and Animation of Knitwear.
+800	2960	Cubist Style Rendering from Photographs.
+801	2960	Natural Motion Animation through Constraining and Deconstraining at Will.
+802	2960	Multiscale Visualization Using Data Cubes.
+803	2960	Editor-in-Chief_s Farewell.
+804	2960	Volumetric Segmentation Using Weibull E-SD Fields.
+805	2960	Polynomial Surfaces Interpolating Arbitrary Triangulations.
+806	2960	Multilevel Representation and Transmission of Real Objects with Progressive Octree Particles.
+807	3078	Biological applications of multi-relational data mining.
+808	3078	A survey of kernels for structured data.
+809	3078	Towards interactive exploration of gene expression patterns.
+810	3078	Loss-based estimation with cross-validation: applications to microarray data analysis.
+811	3078	Machine learning in low-level microarray analysis.
+812	3078	Graphical modeling based gene interaction analysis for microarray data.
+813	3078	A novel approach to determine normal variation in gene expression data.
+814	3078	Exploratory medical knowledge discovery: experiences and issues.
+815	3078	Mining biologically active patterns in metabolic pathways using microarray expression profiles.
+816	3078	_In vivo_ spam filtering: a challenge problem for KDD.
+817	3078	Graph-based relational learning: current and future directions.
+818	3078	Prospects and challenges for multi-relational data mining.
+819	3078	Exploiting relational structure to understand publication patterns in high-energy physics.
+820	3078	Microarray data mining: facing the challenges.
+821	3078	Supervised analysis when the number of candidate features (p) greatly exceeds the number of cases (n).
+822	3078	Multirelational data mining 2003: workshop report.
+823	3078	Meta-clustering of gene expression data and literature-based information.
+824	3078	Classification of heterogeneous gene expression data.
+825	3078	The Download Estimation task on KDD Cup 2003.
+826	3078	Improving classification of microarray data using prototype-based feature selection.
+827	3078	Multi-relational data mining: an introduction.
+828	3078	Probabilistic logic learning.
+829	3078	A data cleaning solution by Perl scripts for the KDD Cup 2003 task 2.
+830	3078	Using unsupervised link discovery methods to find interesting facts and connections in a bibliography dataset.
+831	3078	Statistical methods for joint data mining of gene expression and DNA sequence database.
+832	3078	Link mining: a new data mining challenge.
+833	3078	Predicting citation rates for physics papers: constructing features for an ordered probit model.
+834	3078	Overview of the 2003 KDD Cup.
+835	3078	State of the art of graph-based data mining.
+836	3078	Resolving citations in a paper repository.
+837	3078	Citation prediction using time series approach KDD Cup 2003 (task 1).
+838	3078	The myth of the double-blind review?: author identification using only citations.
+839	3078	Scalability and efficiency in multi-relational data mining.
+840	3078	Data mining in bioinformatics: report on BIOKDD_03.
+841	3078	Gene ranking using bootstrapped P-values.
+842	3078	KDD-2003 workshop on data mining standards, services and platforms (DM-SSP 03).
+843	3078	Summary from the KDD-03 panel: data mining: the next 10 years.
+844	3078	Machine learning methods applied to DNA microarray data can improve the diagnosis of cancer.
+845	3078	Differential expression, class discovery and class prediction using S-PLUS and S+ArrayAnalyzer.
+846	3078	EqRank: a self-consistent equivalence relation on graph vertexes.
+847	3078	Multi-relational data mining: the current frontiers.
+848	3078	Model Builder for Predictive Analytics a Fair Isaac_s approach to KDD Cup 2003.
+849	1512	Designer-critiqued comparison of 2D vector visualization methods: a pilot study.
+850	1512	A haptic virtual reality training tool for paper conservators.
+851	1512	Multi-user performance of Commedia dell_ Arte in 3D.
+852	1512	Universal capture: image-based facial animation for _The Matrix Reloaded_.
+853	1512	Textable movie: improvising with a personal movie database.
+854	1512	View planning for BRDF acquisition.
+855	1512	Simulating spatial assumptions.
+856	1512	Virtual performance and collaboration with improvisational dance.
+857	1512	Processing: a learning environment for creating interactive Web graphics.
+858	1512	Video-based virtual environments.
+859	1512	A tile-based 3D frame using a reconfigurable display matrix.
+860	1512	Omnidirectional stereo surround for panoramic virtual environments.
+861	1512	The digital space shuttle, 3D graphics, and knowledge management.
+862	1512	Implementing RenderMan on the Sony PS2.
+863	1512	Live 3D video in soccer stadium.
+864	1512	How to capture absolute human skeletal posture.
+865	1512	Trans-world haptic collaboration.
+866	1512	Augmented reality disk jockey: AR/DJ.
+867	1512	Local adaptation luminance via segmentation and assimilation.
+868	1512	Exploring MIDI datasets.
+869	1512	The reality helmet: a wearable interactive experience.
+870	1512	Cati dance: self-edited, self-synchronized music video.
+871	1512	Automated meshing of sparse 3D point clouds.
+872	1512	Little red: storytelling in mixed reality.
+873	1512	Implementing a paper flier metaphor using cloth simulation.
+874	1512	Design-by-example: a schema for designing visualizations using examples from art.
+875	1512	Spectral watertight surface reconstruction.
+876	1512	Sound synthesis for the Web, games, and virtual reality.
+877	1512	Fair and robust circle splines.
+878	1512	Interactive rendering of translucent deformable objects.
+879	1512	Rendering plant leaves faithfully.
+880	1512	Canopy climb: a rope interface.
+881	1512	Tile representation of subdivision surfaces.
+882	1512	Production-grade scene translation pipelines.
+883	1512	Fast specular highlights by modifying the Phong-Blinn model.
+884	1512	Sound articulation, lip movement and letter visualisation in the Arabic language.
+885	1512	Touchy.Internet: a cybernetics system for human-pet interaction through the Internet.
+886	1512	Image-based diffuse lighting using visibility maps.
+887	1512	Avalanche! snowy FX for XXX.
+888	1512	Lighting reconstruction for _The Matrix Reloaded_.
+889	1512	Attention-driven eye gaze and blinking for virtual humans.
+890	1512	3-D tele-direction interface using video projector.
+891	1512	Office voodoo: a real-time editing engine for an algorithmic sitcom.
+892	1512	The cubic interpolated level set method for realistic fluid animation.
+893	1512	Improved speed and accuracy for archaeological site scanning.
+894	1512	Vital signs: exploring novel forms of body language.
+895	1512	LOD of video avatar for walkthrough applications.
+896	1512	Fluids with extreme viscosity.
+897	1512	Automatic Asian art: computers converting photos to Asian paintings using humanistic fuzzy logic rules.
+898	1512	Effective toon ink rendering for episodic television.
+899	1512	A new form of traditional art: visual simulation of Chinese shadow play.
+900	1512	The Primal seas: water on PlayStation 2.
+901	1512	EMOCAP: driving 3D characters with real mood dynamics.
+902	1512	Fluid simulation interaction techniques.
+903	1512	Generating subdivision curves with L-systems on a GPU.
+904	1512	Object-space point blending and splatting.
+905	1512	Shadow removal from a real picture.
+906	1512	Multipass rendering in mental ray.
+907	1512	_Jordan vs Jordan_ recreating the basketball legend.
+908	1512	Fast texture synthesis on arbitrary meshes.
+909	1512	The Sun Dagger Interactive.
+910	1512	Robust depth estimation from multiple video streams for dynamic light field rendering.
+911	1512	Visualizing horn evolution by morphing high-resolution X-ray CT images.
+912	1512	Per-pixel smooth shader level of detail.
+913	1512	Evaluation of a combined 2D/3D interface for micro electro mechanical systems (MEMS) design.
+914	1512	Rule-based crowds: generation, animation, cloth and rendering of 15.000 unique human characters.
+915	1512	A fast hybrid geomorphing LOD scheme.
+916	1512	A fast polymesh to level set algorithm.
+917	1512	Measured BRDF in film production: realistic cloth appearance for _The Matrix Reloaded_.
+918	1512	Mesh modelling with curve analogies.
+919	1512	A horizontal stereoscopic projection system for working at the artist studio a Mimesis, the function that made the organ.
+920	1512	Cloth motion capture.
+921	1512	Assembling the sculptures of the Parthenon.
+922	1512	Particle system collision detection using graphics hardware.
+923	1512	Generating realistic human hair for _The Matrix Reloaded_.
+924	1512	Sable: a painterly renderer for film animation.
+925	1512	A smooth, fast, accurate representation of reflectance.
+926	1512	Real-time photo-realistic augmented reality for interior design.
+927	1512	Complex character animation that combines kinematic and dynamic control.
+928	1512	Acquisition of large-scale surface light fields.
+929	1512	Reconstructing a colossus of Ramesses II from laser scan data.
+930	1512	Realistic and fast cloud rendering in computer games.
+931	1512	Creating dome animations with the Digital Pueblo Project.
+932	1512	Emissive clipping planes for volume rendering.
+933	1512	The Bass-Station: a community based information space.
+934	1512	_Falling over you_ interactive wall.
+935	1512	Designing collaborative games on handheld computers.
+936	1512	The stringed haptic workbench.
+937	1512	Screen: bodily interaction with text in immersive VR.
+938	1512	WATCH: summary data in spatial context.
+939	1512	Sensory design for virtual environments.
+940	1512	Learning controls for blend shape based realistic facial animation.
+941	1512	Interactive light field display from a cluster of projectors.
+942	1512	A 3D studio production system with immersive actor feedback.
+943	1512	Augmented reality for air traffic control towers.
+944	1512	ather: reading with tactile vision.
+945	1512	Non convex mesh penetration distance for rigid body dynamics.
+946	1512	Practical eye movement model using texture synthesis.
+947	1512	Casual 3D photography.
+948	1512	Social network fragments: an interactive tool for exploring digital social connections.
+949	1512	Automated reconstruction of building facades for virtual walk-thrus.
+950	1512	Firefly flash synchronization.
+951	1512	Perceptual evaluation of tone mapping operators.
+952	1512	Tetrad volume and particle rendering in X2.
+953	1512	Interactive rendering with view-dependent geometry and texture.
+954	1512	Im/possible images: registering the unnoticeable the collapse series (No.2, No.3, No.4, No.10).
+955	1512	3D modeling of trees from freehand sketches.
+956	1512	A high fidelity reconstruction of ancient Egypt: the temple of Kalabsha.
+957	1512	Direct interaction based on a two-point laser pointer technique.
+958	1512	Texture synthesis from multiple sources.
+959	1512	Forming the dots: live optical motion capture animation dance.
+960	1512	Sketchy drawings: a hardware-accelerated approach for real-time non-photorealistic rendering.
+961	1512	An efficient spatio-temporal architecture for animation rendering.
+962	1512	Spectral texturing for real-time applications.
+963	1512	Rule-based smoke- and explosion dynamics in a full CG environment.
+964	1512	GLOD: a driver-level interface for geometric level of detail.
+965	1512	Distributed mobile multi-user urban simulation.
+966	1512	A nose-tracked, personal olfactory display.
+967	1512	Effective asset management for episodic television and features.
+968	1512	A procedural approach to modeling impact damage.
+969	1512	Grooming furry surfaces of arbitrary topology.
+970	1512	Hydrogen wishes.
+971	1512	Wire modeling.
+972	1512	Wrinkle generation model for 3D facial expression.
+973	1512	ViRdB: integrating virtual reality and multimedia databases for customized visualization of cultural heritage.
+974	1512	Virtual sculpting with a pressure sensitive pen.
+975	1512	XGen: arbitrary primitive generator.
+976	1512	Point constraint rig (PCR).
+977	1512	Digital face cloning.
+978	1512	Realistic human face rendering for _The Matrix Reloaded_.
+979	1512	Interactive functional anatomy.
+980	1512	A unified approach for modeling complex occlusions in fluid simulations.
+981	1512	Haptic enhancements for collaborative scenarios in virtual environment.
+982	1512	From layered depth images to continuous LOD impostors.
+983	1512	Mr. Gray B. puts on a happy face.
+984	1512	Real-time view morphing of video streams.
+985	1512	TensorTextures.
+986	1512	Authoring of a mixed reality furniture assembly instructor.
+987	1512	Home grown CGI: the cultivation of _Henry_s Garden_.
+988	1512	Consistent illumination within optical see-through augmented environments.
+989	1512	The ViscousDisplay: adaptive transient interfaces in public space.
+990	1512	_Knot insertion_ on subdivision surfaces.
+991	1984	Developing Architectural Lighting Representations.
+992	1984	Smooth and efficient zooming and panning.
+993	1984	Between Aesthetics and Utility: Designing Ambient Information Visualizations.
+994	1984	An Experimental Evaluation of Continuous Semantic Zooming in Program Visualization.
+995	1984	Improving Hybrid MDS with Pivot-Based Searching.
+996	1984	Dynamic Visualization of Transient Data Streams.
+997	1984	BARD: A visualization tool for biological sequence analysis.
+998	1984	Intelligently Resolving Point Occlusion.
+999	1984	Constant Density Displays Using Diversity Sampling.
+1000	1984	Coordinated Graph and Scatter-Plot Views for the Visual Exploration of Microarray Time-Series Data.
+1001	1984	A Model of Multi-Scale Perceptual Organization in Information Graphics.
+1002	1984	THREAD ARCS: An Email Thread Visualization.
+1003	1984	Information Esthetics: from MoMA to Wall Street.
+1004	1984	Visualizing Evolving Networks: Minimum Spanning Trees versus Pathfinder Networks.
+1005	1984	Exploding the Frame: Designing for Wall-Size Computer Displays.
+1006	1984	Multiscale Visualization of Small World Networks.
+1007	1984	Compound Brushing.
+1008	1984	Visualization of Large-Scale Customer Satisfaction Surveys Using a Parallel Coordinate Tree.
+1009	1984	Design Choices when Architecting Visualizations.
+1010	1984	Mapping Nominal Values to Numbers for Effective Visualization.
+1011	1984	EdgeLens: An Interactive Method for Managing Edge Congestion in Graphs.
+1012	1984	FundExplorer: Supporting the Diversification of Mutual Fund Portfolios Using Context Treemaps.
+1013	1984	Exploring High-D Spaces with Multiform Matrices and Small Multiples.
+1014	1984	Interactive Hierarchical Dimension Ordering, Spacing and Filtering for Exploration of High Dimensional Datasets.
+1015	1984	A Visual Workspace for Hybrid Multidimensional Scaling Algorithms.
+1016	1984	Causality Visualization Using Animated Growing Polygons.
+1017	1984	Empirical Comparison of Dynamic Query Sliders and Brushing Histograms.
+1018	1984	Thinking with Visualization.
+1019	1984	MoireGraphs: Radial Focus+Context Visualization and Interaction for Graphs with Visual Nodes.
+1020	1984	Conveying Shape with Texture: an experimental investigation of the impact of texture type on shape categorization judgments.
+1021	1984	Using Multilevel Call Matrices in Large Software Projects.
+1022	1984	Visualization of Labeled Data Using Linear Transformations.
+1023	2960	Selective Refinement Queries for Volume Visualization of Unstructured Tetrahedral Meshes.
+1024	2960	Interactive Stereoscopic Rendering of Volumetric Environments.
+1025	2960	Image Registration Using Hierarchical B-Splines.
+1026	2960	CartoDraw: A Fast Algorithm for Generating Contiguous Cartograms.
+1027	2960	Editor_s Note.
+1028	2960	Binary-Space-Partitioned Images for Resolving Image-Based Visibility.
+1029	2960	Combining Hierarchy and Energy Drawing Directed Graphs.
+1030	2960	High-Quality Animation of 2D Steady Vector Fields.
+1031	2960	Human Factors in Visualization Research.
+1032	2960	Point-Based Probabilistic Surfaces to Show Surface Uncertainty.
+1033	2960	Color Nonuniformity in Projection-Based Displays: Analysis and Solutions.
+1034	2960	Reconstruction of Volume Data with Quadratic Super Splines.
+1035	2960	Generalized B-Spline Subdivision-Surface Wavelets for Geometry Compression.
+1036	2960	Real-Time Finite Element Modeling for Surgery Simulation: An Application to Virtual Suturing.
+1037	2960	Camera-Based Detection and Removal of Shadows from Interactive Multiprojector Displays.
+1038	2960	Interactive Visualization of Three-Dimensional Vector Fields with Flexible Appearance Control.
+1039	2960	Footprint Area Sampled Texturing.
+1040	2960	Wavelet-Based Multiresolution Analysis of Irregular Surface Meshes.
+1041	2960	Wavelet-Based Progressive Compression Scheme for Triangle Meshes: Wavemesh.
+1042	2960	Isosurface Construction in Any Dimension Using Convex Hulls.
+1043	2960	Confetti: Object-Space Point Blending and Splatting.
+1044	2960	Counting Cases in Substitope Algorithms.
+1045	2960	A Fast Impulsive Contact Suite for Rigid Body Simulation.
+1046	2960	O-Buffer: A Framework for Sample-Based Graphics.
+1047	2960	A New Physical Model with Multilayer Architecture for Facial Expression Animation Using Dynamic Adaptive Mesh.
+1048	2960	Guest Editor_s Introduction: Special Section on IEEE Visualization.
+1049	2960	Efficient Implementation of Real-Time View-Dependent Multiresolution Meshing.
+1050	2960	The Lattice-Boltzmann Method for Simulating Gaseous Phenomena.
+1051	2960	Applications of Forman_s Discrete Morse Theory to Topology Visualization and Mesh Compression.
+1052	2960	A Streaming Narrow-Band Algorithm: Interactive Computation and Visualization of Level Sets.
+1053	2960	Multiresolution Indexing of Triangulated Irregular Networks.
+1054	2960	Haptics-Based Dynamic Implicit Solid Modeling.
+1055	2960	Crest Lines for Surface Segmentation and Flattening.
+1056	2960	On a Construction of a Hierarchy of Best Linear Spline Approximations Using a Finite Element Approach.
+1057	2960	Visualizing a Sphere Eversion.
+1058	2960	Topological Segmentation in Three-Dimensional Vector Fields.
+1059	2960	Efficient Example-Based Painting and Synthesis of 2D Directional Texture.
+1060	2960	Simplification of Three-Dimensional Density Maps.
+1061	2960	Guest Editor_s Introduction: Special Section on Mathematics and Visualization.
+1062	2960	Synthesis and Rendering of Bidirectional Texture Functions on Arbitrary Surfaces.
+1063	2960	Mesh Simplification with Hierarchical Shape Analysis and Iterative Edge Contraction.
+1064	2960	Virtual Trackballs Revisited.
+1065	2960	Camera-Sampling Field and Its Applications.
+1066	2960	Robust Feature Detection and Local Classification for Surfaces Based on Moment Analysis.
+1067	2960	Conveying Shape with Texture: Experimental Investigations of Texture_s Effects on Shape Categorization Judgments.
+1068	2960	Hierarchical Data Visualization Using a Fast Rectangle-Packing Algorithm.
+1069	2960	Guest Editor_s Introduction: Special Section on InfoVis.
+1070	2960	Fuzzy Vector Median-Based Surface Smoothing.
+1071	2960	A Model for Smooth Viewing and Navigation of Large 2D Information Spaces.
+1072	2960	v-Quaternion Splines for the Smooth Interpolation of Orientations.
+1073	2960	Fast Evolution of Image Manifolds and Application to Filtering and Segmentation in 3D Medical Images.
+1074	2960	Faster Shading by Equal Angle Interpolation of Vectors.
+1075	2960	Editor_s Note.
+1076	2960	Robust Linear Dimensionality Reduction.
+1077	2960	Incremental Penetration Depth Estimation between Convex Polytopes Using Dual-Space Expansion.
+1078	2960	A Topological Hierarchy for Functions on Triangulated Surfaces.
+1079	2960	Interactive Volume Rendering of Thin Thread Structures within Multivalued Scientific Data Sets.
+1080	2960	Lattice-Based Flow Field Modeling.
+1081	2960	Image-Space Visibility Ordering for Cell Projection Volume Rendering of Unstructured Data.
+1082	2960	ISA and IBFVS: Image Space-Based Visualization of Flow on Surfaces.
+1083	2960	Image-Based Collision Detection for Deformable Cloth Models.
+1084	2960	Augmented Scene Modeling and Visualization by Optical and Acoustic Sensor Integration.
+1085	2960	Adaptive Extraction of Time-Varying Isosurfaces.
+1086	2960	An Intestinal Surgery Simulator: Real-Time Collision Processing and Visualization.
+1087	2960	Comparative Flow Visualization.
+1088	2960	Visualization of Vector Fields Using Seed LIC and Volume Rendering.
+1089	3078	Class imbalances versus small disjuncts.
+1090	3078	Subspace clustering for high dimensional data: a review.
+1091	3078	Learning from imbalanced data sets with boosting and data generation: the DataBoost-IM approach.
+1092	3078	Mining with rarity: a unifying framework.
+1093	3078	Editorial: special issue on learning from imbalanced data sets.
+1094	3078	Minority report in fraud detection: classification of skewed data.
+1095	3078	The 4th international workshop on multimedia data mining (MDM/KDD2003).
+1096	3078	A study of the behavior of several methods for balancing machine learning training data.
+1097	3078	Extreme re-balancing for SVMs: a case study.
+1098	3078	A multistrategy approach for digital text categorization from imbalanced documents.
+1099	3078	Feature selection for text categorization on imbalanced data.
+1100	3078	Advances in frequent itemset mining implementations: report on FIMI_03.
+1101	3078	A block-based support vector machine approach to the protein homology prediction task in KDD Cup 2004.
+1102	3078	WebKDD 2004: web mining and web usage analysis post-workshop report.
+1103	3078	Report on BIOKDD04: workshop on data mining in Bioinformatics.
+1104	3078	Data mining standards, services, and platforms 2004 (DM-SSP 2004).
+1105	3078	Mining semantics for large scale integration on the web: evidences, insights, and challenges.
+1106	3078	Protein matching with custom neural network objective functions.
+1107	3078	Overview of the ACM SIGKDD 2004 workshops.
+1108	3078	Quick and dirty quantum predictions with FIRMplus.
+1109	3078	Editorial: special issue on web content mining.
+1110	3078	A report on the fourth international workshop on environmental applications of machine learning (EAML 2004).
+1111	3078	A workshop report: mining for and from the Semantic Web at KDD 2004.
+1112	3078	KDD physics task: discussion of modeling approaches.
+1113	3078	The 5th international workshop on multimedia data mining (MDM/KDD2004).
+1114	3078	The Weka solution to the 2004 KDD Cup.
+1115	3078	The third SIGKDD workshop on mining temporal and sequential data (KDD/TDM 2004).
+1116	3078	Correlating summarization of multi-source news with k-way graph bi-clustering.
+1117	3078	Information diffusion through blogspace.
+1118	3078	Anti-matter detection: particle physics model for KDD Cup 2004.
+1119	3078	Learning to extract information from large domain-specific websites using sequential models.
+1120	3078	Mining structures for semantics.
+1121	3078	Report on KDD conference 2004 panel discussion can natural language processing help text mining?
+1122	3078	KDD-Cup 2004: protein homology task.
+1123	3078	Learning important models for web page blocks based on layout and content analysis.
+1124	3078	Multi-relational data mining 2004: workshop report.
+1125	3078	The 1st workshop on ROC analysis in artificial intelligence (ROCAI-2004).
+1126	3078	Learning by Googling.
+1127	3078	Subspace clustering for high dimensional categorical data.
+1128	3078	A critical review of multi-objective optimization in data mining: a position paper.
+1129	3078	Extracting relational data from HTML repositories.
+1130	3078	KDD-Cup 2004: results and analysis.
+1131	3078	KDD-2004 workshop report link analysis and group detection (LinkKDD-2004).
+1132	1984	Matrix Zoom: A Visual Interface to Semi-External Graphs.
+1133	1984	InfoVisExplorer.
+1134	1984	TextPool: Visualizing Live Text Streams.
+1135	1984	An Evaluation of Microarray Visualization Tools for Biological Insight.
+1136	1984	Major Information Visualization Authors, Papers and Topics in the ACM Library.
+1137	1984	A History Mechanism for Visual Data Mining.
+1138	1984	Exploring and Visualizing the History of InfoVis.
+1139	1984	EventScope: Bringing Remote Experience of Mars to the Public through Telepresence.
+1140	1984	RankSpiral: Toward Enhancing Search Results Visualizations.
+1141	1984	The InfoVis Toolkit.
+1142	1984	Paint Inspired Color Mixing and Compositing for Visualization.
+1143	1984	MonkEllipse: Visualizing the History of Information Visualization.
+1144	1984	IN-SPIRE InfoVis 2004 Contest Entry.
+1145	1984	Steerable, Progressive Multidimensional Scaling.
+1146	1984	Visualizing E-mail with a Semantically Zoomable Interface.
+1147	1984	Artifacts of the Presence Era: Using Information Visualization to Create an Evocative Souvenir.
+1148	1984	Value and Relation Display for Interactive Exploration of High Dimensional Datasets.
+1149	1984	Case Study: Visualizing Visualization.
+1150	1984	Understanding Eight Years of InfoVis Conferences Using PaperLens.
+1151	1984	Visual Browsing of Remote and Distributed Data.
+1152	1984	GeoTime Information Visualization.
+1153	1984	RecMap: Rectangular Map Approximations.
+1154	1984	Distortion-Based Visualization for Long-Term Continuous Acoustic Monitoring.
+1155	1984	Time-Varying Data Visualization Using Information Flocking Boids.
+1156	1984	Tracking User Interactions Within Visualizations.
+1157	1984	Resource Systems Reference Database.
+1158	1984	Uncovering Clusters in Crowded Parallel Coordinates Visualizations.
+1159	1984	One-For-All: Visualization of the Information Visualization Symposia.
+1160	1984	Dynamic Drawing of Clustered Graphs.
+1161	1984	Visualizing and Interacting with Multi-Tree Hierarchical Data.
+1162	1984	A Comparison of the Readability of Graphs Using Node-Link and Matrix-Based Representations.
+1163	1984	Metric-Based Network Exploration and Multiscale Scatterplot.
+1164	1984	User Experiments with Tree Visualization Systems.
+1165	1984	Interactive Exploration of the AFS File System.
+1166	1984	EZEL: a Visual Tool for Performance Assessment of Peer-to-Peer File-Sharing Network.
+1167	1984	faMailiar a Intimacy-Based Email Visualization.
+1168	1984	Interactive Poster: Visual Mining of Business Process Data.
+1169	1984	PhylloTrees: Harnessing Nature_s Phyllotactic Patterns for Tree Layout.
+1170	1984	Creating and Managing _Lookmarks_ in ParaView.
+1171	1984	BEST PAPER: A Knowledge Task-Based Framework for Design and Evaluation of Information Visualizations.
+1172	1984	Interactive Visualization of Small World Graphs.
+1173	1984	BinX: Dynamic Exploration of Time Series Datasets Across Aggregation Levels.
+1174	1984	Histographs: Interactive Clustering of Stacked Graphs.
+1175	1984	Exploring InfoVis Publication History with Tulip.
+1176	1984	Information Visualization Research: Citation and Co-Citation Highlights.
+1177	1984	Hypothesis Visualization.
+1178	1984	Clutter Reduction in Multi-Dimensional Data Visualization Using Dimension Reordering.
+1179	1984	Non-Euclidean Spring Embedders.
+1180	1984	Capstone Address: Visualization as a Medium for Capturing and Sharing Thoughts.
+1181	1984	Evaluating a System for Interactive Exploration of Large, Hierarchically Structured Document Repositories.
+1182	1984	Rethinking Visualization: A High-Level Taxonomy.
+1183	1984	WilmaScope Graph Visualisation.
+1184	1984	Keynote Address: From Information Visualization to Sensemaking: Connecting the Mind_s Eye to the Mind_s Muscle.
+1185	1984	An Experimental Investigation of Magnification Lens Offset and Its Impact on Imagery Analysis.
+1186	1984	Expand-Ahead: A Space-Filling Strategy for Browsing Trees.
+1187	1984	ARNA: Interactive Comparison and Alignment of RNA Secondary Structure.
+1188	1984	An Associative Information Visualizer.
+1189	1984	Topological Fisheye Views for Visualizing Large Graphs.
+1190	1984	Building Highly-Coordinated Visualizations in Improvise.
+1191	1984	VIM: A Framework for Intelligence Analysis.
+1192	1984	Visualizing High Dimensional Datasets Using Partiview.
+1193	1984	Interactive Visualization Approaches to the Analysis of System Identification Data.
+1194	1984	A Rank-by-Feature Framework for Unsupervised Multidimensional Data Exploration Using Low Dimensional Projections.
+1195	2308	3D orientation of archaeological fragments coming from a Gothic spire.
+1196	2308	Image-Based Registration of 3D-Range Data Using Feature Surface Elements.
+1197	2308	3D Face Reconstruction from Skull Aimed to Archaeological Applications. The Site of Murecine: a Case Study.
+1198	2308	Generative Parametric Design of Gothic Window Tracery.
+1199	2308	The Museum of Pure Form: touching real statues in an immersive virtual museum.
+1200	2308	As Time Flies By: Mixed Image and Model-Based Rendering of an Historical Landscape from Helicopter Images.
+1201	2308	Digital reconstruction of the Arrigo VII funerary complex.
+1202	2308	iClay: Digitizing Cuneiform.
+1203	2308	The potential of internet-based techniques for heritage interpretation.
+1204	2308	Telling the Local Story: An Interactive Cultural Presentation System for Community and Regional Settings.
+1205	2308	An Authoring Tool for Interactive Digital Storytelling.
+1206	2308	An Interactive Visualisation Interface for Virtual Museums.
+1207	2308	Virtual San Storytelling for Children: Content vs. Experience.
+1208	2308	Generation of High-Resolution Mosaic for Photo-Realistic Texture-Mapping of Cultural Heritage 3D Models.
+1209	2308	A case study of a virtual audience in a reconstruction of an ancient Roman odeon in Aphrodisias.
+1210	2308	Interactive Cloth Editing and Simulation in Virtual Reality Applications for Theater Professionals.
+1211	2308	New Perspectives on Ancient Landscapes: A Case Study of the Foulness Valley.
+1212	2308	An environment for the analysis and reconstruction of archaeological objects.
+1213	2308	Simulation of Ancient TechnologyWorks Using Haptic Interaction and Gesture Recognition.
+1214	2308	Adaptive Crowd Behaviour to Aid Real-Time Rendering of a Cultural Heritage Environment.
+1215	2308	A Novel Approach to Context-Sensitive Guided e-Tours in Cultural Sites: _Light_ Augmented Reality on PDAs.
+1216	2308	A Cultural Heritage Repository as Source for Learning Materials.
+1217	2308	A Point-Based Approach for Capture, Display and Illustration of Very Complex Archeological Artefacts.
+1218	2308	Digital representation and multimodal presentation of archeological graffiti at Pompei.
+1219	2308	Identifying technologies used in Cultural Heritage.
+1220	2308	Developing the Tourism Aspects of a Cultural Route.
+1221	2308	The Ancient Olympic Games: Being Part of the Experience.
+1222	2308	The Shotton River and Mesolithic Dwellings: Recreating the Past from Geo-Seismic Data Sources.
+1223	2960	A Parallel Coordinates Style Interface for Exploratory Volume Visualization.
+1224	2960	Metamorphosis of 3D Polyhedral Models Using Progressive Connectivity Transformations.
+1225	2960	Light Field Morphing Using 2D Features.
+1226	2960	Dynamic Range Reduction Inspired by Photoreceptor Physiology.
+1227	2960	Rendering Deformable Surface Reflectance Fields.
+1228	2960	Comparing 2D Vector Field Visualization Methods: A User Study.
+1229	2960	A New Technique for Rendering Complex Portals.
+1230	2960	Tetrahedralization of Point Sets Using Expanding Spheres.
+1231	2960	vLOD: High-Fidelity Walkthrough of Large Virtual Environments.
+1232	2960	Modal Warping: Real-Time Simulation of Large Rotational Deformation and Manipulation.
+1233	2960	Reconstruction and Visualization of Planetary Nebulae.
+1234	2960	Guest Editors_ Introduction: Special Section on IEEE Visualization Applications.
+1235	2960	An Intelligent System Approach to Higher-Dimensional Classification of Volume Data.
+1236	2960	Uniform Remeshing with an Adaptive Domain: A New Scheme for View-Dependent Level-of-Detail Rendering of Meshes.
+1237	2960	Spatial Domain Wavelet Design for Feature Preservation in Computational Data Sets.
+1238	2960	Stroke Surfaces: Temporally Coherent Artistic Animations from Video.
+1239	2960	Exploring Connectivity of the Brain_s White Matter with Dynamic Queries.
+1240	2960	Creating and Simulating Skeletal Muscle from the Visible Human Data Set.
+1241	2960	Correcting Interperspective Aliasing in Autostereoscopic Displays.
+1242	2960	Radiance Caching for Efficient Global Illumination Computation.
+1243	2960	Registration Based on Projective Reconstruction Technique for Augmented Reality Systems.
+1244	2960	Importance-Driven Feature Enhancement in Volume Visualization.
+1245	2960	Warp Sculpting.
+1246	2960	Quick-VDR: Out-of-Core View-Dependent Rendering of Gigantic Models.
+1247	2960	Interactive Transparency Rendering for Large CAD Models.
+1248	2960	Visualization of Geologic Stress Perturbations Using Mohr Diagrams.
+1249	2960	Real-Time Optimal Adaptation for Planetary Geometry and Texture: 4-8 Tile Hierarchies.
+1250	2960	Guest Editors_ Introduction: Special Section on IEEE Visualization.
+1251	2960	A Practical Approach to Spectral Volume Rendering.
+1252	2960	A Sampling Framework for Accurate Curvature Estimation in Discrete Surfaces.
+1253	2960	Creating Speech-Synchronized Animation.
+1254	2960	SharpenaBend: Recovering Curved Sharp Edges in Triangle Meshes Produced by Feature-Insensitive Sampling.
+1255	2960	Editor_s Note.
+1256	2960	Barycentric Parameterizations for Isotropic BRDFs.
+1257	2960	Topological Lines in 3D Tensor Fields and Discriminant Hessian Factorization.
+1258	2960	A Multiresolution Representation for Massive Meshes.
+1259	2960	Hardware-Assisted Visibility Sorting for Unstructured Volume Rendering.
+1260	2960	Dynamic Interaction between Deformable Surfaces and Nonsmooth Objects.
+1261	2960	Signed Distance Computation Using the Angle Weighted Pseudonormal.
+1262	2960	Accelerated Unsteady Flow Line Integral Convolution.
+1263	2960	Reflectance from Images: A Model-Based Approach for Human Faces.
+1264	2960	Topological Methods for 2D Time-Dependent Vector Fields Based on Stream Lines and Path Lines.
+1265	2960	Camera-Based Calibration Techniques for Seamless Multiprojector Displays.
+1266	2960	Boolean Operations with Implicit and Parametric Representation of Primitives Using R-Functions.
+1267	2960	Advanced Virtual Endoscopic Pituitary Surgery.
+1268	2960	Decorating Surfaces with Bidirectional Texture Functions.
+1269	2960	Geometry-Aware Bases for Shape Approximation.
+1270	2960	Blind Robust Watermarking Schemes for Copyright Protection of 3D Mesh Objects.
+1271	2960	An Insight-Based Methodology for Evaluating Bioinformatics Visualizations.
+1272	2960	A Statistical Wisp Model and Pseudophysical Approaches for InteractiveHairstyle Generation.
+1273	2960	Guest Editors_ Introduction: Special Section on InfoVis.
+1274	2960	In Memoriam: Jane Wilhelms.
+1275	2960	Clifford Fourier Transform on Vector Fields.
+1276	2960	Knowledge Precepts for Design and Evaluation of Information Visualizations.
+1277	2960	Faster Isosurface Ray Tracing Using Implicit KD-Trees.
+1278	2960	Topological Fisheye Views for Visualizing Large Graphs.
+1279	2960	A Method to Generate Soft Shadows Using a Layered Depth Image and Warping.
+1280	3078	Distributed higher order association rule mining using information extracted from textual data.
+1281	3078	Generalized Naive Bayes Classifiers.
+1282	3078	Mining logs files for data-driven system management.
+1283	3078	Extracting statistical data frames from text.
+1284	3078	Instance Filtering for entity recognition.
+1285	3078	Mining knowledge from text using information extraction.
+1286	3078	A baseline feature set for learning rhetorical zones using full articles in the biomedical domain.
+1287	3078	Text mining and natural language processing: introduction for the special issue.
+1288	3078	Chinese named entity recognition using lexicalized HMMs.
+1289	3078	Using text mining and natural language processing for health care claims processing.
+1290	3078	Support vector machines classification with a very large-scale taxonomy.
+1291	1984	Low-Level Components of Analytic Activity in Information Visualization.
+1292	1984	A Sky Dome Visualisation for Identification of Astronomical Orientations.
+1293	1984	Adapting the Cognitive Walkthrough Method to Assess the Usability of a Knowledge Domain Visualization.
+1294	1984	Vizster: Visualizing Online Social Networks.
+1295	1984	A Note on Space-Filling Visualizations and Space-Filling Curves.
+1296	1984	Simple 3D Glyphs for Spatial Multivariate Data.
+1297	1984	Multivariate Glyphs for Multi-Object Clusters.
+1298	1984	The Visual Code Navigator: An Interactive Toolset for Source Code Investigation.
+1299	1984	Visualizing Coordination In Situ.
+1300	1984	Elastic Hierarchies: Combining Treemaps and Node-Link Diagrams.
+1301	1984	Parallel Sets: Visual Analysis of Categorical Data.
+1302	1984	An Evaluation of Content Browsing Techniques for Hierarchical Space-Filling Visualizations.
+1303	1984	Temporal Visualization of Planning Polygons for Efficient Partitioning of Geo-Spatial Data.
+1304	1984	Dynamic Visualization of Graphs with Extended Labels.
+1305	1984	Voronoi Treemaps.
+1306	1984	DIG-COLA: Directed Graph Layout through Constrained Energy Minimization.
+1307	1984	Committees.
+1308	1984	Flow Map Layout.
+1309	1984	Graph-Theoretic Scagnostics.
+1310	1984	Visualization of Graphs with Associated Timeseries Data.
+1311	1984	An Interactive 3D Integration of Parallel Coordinates and Star Glyphs.
+1312	1984	Keynote.
+1313	1984	Interactive Sankey Diagrams.
+1314	1984	Importance-Driven Visualization Layouts for Large Time Series Data.
+1315	1984	Visual Correlation for Situational Awareness.
+1316	1984	Two-Tone Pseudo Coloring: Compact Visualization for One-Dimensional Data.
+1317	1984	Turning the Bucket of Text into a Pipe.
+1318	1984	Preface.
+1319	1984	Capstone.
+1320	1984	Revealing Structure within Clustered Parallel Coordinates Displays.
+1321	1984	Highlighting Conflict Dynamics in Event Data.
+1322	1984	Baby Names, Visualization, and Social Data Analysis.
+1323	1984	PRISAD: A Partitioned Rendering Infrastructure for Scalable Accordion Drawing.
+1324	1984	An Optimization-based Approach to Dynamic Visual Context Management.
+1325	1984	Interactive Visualization of Genealogical Graphs.

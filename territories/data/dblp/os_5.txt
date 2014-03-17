@@ -1,0 +1,303 @@
+0	890	Queue Pair IP: A Hybrid Architecture for System Area Networks.
+1	890	Slack: Maximizing Performance Under Technological Constraints.
+2	890	Timekeeping in the Memory System: Predicting and Optimizing Memory Behavior.
+3	890	Implementing Optimizations at Decode Time.
+4	890	An Instruction Set and Microarchitecture for Instruction Level Distributed Processing.
+5	890	A Scalable Instruction Queue Design Using Dependence Chains.
+6	890	Detailed Design and Evaluation of Redundant Multithreading Alternatives.
+7	890	Managing Multi-Configuration Hardware via Dynamic Working Set Analysis.
+8	890	Experiences with VI Communication for Database Storage.
+9	890	A Large, Fast Instruction Window for Tolerating Cache Misses.
+10	890	SafetyNet: Improving the Availability of Shared Memory Multiprocessors with Global Checkpoint/Recovery.
+11	890	Avoiding Initialization Misses to the Heap.
+12	890	Difficult-Path Branch Prediction Using Subordinate Microthreads.
+13	890	Power and Performance Evaluation of Globally Asynchronous Locally Synchronous Processors.
+14	890	Increasing Processor Performance by Implementing Deeper Pipelines.
+15	890	Drowsy Caches: Simple Techniques for Reducing Leakage Power.
+16	890	Design Tradeoffs for the Alpha EV8 Conditional Branch Predictor.
+17	890	Using a User-Level Memory Thread for Correlation Prefetching.
+18	890	Speculative Dynamic Vectorization.
+19	890	Going the Distance for TLB Prefetching: An Application-Driven Study.
+20	890	Transient-Fault Recovery Using Simultaneous Multithreading.
+21	890	Dynamic Fine-Grain Leakage Reduction Using Leakage-Biased Bitlines.
+22	890	ReVive: Cost-Effective Architectural Support for Rollback Recovery in Shared-Memory Multiprocessors.
+23	890	Efficient Dynamic Scheduling Through Tag Elimination.
+24	890	Tarantula: A Vector Extension to the Alpha Architecture.
+25	890	The Optimum Pipeline Depth for a Microprocessor.
+26	890	The Optimal Logic Depth Per Pipeline Stage is 6 to 8 FO4 Inverter Delays.
+27	890	Guided Region Prefetching: A Cooperative Hardware/Software Approach.
+28	890	Detecting Global Stride Locality in Value Streams.
+29	890	GOAL: A Load-Balanced Adaptive Routing Algorithm for Torus Networks.
+30	890	A Highly-Configurable Cache Architecture for Embedded Systems.
+31	890	Iimplicitly-Multithreaded Processors.
+32	890	Cyclone: A Broadcast-Free Dynamic Instruction Scheduler with Selective Replay.
+33	890	DRPM: Dynamic Speed Control for Power Mangagement in Server Class Disks.
+34	890	Phase Tracking and Prediction.
+35	890	A Pipelined Memory Architecture for High Throughput Network Processors.
+36	890	Using Destination-Set Prediction to Improve the Latency/Bandwidth Tradeoff in Shared-Memory Multiprocessors.
+37	890	Overcoming the Limitations of Conventional Vector Processors.
+38	890	Half-Price Architecture.
+39	890	Temperature-Aware Microarchitecture.
+40	890	The Jrpm System for Dynamically Parallelizing Java Programs.
+41	890	A _Flight Data Recorder_ for Enabling Full-System Multiprocessor Deterministic Replay.
+42	890	Building Quantum Wires: The Long and the Short of It.
+43	890	Token Coherence: Decoupling Performance and Correctness.
+44	890	Improving Dynamic Cluster Assignment for Clustered Trace Cache Processors.
+45	890	MisSPECulation: Partial and Misleading Use of SPEC CPU2000 in Computer Architecture Conferences.
+46	890	Virtual Simple Architecture (VISA): Exceeding the Complexity Limit in Safe Real-Time Systems.
+47	890	ReEnact: Using Thread-Level Speculation Mechanisms to Debug Data Races in Multithreaded Codes.
+48	890	A Performance Analysis of PIM, Stream Processing, and Tiled Processing on Memory-Intensive Signal Processing Kernels.
+49	890	DISE: A Programmable Macro Engine for Customizing Applications.
+50	890	Exploiting ILP, TLP and DLP with the Polymorphous TRIPS Architecture.
+51	890	SMARTS: Accelerating Microarchitecture Simulation via Rigorous Statistical Sampling.
+52	890	Positional Adaptation of Processors: Application to Energy Reduction.
+53	890	Pipeline Damping: A Microarchitectural Technique to Reduce Inductive Noise in Supply Voltage.
+54	890	Improving Branch Prediction by Dynamic Dataflow-Based Identification of Correlated Branches from a Large Global History.
+55	890	Parallelism in the Front-End.
+56	890	Performance Analysis of the Alpha 21364-BAsed HP GS1280 Multiprocessor.
+57	890	Transient-Fault Recovery for Chip Multiprocessors.
+58	890	Profile-Based Dynamic Voltage and Frequency Scaling for a Multiple Clock Domain Microprocessor.
+59	890	Dynamically Managing the Communication-Parallelism Trade-off in Future Clustered Processors.
+60	890	Banked Multiported Register Files for High-Frequency Superscalar Microprocessors.
+61	890	Energy Efficient Co-Adaptive Instruction Fetch and Issue.
+62	890	Effective ahead Pipelining of Instruction Block Address Generation.
+63	890	Efficient Use of Memory Bandwidth to Improve Network Processor Throughput.
+64	1451	The design and implementation of a parallel array operator for the arbitrary remapping of data.
+65	1451	An emerging co-array fortran compiler.
+66	1451	Impala: a middleware system for managing autonomic, parallel sensor systems.
+67	1451	CC-MPI: a compiled communication capable MPI prototype for ethernet switched clusters.
+68	1451	CC-MPI: a compiled communication capable MPI prototype for ethernet switched clusters.
+69	1451	Optimizing data aggregation for cluster-based internet services.
+70	1451	Using thread-level speculation to simplify manual parallelization.
+71	1451	Factorization with morton-ordered quadtree matrices for memory re-use and parallelism.
+72	1451	High performance spatial data mining for very large data-sets.
+73	1451	SCOOP It up!
+74	1451	User-controllable coherence for high performance shared memory multiprocessors.
+75	1451	Compactly representing parallel program executions.
+76	1451	Exploiting task-level concurrency in a programmable network interface.
+77	1451	Toward efficient and robust software speculative parallelization on multiprocessors.
+78	1451	Phoenix: a parallel programming model for accommodating dynamically joining/leaving resources.
+79	1451	Programming the FlexRAM parallel intelligent memory system.
+80	1451	A component architecture for LAM/MPI.
+81	1451	ARMI: an adaptive, platform independent communication library.
+82	1451	Improving server software support for simultaneous multithreaded processors.
+83	1451	Compiler support for speculative multithreading architecture with probabilistic points-to analysis.
+84	1451	Automated application-level checkpointing of MPI programs.
+85	1451	Exploiting high-level coherence information to optimize distributed shared state.
+86	1451	Hybrid dynamic data race detection.
+87	1451	Adapting convergent scheduling using machine learning.
+88	1451	Efficient on-the-fly data race detection in multihreaded C++ programs.
+89	1451	Using generative design patterns to generate parallel code for a distributed memory environment.
+90	853	Creating Converged Trace Schedules Using String Matching.
+91	853	Understanding Scheduling Replay Schemes.
+92	853	Program Counter Based Techniques for Dynamic Power Management.
+93	853	Reducing the Scheduling Critical Cycle Using Wakeup Prediction.
+94	853	Wavelet Analysis for Microprocessor Design: Experiences with Wavelet-Based dI/dt Characterization.
+95	853	Low-Complexity Distributed Issue Queue.
+96	853	Perceptron-Based Branch Confidence Estimation.
+97	853	Processor Aware Anticipatory Prefetching in Loops.
+98	853	Exploiting Prediction to Reduce Power on Buses.
+99	853	Exploring Wakeup-Free Instruction Scheduling.
+100	853	Out-of-Order Commit Processors.
+101	853	Stream Register Files with Indexed Access.
+102	853	A Low-Complexity, High-Performance Fetch Unit for Simultaneous Multithreading Processors.
+103	853	Reducing Branch Misprediction Penalty via Selective Branch Recovery.
+104	853	Hardware Support for Prescient Instruction Prefetch.
+105	853	Improving Disk Throughput in Data-Intensive Servers.
+106	853	Reducing Energy Consumption of Disk Storage Using Power-Aware Cache Management.
+107	853	Exploiting the Cache Capacity of a Single-Chip Multi-Core Processor with Execution Migration.
+108	853	Architectural Characterization of TCP/IP Packet Processing on the Pentium M Microprocessor.
+109	853	Organizing the Last Line of Defense before Hitting the Memory Wall for CMP.
+110	853	Using Prime Numbers for Cache Indexing to Eliminate Conflict Misses.
+111	853	Accurate and Complexity-Effective Spatial Pattern Prediction.
+112	853	Signature Buffer: Bridging Performance Gap between Registers and Caches.
+113	853	Link-Time Path-Sensitive Memory Redundancy Elimination.
+114	853	The Thrifty Barrier: Energy-Aware Synchronization in Shared-Memory Multiprocessors.
+115	853	Data Cache Prefetching Using a Global History Buffer.
+116	853	Synthesizing Representative I/O Workloads for TPC-H.
+117	890	A First-Order Superscalar Processor Model.
+118	890	Immunet: A Cheap and Robust Fault-Tolerant Packet Routing Mechanism.
+119	890	Use-Based Register Caching with Decoupled Indexing.
+120	890	Exploiting Resonant Behavior to Reduce Inductive Noise.
+121	890	A Complexity-Effective Approach to ALU Bandwidth Enhancement for Instruction-Level Temporal Redundancy.
+122	890	Low-Latency Virtual-Channel Routers for On-Chip Networks.
+123	890	Synchroscalar: A Multiple Clock Domain, Power-Aware, Tile-Based Embedded Processor.
+124	890	The Vector-Thread Architecture.
+125	890	Adaptive Cache Compression for High-Performance Processors.
+126	890	X-RAY: A Non-Invasive Exclusive Caching Mechanism for RAIDs.
+127	890	Techniques to Reduce the Soft Error Rate of a High-Performance Microprocessor.
+128	890	Control Flow Modeling in Statistical Simulation for Accurate and Efficient Processor Design Studies.
+129	890	Physical Register Inlining.
+130	890	Field-testing IMPACT EPIC research results in Itanium 2.
+131	890	Memory Ordering: A Value-Based Approach.
+132	890	From Sequences of Dependent Instructions to Functions: An Approach for Improving Performance without ILP or Speculation.
+133	890	TSOtool: A Program for Verifying Memory Systems Using the Memory Consistency Model.
+134	890	The Case for Lifetime Reliability-Aware Microprocessors.
+135	890	SMTp: An Architecture for Next-generation Scalable Multi-threading.
+136	890	A Formal Approach to Frequent Energy Adaptations for Multimedia Applications.
+137	890	Evaluation of the Raw Microprocessor: An Exposed-Wire-Delay Architecture for ILP and Streams.
+138	890	Evaluating the Imagine Stream Architecture.
+139	890	iWatcher: Efficient Architectural Support for Software Debugging.
+140	890	Single-ISA Heterogeneous Multi-Core Architectures for Multithreaded Workload Performance.
+141	890	Extended Split-Issue: Enabling Flexibility in the Hardware Implementation of NUAL VLIW DSPs.
+142	890	Transactional Memory Coherence and Consistency.
+143	890	Prophet/Critic Hybrid Branch Prediction.
+144	890	Wire Delay is Not a Problem for SMT (In the Near Future).
+145	890	A Content Aware Integer Register File Organization.
+146	890	Microarchitecture Optimizations for Exploiting Memory-Level Parallelism.
+147	890	Power Awareness through Selective Dynamically Optimized Traces.
+148	1615	Spatial computation.
+149	1615	Coherence decoupling: making use of incoherence.
+150	1615	Scalable selective re-execution for EDGE architectures.
+151	1615	Fingerprinting: bounding soft-error detection latency and bandwidth.
+152	1615	Helper threads via virtual multithreading on an experimental itanium(registered trademark) 2 processor-based platform.
+153	1615	Devirtualizable virtual machines enabling general, single-node, online maintenance.
+154	1615	Formal online methods for voltage/frequency control in multiple clock domain microprocessors.
+155	1615	Locality phase prediction.
+156	1615	Application-level checkpointing for shared memory programs.
+157	1615	D-SPTF: decentralized request distribution in brick-based storage systems.
+158	1615	Heat-and-run: leveraging SMT and CMP to manage power density through the operating system.
+159	1615	Dynamic tracking of page miss ratio curve for memory management.
+160	1615	HOIST: a system for automatically deriving static analyzers for embedded systems.
+161	1615	Software prefetching for mark-sweep garbage collection: hardware analysis and software redesign.
+162	1615	An ultra low-power processor for sensor networks.
+163	1615	Low-overhead memory leak detection using adaptive statistical profiling.
+164	1615	Compiler orchestrated prefetching via speculation and predication.
+165	1615	Deconstructing storage arrays.
+166	1615	Secure program execution via dynamic information flow tracking.
+167	1615	HIDE: an infrastructure for efficiently protecting information leakage on the address bus.
+168	1615	Continual flow pipelines.
+169	1615	Performance directed energy management for main memory and disks.
+170	1615	FAB: building distributed enterprise disk arrays from commodity components.
+171	1615	Programming with transactional coherence and consistency (TCC).
+172	853	Effective Instruction Prefetching in Chip Multiprocessors for Modern Commercial Applications.
+173	853	Heat Stroke: Power-Density-Based Denial of Service in SMT.
+174	853	Software Directed Issue Queue Power Reduction.
+175	853	Power Efficient Processor Architecture and The Cell Processor.
+176	853	Tapping ZettaRAMTM for Low-Power Memory Systems.
+177	853	Predicting Inter-Thread Cache Contention on a Chip Multi-Processor Architecture.
+178	853	Improving Multiple-CMP Systems Using Token Coherence.
+179	853	Chip Multithreading: Opportunities and Challenges.
+180	853	Stretching the Limits of Clock-Gating Efficiency in Server-Class Processors.
+181	853	A Small, Fast and Low-Power Register File by Bit-Partitioning.
+182	853	Microarchitectural Wire Management for Performance and Power in Partitioned Architectures.
+183	853	The Future of Computer Architecture Research: An Industrial Perspective.
+184	853	SENSS: Security Enhancement to Symmetric Shared Memory Multiprocessors.
+185	853	On the Limits of Leakage Power Reduction in Caches.
+186	853	A New Scalable and Cost-Effective Congestion Management Strategy for Lossless Multistage Interconnection Networks.
+187	853	Accurate Energy Dissipation and Thermal Modeling for Nanometer-Scale Buses.
+188	853	Distributing the Frontend for Temperature Reduction.
+189	853	An Efficient Programmable 10 Gigabit Ethernet Network Interface Card.
+190	853	Transition Phase Classification and Prediction.
+191	853	Exploring the Design Space of Power-Aware Opto-Electronic Networked Systems.
+192	853	A Performance Comparison of DRAM Memory System Optimizations for SMT Processors.
+193	853	Checkpointed Early Load Retirement.
+194	853	Trends in High-Performance Processors.
+195	853	Low-Overhead Interactive Debugging via Dynamic Instrumentation with DISE.
+196	853	Scatter-Add in Data Parallel Architectures.
+197	853	Multithreaded Value Prediction.
+198	853	SafeMem: Exploiting ECC-Memory for Detecting Memory Leaks and Memory Corruption During Production Runs.
+199	853	Enterprise IT Trends and Implications for Architecture Research.
+200	853	Performance, Energy, and Thermal Considerations for SMT and CMP Architectures.
+201	853	Using Virtual Load/Store Queues (VLSQs) to Reduce the Negative Effects of Reordered Memory Instructions.
+202	853	The Soft Error Problem: An Architectural Perspective.
+203	853	Voltage and Frequency Control With Adaptive Reaction Time in Multiple-Clock-Domain Processors.
+204	853	A Unified Compressed Memory Hierarchy.
+205	853	Unbounded Transactional Memory.
+206	853	Characterizing and Comparing Prevailing Simulation Techniques.
+207	890	Continuous Optimization.
+208	890	A Robust Main-Memory Compression Scheme.
+209	890	Near-Optimal Worst-Case Throughput Routing for Two-Dimensional Mesh Networks.
+210	890	Temporal Streaming of Shared Memory.
+211	890	Deconstructing Commodity Storage Clusters.
+212	890	Victim Replication: Maximizing Capacity while Hiding Wire Delay in Tiled Chip Multiprocessors.
+213	890	Improving Program Efficiency by Packing Instructions into Registers.
+214	890	Store Buffer Design in First-Level Multibanked Data Caches.
+215	890	An Evaluation Framework and Instruction Set Architecture for Ion-Trap Based Quantum Micro-Architectures.
+216	890	Store Vulnerability Window (SVW): Re-Execution Filtering for Enhanced Load Optimization.
+217	890	An Ultra Low Power System Architecture for Sensor Network Applications.
+218	890	Energy Optimization of Subthreshold-Voltage Sensor Network Processors.
+219	890	The V-Way Cache: Demand Based Associativity via Global Replacement.
+220	890	Architecture for Protecting Critical Secrets in Microprocessors.
+221	890	Design and Implementation of the AEGIS Single-Chip Secure Processor Using Physical Random Functions.
+222	890	Energy-Effectiveness of Pre-Execution and Energy-Aware P-Thread Selection.
+223	890	Rescue: A Microarchitecture for Testability and Defect Tolerance.
+224	890	The Impact of Performance Asymmetry in Emerging Multicore Architectures.
+225	890	Optimizing Replication, Communication, and Capacity Allocation in CMPs.
+226	890	Interconnections in Multi-Core Architectures: Understanding Mechanisms, Overheads and Scaling.
+227	890	Direct Cache Access for High Bandwidth Network I/O.
+228	890	Microarchitecture of a High-Radix Router.
+229	890	Analysis of the O-GEometric History Length Branch Predictor.
+230	890	A Tree Based Router Search Engine Architecture with Single Port Memories.
+231	890	Mitigating Amdahl_s Law through EPI Throttling.
+232	890	Opportunistic Transient-Fault Detection.
+233	890	A High Throughput String Matching Architecture for Intrusion Detection and Prevention.
+234	890	Design and Evaluation of Hybrid Fault-Detection Systems.
+235	890	Piecewise Linear Branch Prediction.
+236	890	Adaptive Mechanisms and Policies for Managing Cache Hierarchies in Chip Multiprocessors.
+237	890	Computing Architectural Vulnerability Factors for Address-Based Structures.
+238	890	Improving Multiprocessor Performance with Coarse-Grain Coherence Tracking.
+239	890	Exploiting Structural Duplication for Lifetime Reliability Enhancement.
+240	890	RegionScout: Exploiting Coarse Grain Sharing in Snoop-Based Coherence.
+241	890	BugNet: Continuously Recording Program Execution for Deterministic Replay Debugging.
+242	890	An Architecture Framework for Transparent Instruction Set Customization in Embedded Processors.
+243	890	An Integrated Memory Array Processor Architecture for Embedded Image Recognition Systems.
+244	890	Dynamic Verification of Sequential Consistency.
+245	890	High Efficiency Counter Mode Security Architecture via Prediction and Precomputation.
+246	890	Virtualizing Transactional Memory.
+247	890	Techniques for Efficient Processing in Runahead Execution Engines.
+248	890	Increased Scalability and Power Efficiency by Using Multiple Speed Pipelines.
+249	890	RENO - A Rename-Based Instruction Optimizer.
+250	890	Disk Drive Roadmap from the Thermal Perspective: A Case for Dynamic Thermal Management.
+251	890	Scalable Load and Store Processing in Latency Tolerant Processors.
+252	1074	Labels and event processes in the Asbestos operating system.
+253	1074	Pioneer: verifying code integrity and enforcing untampered code execution on legacy systems.
+254	1074	Hibernator: helping disk arrays sleep through the winter.
+255	1074	Opening remarks.
+256	1074	FS2: dynamic data replication in free disk space for improving disk performance and energy consumption.
+257	1074	Keynote speech.
+258	1074	Detecting past and present intrusions through vulnerability-specific predicates.
+259	1074	Mondrix: memory isolation for linux using mondriaan memory protection.
+260	1074	Idletime scheduling with preemption intervals.
+261	1074	Rx: treating bugs as allergies - a safe method to survive software failures.
+262	1074	Capturing, indexing, clustering, and retrieving system history.
+263	1074	THINC: a virtual display architecture for thin-client computing.
+264	1074	Connections: using context to enhance file search.
+265	1074	The taser intrusion recovery system.
+266	1074	Implementing declarative overlays.
+267	1074	Vigilante: end-to-end containment of internet worms.
+268	1074	Speculative execution in a distributed file system.
+269	1074	RaceTrack: efficient detection of data race conditions via adaptive tracking.
+270	1074	BAR fault tolerance for cooperative services.
+271	1074	Scalability, fidelity, and containment in the potemkin virtual honeyfarm.
+272	1074	IRON file systems.
+273	1074	Fault-scalable Byzantine fault-tolerant services.
+274	1451	Applications of synchronization coverage.
+275	1451	A framework for adaptive algorithm selection in STAPL.
+276	1451	Why is graphics hardware so fast?
+277	1451	Adaptive execution techniques for SMT multiprocessor architectures.
+278	1451	Fault tolerant high performance computing by a coding approach.
+279	1451	Static analysis of atomicity for programs with non-blocking synchronization.
+280	1451	Extracting SMP parallelism for dense linear algebra algorithms from high-level specifications.
+281	1451	Performance modeling and optimization of parallel out-of-core tensor contractions.
+282	1451	A sampling-based framework for parallel data mining.
+283	1451	Trust but verify: monitoring remotely executing programs for progress and correctness.
+284	1451	Composable memory transactions.
+285	1451	Automatic multithreading and multiprocessing of C programs for IXP.
+286	1451	Teleport messaging for distributed stream programs.
+287	1451	Language innovations for HPCS.
+288	1451	A novel approach for partitioning iteration spaces with variable densities.
+289	1451	Using multiple energy gears in MPI programs on a power-scalable cluster.
+290	1451	Automated type-based analysis of data races and atomicity.
+291	1451	Modeling wildcard-free MPI programs for verification.
+292	1451	Exposing speculative thread parallelism in SPEC2000.
+293	1451	An evaluation of global address space languages: co-array fortran and unified parallel C.
+294	1451	A linear-time algorithm for optimal barrier placement.
+295	1451	Exposing disk layout to compiler for reducing energy consumption of parallel disk based systems.
+296	1451	System-wide performance monitors and their application to the optimization of coherent memory accesses.
+297	1451	Energy conservation in heterogeneous server clusters.
+298	1451	Scaling model checking of dataraces using dynamic information.
+299	1451	Locality aware dynamic load management for massively multiplayer games.
+300	1451	Effective communication coalescing for data-parallel applications.
+301	1451	Compiler techniques for high performance sequentially consistent java programs.
+302	1451	Revocable locks for non-blocking programming.

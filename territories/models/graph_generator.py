@@ -48,6 +48,8 @@ class GraphGenerator(object):
         cluster_graph = cv.cluster_graph(combine_edges='sum', combine_vertices='sum')
         for index, cluster in enumerate(cv.as_cover().membership):
             g.vs[index]["cluster"] = cluster[0]
+        #HARDCODE
+            g.vs[index]["quality"] = 1
         for index, crossing in enumerate(cv.crossing()):
             g.es[index]['cross'] = crossing
 

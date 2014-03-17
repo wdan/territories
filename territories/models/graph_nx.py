@@ -219,16 +219,31 @@ class NXGraph(AbstractGraph):
             clustered_graph.node[cluster_id]["cluster-name"] = key
 
         edges_dict = {}
+        inner_edges_dict = {}
+        outer_edges_dict = {}
         for e in g.edges():
             src_id = node2community_dict[e[0]]
             tgt_id = node2community_dict[e[1]]
             if src_id == tgt_id:
+                if src_id not in inner_edges_dict:
+                    inner_edges_dict[src_id] = 0
+                inner_edges_dict[src_id] += 1
                 continue
             if src_id > tgt_id:
                 src_id, tgt_id = tgt_id, src_id
             if (src_id, tgt_id) not in edges_dict:
                 edges_dict[(src_id, tgt_id)] = 0
+            if src_id not in outer_edges_dict:
+                outer_edges_dict[src_id] = 0
+            outer_edges_dict[src_id] += 1
             edges_dict[(src_id, tgt_id)] += 1
+
+        for n in clustered_graph.nodes():
+            inner_edges_num = inner_edges_dict[n]
+            outer_edges_num = outer_edges_dict[n]
+            quality = outer_edges_num * 1.0 / (2 * inner_edges_num + outer_edges_num)
+            clustered_graph.node[n]["quality"] = quality
+
         for (k, v) in edges_dict.items():
             clustered_graph.add_edge(k[0], k[1])
             clustered_graph.edge[k[0]][k[1]]["weight"] = v

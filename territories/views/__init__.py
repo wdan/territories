@@ -33,13 +33,21 @@ def get_data():
     return NXGraph.to_json(graph.nx_g)
 
 
+@territories.route('/select_voronoi')
+def select_voronoi():
+    src = int(request.args.get('src', None))
+    tgt = int(request.args.get('tgt', None))
+    s = clustered_graph.cal_cluster_voronoi_positions(src, tgt)
+    v = Voronoi(s)
+    return v.to_json()
+
+
 @territories.route('/get_polygon')
 def get_aggregate():
     global detection, orig, g, v, name, rate, generator, clustered_graph
     name = request.args.get('name', 'random')
     width = int(request.args.get('width', 1000))
     height = int(request.args.get('height', 1000))
-    shrink = int(request.args.get('shrink', 50))
     rate = float(request.args.get('rate', 1))
     detection = False
     if name == "random":
@@ -79,7 +87,7 @@ def get_aggregate():
         clustered_graph = NXGraph('r_cluster', width, height)
         clustered_graph.nx_g = NXGraph.mark_community(g)
     s = clustered_graph.cal_cluster_voronoi_positions()
-    v = Voronoi(s, shrink)
+    v = Voronoi(s)
     return v.to_json()
 
 

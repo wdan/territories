@@ -60,8 +60,8 @@ class NXGraph(AbstractGraph):
         #original_graph = generator.get_nx()
         #clustered_graph = generator.convert2nx(cv)
 
-    def cal_mds_positions(self):
-        (matrix, m) = self.cal_edge_weight_matrix()
+    def cal_mds_positions(self, src=None, tgt=None):
+        (matrix, m) = self.cal_edge_weight_matrix(src, tgt)
         p = MDSLayout.cal_mds(matrix, m)
         x_min = min(map(lambda e: e[0], p))
         x_max = max(map(lambda e: e[0], p))
@@ -73,21 +73,28 @@ class NXGraph(AbstractGraph):
             self.nx_g.node[e]["y"] = translate(p[i][1], y_min, y_max,
                                                0, self.height)
 
-    def cal_edge_weight_matrix(self):
+    def cal_edge_weight_matrix(self, src=None, tgt=None):
         n = self.size
         m = 0
         matrix = [[0 for x in xrange(n)] for x in xrange(n)]
         node_dict = {}
+        max_weight = 0
         for i, e in enumerate(self.nx_g.nodes()):
             node_dict[e] = i
         for e in self.nx_g.edges():
             index0 = node_dict[e[0]]
             index1 = node_dict[e[1]]
             weight = self.nx_g.edge[e[0]][e[1]]["weight"]
+            if weight > max_weight:
+                max_weight = weight
             matrix[index0][index1] = int(weight)
             matrix[index1][index0] = int(weight)
             if m < weight:
                 m = weight
+        index0 = node_dict[e[0]]
+        index1 = node_dict[e[1]]
+        matrix[index0][index1] = max_weight
+        matrix[index1][index0] = max_weight
         for i in xrange(n):
             matrix[i][i] = int(m * 1.5)
         return (matrix, int(m * 1.5))
@@ -123,8 +130,8 @@ class NXGraph(AbstractGraph):
             else:
                 self.nx_g.edge[e[0]][e[1]]["visible"] = 0
 
-    def cal_cluster_voronoi_positions(self):
-        self.cal_mds_positions()
+    def cal_cluster_voronoi_positions(self, src = None, tgt = None):
+        self.cal_mds_positions(src, tgt)
         from py4j.java_gateway import JavaGateway
         gateway = JavaGateway(auto_convert=True)
         java_app = gateway.entry_point

@@ -126,8 +126,10 @@ LG.visual.RiverNode = function(Visualization){
                     var p1 = {x:river['x1'], y:river['y1']};
                     var p2 = {x:river['x2'], y:river['y2']};
                     var base = collapse(src, tgt, p1, p2, this.y_margin);
-                    var m1 = this.dataManager.max_degree_dict[river['src_cluster']+'-'+river['tgt_cluster']];
-                    var m2 = this.dataManager.max_degree_dict[river['tgt_cluster']+'-'+river['src_cluster']];
+                    var m1 = this.dataManager.overview_max_degree_dict[river['src_cluster']+'-'+river['tgt_cluster']];
+                    var m2 = this.dataManager.overview_max_degree_dict[river['tgt_cluster']+'-'+river['src_cluster']];
+                    if(m1==undefined)m1=0;
+                    if(m2==undefined)m2=0;
                     var max_degree = Math.max(m1, m2);
                     for(var j=0;j<points.length;j++){
                         var p = points[j];
@@ -146,6 +148,10 @@ LG.visual.RiverNode = function(Visualization){
                             return degree_scale(d['in_degree']+d['out_degree']);
                         })
                         .attr('cx', function(d){
+                            if(isNaN(d.x)){
+                                console.log('NAN');
+                                console.log(d);
+                            }
                             return d.x;
                         })
                         .attr('cy', function(d){
@@ -199,6 +205,7 @@ LG.visual.RiverNode = function(Visualization){
         var p2 = vector_len(origin, base.end, scale(degree_rate));
 
         var degree_scale = 0.5 * ((p['out_degree'] + p['in_degree'])/max_degree);
+
         return vector_scale(p1, p2, degree_scale);
 
     };

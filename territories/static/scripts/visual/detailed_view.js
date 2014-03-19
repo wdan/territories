@@ -101,7 +101,7 @@ LG.visual.DetailedView = function(Visualization){
                         var m2 = this.dataManager.max_degree_dict[tgt_id+'-'+src_id];
                         max_degree = Math.max(m1, m2);
                     }
-                    var degree_scale = d3.scale.linear().domain([0, max_degree]).range([3,8]);
+                    var degree_scale = d3.scale.linear().domain([0, max_degree]).range([2, 10]);
 
                     var x_scale;
                     if(this.scale_type==1){
@@ -166,10 +166,10 @@ LG.visual.DetailedView = function(Visualization){
 
                 var x_scale;
                 if(this.scale_type==1){
-                    x_scale = d3.scale.log().domain([1/max_degree, 1])
+                    x_scale = d3.scale.log().domain([0.01, 1])
                         .range([_this.padding, _this.width/2]);
                 }else if(this.scale_type==2){
-                    x_scale = d3.scale.linear().domain([1/max_degree, 1])
+                    x_scale = d3.scale.linear().domain([0.01, 1])
                         .range([_this.padding, _this.width/2]);
                 }
 

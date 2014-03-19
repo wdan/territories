@@ -8,6 +8,7 @@ LG.data.DataManager = function(){
         this.dataName = '';
         this.polygon = {};
         this.constraints = {};
+        this.detailed_info = {};
         this.original = {};
         this.width = undefined;
         this.height = undefined;
@@ -19,6 +20,7 @@ LG.data.DataManager = function(){
         this.clusterAttr = {};
         this.max_degree_dict = {};
         this.max_degree = undefined;
+        this.overview_max_degree_dict = {};
     };
 
     var cal_max_degree = function(constraints){
@@ -42,9 +44,9 @@ LG.data.DataManager = function(){
         getConnection : {
             value : function(src_cluster, tgt_cluster){
                 var res = [];
-                var n = this.constraints.length;
+                var n = this.detailed_info.length;
                 for(var i=0;i<n;i++){
-                    var tmp = this.constraints[i];
+                    var tmp = this.detailed_info[i];
                     if(tmp['src_cluster'] == src_cluster && tmp['tgt_cluster'] == tgt_cluster){
                         res = res.concat(tmp['points']);
                     }else if(tmp['src_cluster'] == tgt_cluster && tmp['tgt_cluster'] == src_cluster){
@@ -54,6 +56,31 @@ LG.data.DataManager = function(){
                     if(res.length==2)break;
                 }
                 return res;
+            }
+        },
+
+        getDetailed : {
+            value : function(){
+                var _this = this;
+                var startTime = new Date().getTime();
+                console.log('[LOG] Get Detailed Info');
+                console.log('[URL] /get_detailed_info');
+                $.ajax({
+                    url: '/get_detailed_info',
+                    dataType: 'json',
+                    async: false,
+                    success: function(data){
+                        var endTime = new Date().getTime();
+                        _this.detailed_info = data;
+                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.log(data);
+                        console.log('[LOG] Calculate maximum degree');
+                        _this.max_degree_dict = cal_max_degree(data);
+                        var tmp = Object.keys(_this.max_degree_dict)
+                            .map(function(key){return _this.max_degree_dict[key];});
+                        _this.max_degree = d3.max(tmp);
+                    }
+                });
             }
         },
 
@@ -124,10 +151,7 @@ LG.data.DataManager = function(){
                         console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                         console.log('[LOG] Calculate maximum degree');
-                        _this.max_degree_dict = cal_max_degree(data);
-                        var tmp = Object.keys(_this.max_degree_dict)
-                            .map(function(key){return _this.max_degree_dict[key];});
-                        _this.max_degree = d3.max(tmp);
+                        _this.overview_max_degree_dict = cal_max_degree(data);
                     }
                 });
             }

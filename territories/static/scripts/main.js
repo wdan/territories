@@ -28,6 +28,7 @@ $('#dataTypeList').change(function(){
             .attr('height', height);
         dataManager.getPolygon(val, width, height, 1);
         dataManager.getConstraints();
+        dataManager.getDetailed();
 //        dataManager.getOriginal();
         dataManager.getClusterAttr();
 

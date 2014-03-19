@@ -369,7 +369,7 @@ class NXGraph(AbstractGraph):
     def get_detailed_info(self):
         g = self.nx_g
         node_dict = {}
-        for e in g.edges:
+        for e in g.edges():
             src_cluster = g.node[e[0]]["cluster"]
             tgt_cluster = g.node[e[1]]["cluster"]
             if e[0] not in node_dict:
@@ -392,13 +392,16 @@ class NXGraph(AbstractGraph):
                     cluster_dict[(src_cluster, tgt_cluster)]["src_cluster"] = src_cluster
                     cluster_dict[(src_cluster, tgt_cluster)]["tgt_cluster"] = tgt_cluster
                     cluster_dict[(src_cluster, tgt_cluster)]["points"] = []
-            item = {}
-            item["id"] = key
-            item["out_degree"] = node_dict[key][tgt_cluster]
-            cluster_dict[(src_cluster, tgt_cluster)]["points"].append(item)
+                item = {}
+                item["id"] = key
+                item["cluster"] = g.node[key]["cluster"]
+                item["out_degree"] = node_dict[key][tgt_cluster]
+                item["in_degree"] = node_dict[key][src_cluster]
+                cluster_dict[(src_cluster, tgt_cluster)]["points"].append(item)
         res = []
-        for key in node_dict.keys():
-            res.append(node_dict[key])
+        print len(cluster_dict[(2, 1)]["points"])
+        for key in cluster_dict.keys():
+            res.append(cluster_dict[key])
         return res
 
     @jsonize

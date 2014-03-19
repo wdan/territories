@@ -126,18 +126,18 @@ LG.visual.RiverNode = function(Visualization){
                     var p1 = {x:river['x1'], y:river['y1']};
                     var p2 = {x:river['x2'], y:river['y2']};
                     var base = collapse(src, tgt, p1, p2, this.y_margin);
-                    var max_degree = d3.max(points, function(d){return d['in_degree'] + d['out_degree']});
-
+                    var m1 = this.dataManager.max_degree_dict[river['src_cluster']+'-'+river['tgt_cluster']];
+                    var m2 = this.dataManager.max_degree_dict[river['tgt_cluster']+'-'+river['src_cluster']];
+                    var max_degree = Math.max(m1, m2);
                     for(var j=0;j<points.length;j++){
                         var p = points[j];
                         var pos = layout(src, tgt, base, this.scale * this.x_margin, p, max_degree);
-//                        var pos = layout(src, tgt, base, this.scale * this.x_margin, p, overall_max_degree);
                         p['x'] = pos.x;
                         p['y'] = pos.y;
                     }
 
-                    var degree_scale = d3.scale.linear().domain([0, max_degree]).range([2, 10]);
-//                    var degree_scale = d3.scale.linear().domain([0, overall_max_degree]).range([2, 10]);
+                    var degree_scale = d3.scale.linear().domain([1, max_degree]).range([2, 10]);
+
                     this.svg.select('#river'+river['src_cluster'] + '-' + river['tgt_cluster'])
                         .selectAll('circle')
                         .transition()
@@ -197,11 +197,8 @@ LG.visual.RiverNode = function(Visualization){
         }
         var p1 = vector_len(origin, base.start, scale(degree_rate));
         var p2 = vector_len(origin, base.end, scale(degree_rate));
-//        var degree_scale;
-//        if(Math.random()>0.5) degree_scale = 0.5 * (2 - (p['out_degree'] + p['in_degree'])/max_degree);
-//        else degree_scale = 0.5 * ((p['out_degree'] + p['in_degree'])/max_degree);
 
-        var degree_scale = 0.45 * ((p['out_degree'] + p['in_degree'])/max_degree);
+        var degree_scale = 0.5 * ((p['out_degree'] + p['in_degree'])/max_degree);
         return vector_scale(p1, p2, degree_scale);
 
     };

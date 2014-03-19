@@ -17,7 +17,25 @@ LG.data.DataManager = function(){
         this.boundaryEdge = undefined;
         this.insideNode = undefined;
         this.clusterAttr = {};
+        this.max_degree_dict = {};
+        this.max_degree = undefined;
     };
+
+    var cal_max_degree = function(constraints){
+
+        var maxDegree = {};
+        var n = constraints.length;
+        for(var i=0;i<n;i++){
+            var river = constraints[i];
+            var points = river['points'];
+            var key = river['src_cluster']+'-'+river['tgt_cluster'];
+            maxDegree[key] = d3.max(points, function(d){
+                return d['in_degree']+d['out_degree'];
+            });
+        }
+        return maxDegree;
+    };
+
 
     Object.defineProperties(DataManager.prototype, {
 
@@ -105,6 +123,11 @@ LG.data.DataManager = function(){
                         _this.constraints = data;
                         console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
+                        console.log('[LOG] Calculate maximum degree');
+                        _this.max_degree_dict = cal_max_degree(data);
+                        var tmp = Object.keys(_this.max_degree_dict)
+                            .map(function(key){return _this.max_degree_dict[key];});
+                        _this.max_degree = d3.max(tmp);
                     }
                 });
             }

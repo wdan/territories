@@ -392,12 +392,12 @@ class NXGraph(AbstractGraph):
                     cluster_dict[(src_cluster, tgt_cluster)]["src_cluster"] = src_cluster
                     cluster_dict[(src_cluster, tgt_cluster)]["tgt_cluster"] = tgt_cluster
                     cluster_dict[(src_cluster, tgt_cluster)]["points"] = []
-            item = {}
-            item["id"] = key
-            item["in_degree"] = g.node[key]["in_degree"]
-            item["cluster"] = src_cluster
-            item["out_degree"] = node_dict[key][tgt_cluster]
-            cluster_dict[(src_cluster, tgt_cluster)]["points"].append(item)
+                item = {}
+                item["id"] = key
+                item["cluster"] = src_cluster
+                item["out_degree"] = node_dict[key][tgt_cluster]
+                item["in_degree"] = node_dict[key][src_cluster]
+                cluster_dict[(src_cluster, tgt_cluster)]["points"].append(item)
         res = []
         for key in cluster_dict.keys():
             res.append(cluster_dict[key])

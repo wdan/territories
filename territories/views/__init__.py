@@ -99,7 +99,7 @@ def get_constraints():
     if detection:
         original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
     else:
-        original_graph.nx_g = g
+        original_graph.nx_g = g.copy()
     original_graph.reduce_graph(c_l_d)
     return original_graph.get_constraints_nodes(c_l_d)
 
@@ -110,7 +110,7 @@ def get_detailed_info():
     if detection:
         original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
     else:
-        original_graph.nx_g = g
+        original_graph.nx_g = g.copy()
     return original_graph.get_detailed_info()
 
 
@@ -133,7 +133,7 @@ def get_original():
     if detection:
         original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
     else:
-        original_graph.nx_g = g
+        original_graph.nx_g = g.copy()
     c_l_d = v.get_linear_constraints_dict()
     c_p_d = v.get_polygon_constraints_dict()
     original_graph.reduce_graph(1, c_l_d, c_p_d)

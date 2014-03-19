@@ -1,3 +1,15 @@
-#filter {
-    visibility: hidden !important;
+#territories{
+    border-bottom: 1px solid #eeeeee;
+}
+#paint_zone{
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    float: left
+
+}
+
+#detailed_view{
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    float: right;
 }

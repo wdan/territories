@@ -62,6 +62,12 @@ LG.control.SandBox = function(){
                 }
                 this.exchangeCluster.push(data);
             }
+        },
+
+        clearClusterQueue : {
+            value : function(){
+                this.exchangeCluster = [];
+            }
         }
 
     });

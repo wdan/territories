@@ -111,6 +111,12 @@ LG.visual.RiverNode = function(Visualization){
             value : function(){
 
                 var n = this.data.length;
+//                var overall_max_degree = d3.max(this.data, function(d){
+//                    return d3.max(d['points'], function(d){
+//                        return d['in_degree'] + d['out_degree'];
+//                    })
+//                });
+
                 for(var i=0; i<n; i++){
 
                     var river = this.data[i];
@@ -125,11 +131,13 @@ LG.visual.RiverNode = function(Visualization){
                     for(var j=0;j<points.length;j++){
                         var p = points[j];
                         var pos = layout(src, tgt, base, this.scale * this.x_margin, p, max_degree);
+//                        var pos = layout(src, tgt, base, this.scale * this.x_margin, p, overall_max_degree);
                         p['x'] = pos.x;
                         p['y'] = pos.y;
                     }
 
                     var degree_scale = d3.scale.linear().domain([0, max_degree]).range([2, 10]);
+//                    var degree_scale = d3.scale.linear().domain([0, overall_max_degree]).range([2, 10]);
                     this.svg.select('#river'+river['src_cluster'] + '-' + river['tgt_cluster'])
                         .selectAll('circle')
                         .transition()

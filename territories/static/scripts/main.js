@@ -6,10 +6,12 @@ var dataManager = new LG.data.DataManager();
 var sandBox = new LG.control.SandBox();
 //var visList = [];
 //var width = Math.floor($(window).width()*0.8);
-var height = Math.floor($(window).height()*0.8);
-var width = 940;
-var svg;
+var height = 600;
+var width = 860;
+var overview_svg;
+var detail_svg;
 var gui;
+var detail;
 
 $('#dataTypeList').change(function(){
     var val = $('#dataTypeList').val();
@@ -18,10 +20,10 @@ $('#dataTypeList').change(function(){
         if(gui!=undefined)gui.destroy();
         gui = new dat.GUI();
 
-        if(svg!=undefined){
+        if(overview_svg!=undefined){
             d3.select('#paint_zone').select('svg').data([]).exit().remove();
         }
-        svg = d3.select('#paint_zone').append('svg')
+        overview_svg = d3.select('#paint_zone').append('svg')
             .attr('width', width)
             .attr('height', height);
         dataManager.getPolygon(val, width, height, 1);
@@ -35,11 +37,19 @@ $('#dataTypeList').change(function(){
 //        var boundary_contour = new LG.visual.BoundaryContour(gui, svg, dataManager, 'boundary_contour');
 //        boundary_contour.display();
 
-        var voronoi = new LG.visual.Voronoi(gui, svg, dataManager, sandBox, 'voronoi');
+        var voronoi = new LG.visual.Voronoi(gui, overview_svg, dataManager, sandBox, 'voronoi');
         sandBox.add('voronoi', voronoi);
 
-        var river_node = new LG.visual.RiverNode(gui, svg, dataManager, sandBox, 'river_node');
+        var river_node = new LG.visual.RiverNode(gui, overview_svg, dataManager, sandBox, 'river_node');
         sandBox.add('river_node', river_node);
+
+        if(detail_svg!=undefined){
+            d3.select('#detailed_view').select('svg').data([]).exit().remove();
+        }
+        detail_svg = d3.select('#detailed_view').append('svg')
+            .attr('width', 250)
+            .attr('height', 600);
+        detail = new LG.visual.DetailedView(gui, detail_svg, dataManager, sandBox, 'detailed_view');
 
         voronoi.display();
         river_node.display();
@@ -64,6 +74,15 @@ $('#update_cluster').click(function(){
         dataManager.getNewPosition(sandBox.exchangeCluster);
         dataManager.getConstraints();
         sandBox.update_data_All();
+        sandBox.clearClusterQueue();
+    }else{
+        console.log('[WARNING] Please select two groups.');
+    }
+});
+
+$('#show_cluster').click(function(){
+    if(sandBox.exchangeCluster.length==2){
+        detail.add();
     }else{
         console.log('[WARNING] Please select two groups.');
     }

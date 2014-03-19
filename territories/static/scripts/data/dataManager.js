@@ -20,6 +20,25 @@ LG.data.DataManager = function(){
     };
 
     Object.defineProperties(DataManager.prototype, {
+
+        getConnection : {
+            value : function(src_cluster, tgt_cluster){
+                var res = [];
+                var n = this.constraints.length;
+                for(var i=0;i<n;i++){
+                    var tmp = this.constraints[i];
+                    if(tmp['src_cluster'] == src_cluster && tmp['tgt_cluster'] == tgt_cluster){
+                        res = res.concat(tmp['points']);
+                    }else if(tmp['src_cluster'] == tgt_cluster && tmp['tgt_cluster'] == src_cluster){
+                        res = res.concat(tmp['points']);
+                    }
+
+                    if(res.length==2)break;
+                }
+                return res;
+            }
+        },
+
         getPolygon : {
             value: function(dataName, width, height, rate){
                 var _this = this;

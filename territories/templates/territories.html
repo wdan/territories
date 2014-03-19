@@ -6,38 +6,47 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<div class="container" class="col-md-12">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="#">Territories</a>
-    </div>
-    <div class="navbar-collapse" style="margin-left: 0px;">
-        <!--<ul class="nav navbar-nav">-->
-            <!--<li style="margin-top: 10px; margin-left: 20px;">-->
-                <select id="dataTypeList" class="form-control">
-                    <option value="null">Select Data Type</option>
-                    <option value="random">RANDOM</option>
-                    <option value="hugo">HUGO</option>
-                    <option value="school">SCHOOL</option>
-                    <option value="football">FOOTBALL</option>
-                    <option value="book">BOOK</option>
-                    <option value="dblp-os">DBLP-OS</option>
-                    <option value="dblp-os-paper">DBLP-OS-PAPER</option>
-                    <option value="dblp-vis-paper">DBLP-VIS-PAPER</option>
-                    <option value="dblp-vis-big">DBLP-VIS-BIG</option>
-                </select>
-                <button type="button" id='update_cluster' class="btn btn-defalut">Update</button>
-            <!--</li>-->
-        <!--</ul>-->
-    </div>
-    <!--<div class="btn-group">-->
-        <!--<button type="button" class="btn btn-defalut">-->
-    <!--</div>-->
-    <div id="paint_zone" class="col-md-12">
-    </div>
-    <!--<div class="modal-footer">-->
-        <!--<p> © Wenbin WU</p>-->
-    <!--</div>-->
-</div>
+<!--<div class="navbar navbar-blue navbar-fixed-top col-md-12">-->
+        <div class="container" style="width:1200px; height:800px">
+            <!--<div class="navbar-header">-->
+                <!--<a class="navbar-brand" href="#">Territories</a>-->
+            <!--</div>-->
+            <div id = "territories">
+                <h1>Territories</h1>
+            </div>
+            <div style="margin-left: 0px; margin-top: 20px; width: 1200px; height:50px">
+                <ul style="list-style: none; width: 1200px; height:40px">
+                    <li style="margin-top: 10px; margin-left: 20px;">
+                        <select id="dataTypeList">
+                            <option value="null">Select Data Type</option>
+                            <option value="random">RANDOM</option>
+                            <option value="hugo">HUGO</option>
+                            <option value="school">SCHOOL</option>
+                            <option value="football">FOOTBALL</option>
+                            <option value="book">BOOK</option>
+                            <option value="dblp-os">DBLP-OS</option>
+                            <option value="dblp-os-paper">DBLP-OS-PAPER</option>
+                            <option value="dblp-vis-paper">DBLP-VIS-PAPER</option>
+                            <option value="dblp-vis-big">DBLP-VIS-BIG</option>
+                        </select>
+                        <button type="button" id='update_cluster'
+                                class="btn btn-defalut navbar-btn"
+                                style="margin-top: -10px; margin-left: 10px">Update</button>
+                        <button type="button" id='show_cluster'
+                                class="btn btn-defalut navbar-btn"
+                                style="margin-top: -10px; margin-left: 10px">Detailed View</button>
+
+                </ul>
+            </div>
+            <div class="container" style="width:1200px; height:600px">
+                <div id="paint_zone" style="width: 860px; height: 600px"></div>
+                <div id="detailed_view" style="width: 250px; height: 600px"></div>
+            </div>
+        </div>
+<!--</div>-->
+
+
+
 
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/lib/jquery-1.10.2.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/lib/d3.v3.js') }}"></script>
@@ -61,6 +70,7 @@
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/visual/boundary_edge.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/visual/inside_node.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/visual/node_label.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/visual/detailed_view.js')}}"></script>
 
 
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/main.js')}}"></script>

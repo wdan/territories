@@ -104,6 +104,16 @@ def get_constraints():
     return original_graph.get_constraints_nodes(c_l_d)
 
 
+@territories.route('/get_detailed_info')
+def get_detailed_info():
+    original_graph = NXGraph(width, height)
+    if detection:
+        original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
+    else:
+        original_graph.nx_g = g
+    return original_graph.get_detailed_info()
+
+
 @territories.route('/get_cluster_attr')
 def get_cluster_attr():
     res = {}
@@ -115,6 +125,7 @@ def get_cluster_attr():
         if "quality" in clustered_graph.nx_g.node[n]:
             res["cluster_quality"][n] = clustered_graph.nx_g.node[n]["quality"]
     return json.dumps(res)
+
 
 @territories.route('/get_original')
 def get_original():

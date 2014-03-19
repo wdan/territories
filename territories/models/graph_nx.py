@@ -366,6 +366,39 @@ class NXGraph(AbstractGraph):
         return json_graph.dumps(g)
 
     @jsonize
+    def get_detailed_info(self):
+        g = self.nx_g
+        node_dict = {}
+        for e in g.edges:
+            src_cluster = g.node[e[0]]["cluster"]
+            tgt_cluster = g.node[e[1]]["cluster"]
+            if e[0] not in node_dict:
+                node_dict[e[0]] = {}
+            if e[1] not in node_dict:
+                node_dict[e[1]] = {}
+            if tgt_cluster not in node_dict[e[0]]:
+                node_dict[e[0]][tgt_cluster] = 0
+            if src_cluster not in node_dict[e[1]]:
+                node_dict[e[1]][src_cluster] = 0
+            node_dict[e[0]][tgt_cluster] += 1
+            node_dict[e[1]][src_cluster] += 1
+        cluster_dict = {}
+        for key in node_dict.keys():
+            src_cluster = g.node[key]["cluster"]
+            tgt_clusters = node_dict[key]
+            for tgt_cluster in tgt_clusters:
+                if (src_cluster, tgt_cluster) not in cluster_dict:
+                    cluster_dict[(src_cluster, tgt_cluster)] = {}
+                    cluster_dict[(src_cluster, tgt_cluster)]["src_cluster"] = src_cluster
+                    cluster_dict[(src_cluster, tgt_cluster)]["tgt_cluster"] = tgt_cluster
+                    cluster_dict[(src_cluster, tgt_cluster)]["points"] = []
+            cluster_dict[(src_cluster, tgt_cluster)]["points"].append(key)
+        res = []
+        for key in node_dict.keys():
+            res.append(node_dict[key])
+        return res
+
+    @jsonize
     def get_constraints_nodes(self, constraints):
         g = self.nx_g
         cluster_dic = {}

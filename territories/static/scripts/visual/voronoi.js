@@ -14,11 +14,10 @@ LG.visual.Voronoi = function(Visualization){
 //        this.quality = dataManager.clusterAttr['cluster_quality'];
         this.get_quality();
 
-
         // control color
         this.color_set = true;
         this.fill = '#4682B4';
-        this.color_scale = d3.scale.linear().domain([0, 1]).range(['white', this.fill]);
+        this.color_scale = d3.scale.linear().domain([1, 0]).range(['white', this.fill]);
         this.opacity = 1.0;
 
         // control subdivision
@@ -29,6 +28,7 @@ LG.visual.Voronoi = function(Visualization){
         this.draw_mid_node = false;
         this.draw_label = true;
 
+
         this.control();
     };
 
@@ -37,11 +37,13 @@ LG.visual.Voronoi = function(Visualization){
         get_quality : {
             value : function(){
                 var q = this.dataManager.clusterAttr['cluster_quality'];
+                this.orig_quality = q;
                 console.log(q);
-                var tmp = Object.keys(q).map(function(key){return q[key];});
-                var max_quality = d3.max(tmp);
-                var min_quality = d3.min(tmp);
-                var scale = d3.scale.quantize().domain([max_quality, min_quality]).range([0,1,2,3]);
+//                var tmp = Object.keys(q).map(function(key){return q[key];});
+//                var max_quality = d3.max(tmp);
+//                var min_quality = d3.min(tmp);
+//                this.quality_scale = d3.scale.quantize().domain([max_quality, min_quality]).range([0,1,2,3]);
+                var scale = d3.scale.quantize().domain([1, 0]).range([0,1,2,3]);
                 this.quality = {};
                 for(var key in q){
                     if(q.hasOwnProperty(key)){
@@ -150,24 +152,6 @@ LG.visual.Voronoi = function(Visualization){
                     .duration(1000)
                     .style('fill-opacity', 0)
                     .remove();
-
-//                this.svg.selectAll('text')
-
-//                this.svg.selectAll('circle')
-//                    .transition()
-//                    .duration(1500)
-//                    .attr('cx', function(d) {return d['mid_x'];})
-//                    .attr('cy', function(d) {return d['mid_y'];});
-//
-//                this.svg.selectAll('text')
-//                    .transition()
-//                    .duration(1500)
-//                    .attr("x", function(d){
-//                            return d['mid_x'];
-//                    })
-//                    .attr("y", function(d){
-//                        return d['mid_y'];
-//                    });
             }
         },
 
@@ -195,12 +179,6 @@ LG.visual.Voronoi = function(Visualization){
                         s += 'Z';
                         return s;
                     });
-
-//                this.svg.selectAll('circle')
-//                    .transition()
-//                    .duration(1500)
-//                    .attr('cx', function(d) {return d['mid_x'];})
-//                    .attr('cy', function(d) {return d['mid_y'];});
 
                 this.svg.selectAll('text')
                     .transition()
@@ -243,7 +221,11 @@ LG.visual.Voronoi = function(Visualization){
                         }
                         else{
                             points = subdivision_k(points, _this.quality[d['cluster']]);
-                            if(_this.quality[d['cluster']]==undefined)console.log('WRRRRRRR!!!!!');
+                            if(_this.quality[d['cluster']]==undefined){
+                                console.debug(d['cluster']);
+                                console.debug(_this.quality[d['cluster']]);
+                                console.debug('WRRRRRRR!!!!!');
+                            }
                         }
 
                         var s = 'M ' + points[0].x + ' ' + points[0].y;
@@ -256,36 +238,13 @@ LG.visual.Voronoi = function(Visualization){
                     .style('fill', function(d){
                         if (_this.color_set) return _this.classColor[d.cluster];
                         else{
-                            var c = Math.random();
+                            var c = _this.orig_quality[d['cluster']];
                             return _this.color_scale(c);
                         }
                     })
                     .style('fill-opacity', _this.opacity);
                 this.dashed_line();
                 this.label();
-            }
-        },
-
-        middle_node :{
-            value : function(){
-                if(this.draw_mid_node){
-                    this.svg.selectAll('circle')
-                        .data(this.data, function(d){
-                            return d['cluster'];
-                        })
-                        .enter()
-                        .append('circle')
-                        .attr('r', 5)
-                        .attr('cx', function(d) {return d['mid_x'];})
-                        .attr('cy', function(d) {return d['mid_y'];})
-                        .attr('fill', '#fff')
-                        .attr('opacity', 0.8);
-                }else{
-                    this.svg.selectAll('circle')
-                        .data([])
-                        .exit()
-                        .remove();
-                }
             }
         },
 
@@ -398,7 +357,7 @@ LG.visual.Voronoi = function(Visualization){
                     .style('fill', function(d){
                         if (_this.color_set) return _this.classColor[d.cluster];
                         else{
-                            var c = Math.random();
+                            var c = _this.orig_quality[d['cluster']];
                             return _this.color_scale(c);
                         }
                     })

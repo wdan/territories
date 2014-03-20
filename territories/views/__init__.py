@@ -149,7 +149,7 @@ def get_cluster_attr():
     res["cluster_name"] = {}
     res["cluster_quality"] = {}
     for n in clustered_graph.nx_g.nodes():
-        cluster_id = cluster_graph.nx_g.node[n]["cluster"]
+        cluster_id = clustered_graph.nx_g.node[n]["cluster"]
         if "cluster-name" in clustered_graph.nx_g.node[n]:
             res["cluster_name"][cluster_id] = clustered_graph.nx_g.node[n]["cluster-name"]
         if "quality" in clustered_graph.nx_g.node[n]:

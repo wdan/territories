@@ -298,6 +298,18 @@ LG.visual.Voronoi = function(Visualization){
                     .append('path')
                     .attr('class', 'poly')
                     .on('click', function(d){
+                        d3.select(this)
+                            .classed('selected', function(){
+                                return !d3.select(this).classed('selected');
+                            });
+
+                        if(d3.select(this).classed('selected')){
+                            _this.sandBox.addMergeQueue(d['cluster']);
+                        }else{
+                            _this.sandBox.removeMergeQueue(d['cluster']);
+                        }
+
+                        console.log(_this.sandBox.getMergeQueue());
                         _this.sandBox.addClusterQueue(d['cluster']);
                     })
                     .attr('d', function(d){

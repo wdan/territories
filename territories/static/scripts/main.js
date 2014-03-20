@@ -12,11 +12,13 @@ var overview_svg;
 var detail_svg;
 var gui;
 var detail;
+var merge_number;
 
 $('#dataTypeList').change(function(){
     var val = $('#dataTypeList').val();
     if(val!='null'){
 
+        merge_number = 1;
         if(gui!=undefined)gui.destroy();
         gui = new dat.GUI();
 
@@ -51,6 +53,7 @@ $('#dataTypeList').change(function(){
             .attr('width', 250)
             .attr('height', 600);
         detail = new LG.visual.DetailedView(gui, detail_svg, dataManager, sandBox, 'detailed_view');
+        sandBox.add('detailed_view', detail);
 
         voronoi.display();
         river_node.display();
@@ -83,8 +86,18 @@ $('#update_cluster').click(function(){
 
 $('#show_cluster').click(function(){
     if(sandBox.exchangeCluster.length==2){
-        detail.add();
+        sandBox.addDetail();
+        sandBox.clearClusterQueue();
     }else{
         console.log('[WARNING] Please select two groups.');
+    }
+});
+
+$('#merge_cluster').click(function(){
+    var merge = sandBox.getMergeQueue();
+    if(merge.length>=2){
+        dataManager.sendMergeRequest(merge, merge_number++);
+    }else{
+        console.log('[WARNING] Please select more than two groups.');
     }
 });

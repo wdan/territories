@@ -8,6 +8,7 @@ LG.control.SandBox = function(){
         console.log('[LOG] SandBox initialized');
         this.module = {};
         this.exchangeCluster = [];
+        this.mergeCluster = {};
     };
 
     Object.defineProperties(SandBox.prototype, {
@@ -67,6 +68,41 @@ LG.control.SandBox = function(){
         clearClusterQueue : {
             value : function(){
                 this.exchangeCluster = [];
+            }
+        },
+
+        addMergeQueue : {
+            value : function(data){
+                this.mergeCluster[data] = 1;
+            }
+        },
+
+        getMergeQueue : {
+            value : function(){
+                return Object.keys(this.mergeCluster).map(function(d){return parseInt(d);});
+            }
+        },
+
+        clearMergeQueue : {
+            value : function(){
+                this.mergeCluster = [];
+            }
+        },
+
+        removeMergeQueue : {
+            value : function(data){
+                if(data in this.mergeCluster){
+                    delete this.mergeCluster[data];
+                }
+            }
+        },
+
+        addDetail : {
+            value : function(){
+                var detailed = this.module['detailed_view'];
+                if(detailed instanceof LG.visual.DetailedView){
+                    detailed.add();
+                }
             }
         }
 

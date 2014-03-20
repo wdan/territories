@@ -156,8 +156,8 @@ class NXGraph(AbstractGraph):
             x.append(t_x)
             y.append(t_y)
             w.append(t_w)
-            cluster.append(n)
-        res = java_app.calVoronoiTreemap(x, y, w, cluster,self.width, self.height)
+            cluster.append(self.nx_g.node[n]["cluster"])
+        res = java_app.calVoronoiTreemap(x, y, w, cluster, self.width, self.height)
         return res
 
     def import_cluster_nodes(self):
@@ -192,16 +192,21 @@ class NXGraph(AbstractGraph):
         for key in res.keys():
             self.nx_g.node[key]["cluster"] = res[key]
 
-    def merge_cluster(self, cluster_list, merge_num):
+    def merge_cluster(self, cluster_list, merge_cluster_name):
         cluster_list = map(lambda e: int(e), cluster_list)
         g = self.nx_g
         new_cluster_id = g.graph["cluster-size"]
-        new_cluster_name = "merge" + str(merge_num)
         for n in g.nodes():
             cluster = g.node[n]["cluster"]
             if cluster in cluster_list:
-                g.node[n]["class"] = new_cluster_name
+                g.node[n]["class"] = merge_cluster_name
                 g.node[n]["cluster"] = new_cluster_id
+
+    def modify_cluster_id(self, cluster_name_dict):
+        for n in self.nx_g.nodes():
+            cluster_name = self.nx_g.node[n]["cluster-name"]
+            new_id = cluster_name_dict[cluster_name]
+            self.nx_g.node[n]["cluster"] = new_id
 
     @classmethod
     def mark_community(cls, g):
@@ -229,6 +234,7 @@ class NXGraph(AbstractGraph):
             clustered_graph.add_node(cluster_id)
             clustered_graph.node[cluster_id]["size"] = community_size_dict[key]
             clustered_graph.node[cluster_id]["cluster-name"] = key
+            clustered_graph.node[cluster_id]["cluster"] = cluster_id
 
         g.graph["cluster-size"] = cnt
 

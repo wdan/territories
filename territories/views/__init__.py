@@ -19,6 +19,7 @@ orig = None
 name = ""
 rate = 1
 clustered_graph = None
+cluster_name_dict = {}
 detection = False
 
 
@@ -45,7 +46,7 @@ def select_voronoi():
 
 @territories.route('/get_polygon')
 def get_aggregate():
-    global detection, orig, g, v, name, rate, generator, clustered_graph
+    global detection, orig, g, v, name, rate, generator, clustered_graph, cluster_name_dict
     name = request.args.get('name', 'random')
     width = int(request.args.get('width', 1000))
     height = int(request.args.get('height', 1000))
@@ -87,6 +88,10 @@ def get_aggregate():
         g = GraphGenerator.convert2nx(g)
         clustered_graph = NXGraph('r_cluster', width, height)
         clustered_graph.nx_g = NXGraph.mark_community(g)
+    for n in clustered_graph.nx_g.nodes():
+        cluster_id = clustered_graph.nx_g.node[n]["cluster"]
+        cluster_name = clustered_graph.nx_g.node[n]["cluster-name"]
+        cluster_name_dict[cluster_name] = cluster_id
     s = clustered_graph.cal_cluster_voronoi_positions()
     v = Voronoi(s)
     return v.to_json()
@@ -116,6 +121,7 @@ def get_detailed_info():
 
 @territories.route('/merge_cluster', methods = ["POST"])
 def merge_cluster():
+    global g, v, clustered_graph, cluster_name_dict
     original_graph = NXGraph(width, height)
     cluster_list = request.form.getlist("cluster_list")
     merge_number = request.form["merge_number"]
@@ -123,8 +129,12 @@ def merge_cluster():
         original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
     else:
         original_graph.nx_g = g.copy()
-    original_graph.merge_cluster(cluster_list, merge_number)
+    merge_cluster_name = "merge" + str(merge_number)
+    cluster_name_dict[merge_cluster_name] = len(cluster_name_dict.keys())
+    original_graph.merge_cluster(cluster_list, merge_cluster_name)
+    g = original_graph.nx_g
     clustered_graph.nx_g = NXGraph.mark_community(original_graph.nx_g)
+    clustered_graph.modify_cluster_id(cluster_name_dict)
     s = clustered_graph.cal_cluster_voronoi_positions()
     v = Voronoi(s)
     return v.to_json()

@@ -156,14 +156,15 @@ def merge_cluster():
     t_y = 0
     t_size = 0
     for n in clustered_graph.nx_g.nodes():
-        if n not in cluster_list:
-            x.append(pos_dict[n]["x"])
-            y.append(pos_dict[n]["y"])
+        cluster_id = clustered_graph.nx_g.node[n]["cluster"]
+        if cluster_id not in cluster_list:
+            x.append(pos_dict[cluster_id]["x"])
+            y.append(pos_dict[cluster_id]["y"])
             w.append(float(clustered_graph.nx_g.node[n]["size"]))
             cluster.append(clustered_graph.nx_g.node[n]["cluster"])
         else:
-            t_x = pos_dict[n]["x"]
-            t_y = pos_dict[n]["y"]
+            t_x = pos_dict[cluster_id]["x"]
+            t_y = pos_dict[cluster_id]["y"]
             t_size += clustered_graph.nx_g.node[n]["size"]
     x.append(float(t_x))
     y.append(float(t_y))

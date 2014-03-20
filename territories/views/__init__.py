@@ -47,6 +47,7 @@ def select_voronoi():
 @territories.route('/get_polygon')
 def get_aggregate():
     global detection, orig, g, v, name, rate, generator, clustered_graph, cluster_name_dict
+    cluster_name_dict = {}
     name = request.args.get('name', 'random')
     width = int(request.args.get('width', 1000))
     height = int(request.args.get('height', 1000))
@@ -130,6 +131,7 @@ def merge_cluster():
     else:
         original_graph.nx_g = g.copy()
     merge_cluster_name = "merge" + str(merge_number)
+    print len(cluster_name_dict)
     cluster_name_dict[merge_cluster_name] = len(cluster_name_dict.keys())
     original_graph.merge_cluster(cluster_list, merge_cluster_name)
     g = original_graph.nx_g
@@ -137,6 +139,7 @@ def merge_cluster():
     clustered_graph.modify_cluster_id(cluster_name_dict)
     s = clustered_graph.cal_cluster_voronoi_positions()
     v = Voronoi(s)
+    print v.to_json()
     return v.to_json()
 
 

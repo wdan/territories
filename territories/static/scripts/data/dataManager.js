@@ -77,8 +77,9 @@ LG.data.DataManager = function(){
                         _this.merge_info = data;
                         console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
-                        console.log('Merged cluster number:');
-                        console.log(data.length);
+                        for(var i=0;i<data.length;i++){
+                            console.log(data[i]['cluster']);
+                        }
                     }
 
                 });

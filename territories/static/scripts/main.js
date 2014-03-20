@@ -102,8 +102,10 @@ $('#merge_cluster').click(function(){
     var merge = sandBox.getMergeQueue();
     if(merge.length>=2){
         dataManager.sendMergeRequest(merge, merge_number);
+        dataManager.getClusterAttr();
         sandBox.merge_data('voronoi', dataManager.merge_info, merge, orig_cluster_number + merge_number - 1);
         merge_number += 1;
+        sandBox.clearMergeQueue();
     }else{
         console.log('[WARNING] Please select more than two groups.');
     }

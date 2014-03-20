@@ -131,11 +131,8 @@ class NXGraph(AbstractGraph):
             else:
                 self.nx_g.edge[e[0]][e[1]]["visible"] = 0
 
-    def cal_cluster_voronoi_positions(self, src = None, tgt = None):
+    def cal_cluster_voronoi_positions(self, src=None, tgt=None):
         self.cal_mds_positions(src, tgt)
-        from py4j.java_gateway import JavaGateway
-        gateway = JavaGateway(auto_convert=True)
-        java_app = gateway.entry_point
         x = []
         y = []
         w = []
@@ -157,6 +154,12 @@ class NXGraph(AbstractGraph):
             y.append(t_y)
             w.append(t_w)
             cluster.append(self.nx_g.node[n]["cluster"])
+        return self.cal_voronoi_positions(x, y, w, cluster)
+
+    def cal_voronoi_positions(self, x, y, w, cluster):
+        from py4j.java_gateway import JavaGateway
+        gateway = JavaGateway(auto_convert=True)
+        java_app = gateway.entry_point
         res = java_app.calVoronoiTreemap(x, y, w, cluster, self.width, self.height)
         return res
 
@@ -193,9 +196,9 @@ class NXGraph(AbstractGraph):
             self.nx_g.node[key]["cluster"] = res[key]
 
     def merge_cluster(self, cluster_list, merge_cluster_name):
-        cluster_list = map(lambda e: int(e), cluster_list)
         g = self.nx_g
         new_cluster_id = g.graph["cluster-size"]
+        print cluster_list
         for n in g.nodes():
             cluster = g.node[n]["cluster"]
             if cluster in cluster_list:

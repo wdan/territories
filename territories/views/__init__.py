@@ -119,23 +119,44 @@ def get_detailed_info():
     return original_graph.get_detailed_info()
 
 
-@territories.route('/merge_cluster', methods = ["POST"])
+@territories.route('/merge_cluster', methods=["POST"])
 def merge_cluster():
     global g, v, clustered_graph, cluster_name_dict
     original_graph = NXGraph(width, height)
     cluster_list = request.form.getlist("cluster_list")
+    cluster_list = map(lambda e: int(e), cluster_list)
     merge_number = request.form["merge_number"]
     if detection:
         original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
     else:
         original_graph.nx_g = g.copy()
     merge_cluster_name = "merge" + str(merge_number)
-    cluster_name_dict[merge_cluster_name] = len(cluster_name_dict.keys())
+    new_cluster_id = len(cluster_name_dict.keys())
+    cluster_name_dict[merge_cluster_name] = new_cluster_id
     original_graph.merge_cluster(cluster_list, merge_cluster_name)
     g = original_graph.nx_g
     clustered_graph.nx_g = NXGraph.mark_community(original_graph.nx_g)
+    x = [], y = [], w = [], cluster = []
+    t_x = 0
+    t_y = 0
+    t_size = 0
+    for n in clustered_graph.nx_g.nodes():
+        if n not in cluster_list:
+            x.append(clustered_graph.nx_g.node[n]["x"])
+            y.append(clustered_graph.nx_g.node[n]["y"])
+            w.append(clustered_graph.nx_g.node[n]["size"])
+            cluster.append(clustered_graph.nx_g.node[n]["cluster"])
+        else:
+            t_x = clustered_graph.nx_g.node[n]["x"]
+            t_y = clustered_graph.nx_g.node[n]["y"]
+            t_size += clustered_graph.nx_g.node[n]["size"]
+    x.append(t_x)
+    y.append(t_y)
+    w.append(t_size)
+    cluster.append(new_cluster_id)
     clustered_graph.modify_cluster_id(cluster_name_dict)
-    s = clustered_graph.cal_cluster_voronoi_positions()
+    #s = clustered_graph.cal_cluster_voronoi_positions()
+    s = clustered_graph.cal_voronoi_positions(x, y, w, cluster)
     v = Voronoi(s)
     return v.to_json()
 

@@ -44,16 +44,6 @@ LG.control.SandBox = function(){
             }
         },
 
-//        updateAll : {
-//            value : function(){
-//                for(var key in this.module){
-//                    if(this.module.hasOwnProperty(key)){
-//                        this.module[key].update();
-//                    }
-//                }
-//            }
-//        },
-
         remove : {
             value : function(className){
                 if(className in this.module){

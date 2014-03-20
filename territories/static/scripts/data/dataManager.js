@@ -59,22 +59,29 @@ LG.data.DataManager = function(){
             }
         },
 
+        get_poly_pos :{
+            value : function(cluster_list){
+
+            }
+        },
+
         sendMergeRequest : {
             value : function(cluster_list, merge_number){
+                var pos = this.get_poly_pos(cluster_list);
                 var _this = this;
                 var startTime = new Date().getTime();
                 console.log('[LOG] Send Merge Request');
                 console.log('[POST] /merge_cluster?' + cluster_list + '&' + merge_number);
                 $.ajax({
                     url: '/merge_cluster',
-                    data: {'cluster_list':cluster_list,'merge_number':merge_number},
+                    data: {'cluster_list':cluster_list,'merge_number':merge_number, 'pos':pos},
                     traditional: true,
                     dataType: 'json',
                     type: 'POST',
                     async: false,
                     success: function(data){
                         var endTime = new Date().getTime();
-                        _this.merge_info = data;
+                        _this.polygon = data;
                         console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                         for(var i=0;i<data.length;i++){

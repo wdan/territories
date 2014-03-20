@@ -36,7 +36,7 @@ def get_data():
 
 @territories.route('/select_voronoi')
 def select_voronoi():
-    global v
+    global v, clustered_graph
     src = int(request.args.get('src', -1))
     tgt = int(request.args.get('tgt', -1))
     s = clustered_graph.cal_cluster_voronoi_positions(src, tgt)

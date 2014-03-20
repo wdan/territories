@@ -35,12 +35,11 @@ LG.control.SandBox = function(){
             }
         },
 
-        update_data_All : {
-            value : function(){
-                for(var key in this.module){
-                    if(this.module.hasOwnProperty(key)){
-                        this.module[key].update_data();
-                    }
+        update_exchange : {
+            value : function(polygon){
+
+                if('voronoi' in this.module){
+                    this.module['voronoi'].update_data(polygon);
                 }
             }
         },

@@ -158,6 +158,7 @@ LG.visual.Voronoi = function(Visualization){
         update_data : {
 
             value : function(data){
+                console.log('aaa');
                 var _this = this;
                 update_same(this.data, data);
                 this.svg.selectAll('.poly')

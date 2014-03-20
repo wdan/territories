@@ -77,33 +77,33 @@ $('#dataTypeList').change(function(){
     }
 });
 
-//$('#update_cluster').click(function(){
-//    if(sandBox.exchangeCluster.length==2){
-//        dataManager.getNewPosition(sandBox.exchangeCluster);
-//        dataManager.getConstraints();
-////        sandBox.update_data_All();
+$('#update_cluster').click(function(){
+    if(sandBox.exchangeCluster.length==2){
+        dataManager.getNewPosition(sandBox.exchangeCluster);
+        dataManager.getConstraints();
+        sandBox.update_exchange(dataManager.polygon);
 //            voronoi.update_data(dataManager.polygon);
-//        sandBox.clearClusterQueue();
-//    }else{
-//        console.log('[WARNING] Please select two groups.');
-//    }
-//});
+        sandBox.clearClusterQueue();
+    }else{
+        console.log('[WARNING] Please select two groups.');
+    }
+});
 
-//$('#show_cluster').click(function(){
-//    if(sandBox.exchangeCluster.length==2){
-//        sandBox.addDetail();
-//        sandBox.clearClusterQueue();
-//    }else{
-//        console.log('[WARNING] Please select two groups.');
-//    }
-//});
+$('#show_cluster').click(function(){
+    if(sandBox.exchangeCluster.length==2){
+        sandBox.addDetail();
+        sandBox.clearClusterQueue();
+    }else{
+        console.log('[WARNING] Please select two groups.');
+    }
+});
 
 $('#merge_cluster').click(function(){
     var merge = sandBox.getMergeQueue();
     if(merge.length>=2){
         dataManager.sendMergeRequest(merge, merge_number);
         dataManager.getClusterAttr();
-        sandBox.merge_data('voronoi', dataManager.merge_info, merge, orig_cluster_number + merge_number - 1);
+        sandBox.merge_data('voronoi', dataManager.polygon, merge, orig_cluster_number + merge_number - 1);
         merge_number += 1;
         sandBox.clearMergeQueue();
     }else{

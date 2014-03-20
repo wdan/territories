@@ -126,6 +126,18 @@ def merge_cluster():
     original_graph = NXGraph(width, height)
     cluster_list = request.form.getlist("cluster_list")
     cluster_list = map(lambda e: int(e), cluster_list)
+    pos = request.form.getlist("pos")
+    pos_dict = {}
+    print pos
+    for item in pos:
+        row = item.split(",")
+        cluster_id = int(row[0])
+        x = float(row[1])
+        y = float(row[2])
+        pos_dict[cluster_id] = {}
+        pos_dict[cluster_id]["x"] = x
+        pos_dict[cluster_id]["y"] = y
+
     merge_number = request.form["merge_number"]
     if detection:
         original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
@@ -145,13 +157,13 @@ def merge_cluster():
     t_size = 0
     for n in clustered_graph.nx_g.nodes():
         if n not in cluster_list:
-            x.append(float(clustered_graph.nx_g.node[n]["x"]))
-            y.append(float(clustered_graph.nx_g.node[n]["y"]))
+            x.append(pos_dict[n]["x"])
+            y.append(pos_dict[n]["y"])
             w.append(float(clustered_graph.nx_g.node[n]["size"]))
             cluster.append(clustered_graph.nx_g.node[n]["cluster"])
         else:
-            t_x = clustered_graph.nx_g.node[n]["x"]
-            t_y = clustered_graph.nx_g.node[n]["y"]
+            t_x = pos_dict[n]["x"]
+            t_y = pos_dict[n]["y"]
             t_size += clustered_graph.nx_g.node[n]["size"]
     x.append(float(t_x))
     y.append(float(t_y))

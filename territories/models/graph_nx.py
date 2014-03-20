@@ -396,7 +396,10 @@ class NXGraph(AbstractGraph):
                 item["id"] = key
                 item["cluster"] = src_cluster
                 item["out_degree"] = node_dict[key][tgt_cluster]
-                item["in_degree"] = node_dict[key][src_cluster]
+                if src_cluster not in node_dict[key]:
+                    item["in_degree"] = 0
+                else:
+		    item["in_degree"] = node_dict[key][src_cluster]
                 cluster_dict[(src_cluster, tgt_cluster)]["points"].append(item)
         res = []
         for key in cluster_dict.keys():

@@ -59,47 +59,11 @@ LG.data.DataManager = function(){
             }
         },
 
-        get_poly_pos :{
-            value : function(cluster_list){
-                var data = this.polygon;
-                var n = data.length;
-                var m = cluster_list.length;
-                var res = [];
-                var x = 0,y = 0;
-                for(var i=0;i<n;i++){
-                    var p = data[i];
-                    var isFound = false;
-                    for(var j=0;j<m;j++){
-                        if(p['cluster']==cluster_list[j]){
-                            isFound = true;
-                            x += p['mid_x'];
-                            y += p['mid_y'];
-                            break;
-                        }
-                    }
-                    if(!isFound){
-                        res.push([p['cluster'], p['mid_x'], p['mid_y']])
-                    }
-                }
-                x /= m;
-                y /= m;
-                var max = d3.max(data, function(d){
-                    return d['cluster'];
-                });
-
-                res.push([max+1, x, y]);
-                console.debug('Mid position');
-                console.debug(res);
-                return res;
-            }
-        },
-
         sendMergeRequest : {
             value : function(cluster_list, merge_number){
-                var pos = this.get_poly_pos(cluster_list);
+                var pos = get_poly_pos(this.polygon);
                 var _this = this;
                 var startTime = new Date().getTime();
-                console.info('[LOG] Send Merge Request');
                 console.log('[POST] /merge_cluster?' + cluster_list + '&' + merge_number);
                 $.ajax({
                     url: '/merge_cluster',
@@ -111,11 +75,8 @@ LG.data.DataManager = function(){
                     success: function(data){
                         var endTime = new Date().getTime();
                         _this.polygon = data;
-                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.info('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
-                        for(var i=0;i<data.length;i++){
-                            console.log(data[i]['cluster']);
-                        }
                     }
 
                 });
@@ -126,8 +87,7 @@ LG.data.DataManager = function(){
             value : function(){
                 var _this = this;
                 var startTime = new Date().getTime();
-                console.log('[LOG] Get Detailed Info');
-                console.log('[URL] /get_detailed_info');
+                console.info('[URL] /get_detailed_info');
                 $.ajax({
                     url: '/get_detailed_info',
                     dataType: 'json',
@@ -135,9 +95,9 @@ LG.data.DataManager = function(){
                     success: function(data){
                         var endTime = new Date().getTime();
                         _this.detailed_info = data;
-                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.info('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
-                        console.log('[LOG] Calculate maximum degree');
+                        console.debug('[LOG] Calculate maximum degree');
                         _this.max_degree_dict = cal_max_degree(data);
                         var tmp = Object.keys(_this.max_degree_dict)
                             .map(function(key){return _this.max_degree_dict[key];});
@@ -157,7 +117,7 @@ LG.data.DataManager = function(){
                 this.height = height;
                 if (rate == undefined){this.rate = 1.0;}else{this.rate = rate}
 
-                console.log('[URL] /get_polygon?name=' + this.dataName + '&width=' + this.width + '&height='
+                console.info('[URL] /get_polygon?name=' + this.dataName + '&width=' + this.width + '&height='
                     + this.height + '&rate=' + this.rate);
 
                 $.ajax({
@@ -169,7 +129,7 @@ LG.data.DataManager = function(){
                     success: function(data){
                         var endTime = new Date().getTime();
                         _this.polygon = data;
-                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.info('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                     }
                 });
@@ -180,8 +140,7 @@ LG.data.DataManager = function(){
             value : function(exchangeCluster){
                 var _this = this;
                 var startTime = new Date().getTime();
-                console.log('[LOG] Get New Position');
-                console.log('[URL] /select_voronoi?src=' + exchangeCluster[0] + '&tgt=' + exchangeCluster[1]);
+                console.info('[URL] /select_voronoi?src=' + exchangeCluster[0] + '&tgt=' + exchangeCluster[1]);
 
                 $.ajax({
                     url: '/select_voronoi?src=' + exchangeCluster[0] + '&tgt=' + exchangeCluster[1],
@@ -191,7 +150,7 @@ LG.data.DataManager = function(){
                     success: function(data){
                         var endTime = new Date().getTime();
                         _this.polygon = data;
-                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.info('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                     }
                 });
@@ -202,8 +161,7 @@ LG.data.DataManager = function(){
             value : function(){
                 var _this = this;
                 var startTime = new Date().getTime();
-                console.log('[LOG] Get Constraints');
-                console.log('[URL] /get_constraints');
+                console.info('[URL] /get_constraints');
                 $.ajax({
                     url: '/get_constraints',
                     dataType: 'json',
@@ -211,9 +169,9 @@ LG.data.DataManager = function(){
                     success: function(data){
                         var endTime = new Date().getTime();
                         _this.constraints = data;
-                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.info('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
-                        console.log('[LOG] Calculate maximum degree');
+                        console.debug('[LOG] Calculate maximum degree');
                         _this.overview_max_degree_dict = cal_max_degree(data);
                     }
                 });
@@ -224,7 +182,7 @@ LG.data.DataManager = function(){
             value : function(){
                 var _this = this;
                 var startTime = new Date().getTime();
-                console.log('[URL] /get_cluster_attr');
+                console.info('[URL] /get_cluster_attr');
                 $.ajax({
                     url: '/get_cluster_attr',
                     dataType: 'json',
@@ -232,7 +190,7 @@ LG.data.DataManager = function(){
                     success: function(data){
                         var endTime = new Date().getTime();
                         _this.clusterAttr = data;
-                        console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
+                        console.info('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
                     }
                 });
@@ -327,6 +285,20 @@ LG.data.DataManager = function(){
 //        }
 
     });
+
+    var get_poly_pos = function(data){
+
+        var n = data.length;
+        var res = [];
+        for(var i=0;i<n;i++){
+            var p = data[i];
+            res.push([p['cluster'], p['mid_x'], p['mid_y']])
+        }
+
+        console.debug('Mid position');
+        console.debug(res);
+        return res;
+    };
 
     return DataManager;
 }();

@@ -95,14 +95,97 @@ LG.visual.Voronoi = function(Visualization){
             }
         },
 
+        merge_data : {
+            value : function(data, merge_list, add_id){
+                var _this = this;
+                update_add(this.data, data, add_id);
+                this.svg.selectAll('.poly')
+//                    .data(_this.data)
+                    .enter()
+                    .transition()
+                    .duration(1500)
+                    .attr('d', function(d){
+                        var points = expand(d['points'], {x: d['mid_x'], y:d['mid_y']}, _this.scale);
+                        if($.isEmptyObject(_this.quality)){
+                            points = subdivision_k(points, _this.subdivision);
+                        }
+                        else{
+                            points = subdivision_k(points, _this.quality[d['cluster']]);
+                        }
 
+                        var s = 'M ' + points[0].x + ' ' + points[0].y;
+                        for(var j=1;j< points.length;j++){
+                            s += ' L ' + points[j].x + ' ' + points[j].y;
+                        }
+                        s += 'Z';
+                        return s;
+                    });
+
+                update_remove(this.data, merge_list);
+
+                this.svg.selectAll('.poly')
+//                    .data(_this.data)
+                    .exit()
+                    .transition()
+                    .duration(1500)
+                    .attr('d', function(d){
+                        var points = expand(d['points'], {x: d['mid_x'], y:d['mid_y']}, _this.scale);
+                        if($.isEmptyObject(_this.quality)){
+                            points = subdivision_k(points, _this.subdivision);
+                        }
+                        else{
+                            points = subdivision_k(points, _this.quality[d['cluster']]);
+                        }
+
+                        var s = 'M ' + points[0].x + ' ' + points[0].y;
+                        for(var j=1;j< points.length;j++){
+                            s += ' L ' + points[j].x + ' ' + points[j].y;
+                        }
+                        s += 'Z';
+                        return s;
+                    });
+
+//                this.svg.selectAll('circle')
+//                    .transition()
+//                    .duration(1500)
+//                    .attr('cx', function(d) {return d['mid_x'];})
+//                    .attr('cy', function(d) {return d['mid_y'];});
+//
+//                this.svg.selectAll('text')
+//                    .transition()
+//                    .duration(1500)
+//                    .attr("x", function(d){
+//                            return d['mid_x'];
+//                    })
+//                    .attr("y", function(d){
+//                        return d['mid_y'];
+//                    });
+//
+//                this.svg.selectAll('.dash')
+//                    .transition()
+//                    .duration(1500)
+//                    .attr('d', function(d){
+//                        var points = d['points'];
+//                        var mid = {x: d['mid_x'], y:d['mid_y']};
+//                        var s = '';
+//                        var n = points.length;
+//                        for(var i=0;i<n;i++){
+//                            s += 'M ' + mid.x + ' ' + mid.y;
+//                            s += 'L ' + points[i].x + " " + points[i].y;
+//                            s += 'L ' + points[(i+1)%n].x + " " + points[(i+1)%n].y;
+//                        }
+//                        return s;
+//                    });
+            }
+        },
 
         update_data : {
 
-            value : function(){
+            value : function(data){
                 var _this = this;
-                update_helper(this.data, this.dataManager.polygon);
+                update_same(this.data, data);
                 this.svg.selectAll('.poly')
+                    .exit()
                     .transition()
                     .duration(1500)
                     .attr('d', function(d){
@@ -299,11 +382,11 @@ LG.visual.Voronoi = function(Visualization){
                     .attr('class', 'poly')
                     .on('click', function(d){
                         d3.select(this)
-                            .classed('selected', function(){
-                                return !d3.select(this).classed('selected');
+                            .attr('selected', function(){
+                                return !d3.select(this).attr('selected');
                             });
 
-                        if(d3.select(this).classed('selected')){
+                        if(d3.select(this).attr('selected')){
                             _this.sandBox.addMergeQueue(d['cluster']);
                         }else{
                             _this.sandBox.removeMergeQueue(d['cluster']);
@@ -333,7 +416,52 @@ LG.visual.Voronoi = function(Visualization){
         }
     });
 
-    var update_helper = function(data, poly){
+    var update_add = function(data, poly, add_id){
+        console.log('add');
+        console.log(poly);
+        console.log(add_id);
+        var n = poly.length;
+        var dict = {};
+        var add_index;
+        for(var i=0;i<n;i++){
+            var p = poly[i];
+            if(p['cluster'] == add_id) add_index = i;
+            dict[p['cluster']] = i;
+        }
+
+        var m = data.length;
+        for(i=0;i<m;i++){
+            var cluster = data[i]['cluster'];
+            if(cluster in dict){
+                data[i]['height'] = poly[dict[cluster]]['height'];
+                data[i]['width'] = poly[dict[cluster]]['width'];
+                data[i]['mid_x'] = poly[dict[cluster]]['mid_x'];
+                data[i]['mid_y'] = poly[dict[cluster]]['mid_y'];
+                data[i]['points'] = poly[dict[cluster]]['points'];
+                delete dict[cluster];
+            }
+        }
+        console.log(add_index);
+        console.log(poly[add_index]);
+        data.push(poly[add_index]);
+    };
+
+    var update_remove = function(data, merge_list){
+        var n = data.length;
+        var remove_list = [];
+        for(var i=0;i<n;i++){
+            for(var j=0;j<merge_list.length;j++){
+                if(data[i]['cluster'] == merge_list[j])remove_list.push(i);
+            }
+
+        }
+
+        for(i=0;i<remove_list.length;i++){
+            data.splice(remove_list[i]-i, 1);
+        }
+    };
+
+    var update_same = function(data, poly){
 
         var n = poly.length;
         var dict = {};

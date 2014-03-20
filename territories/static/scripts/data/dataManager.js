@@ -69,12 +69,15 @@ LG.data.DataManager = function(){
                     url: '/merge_cluster',
                     data: {'cluster_list':cluster_list,'merge_number':merge_number},
                     traditional: true,
+                    dataType: 'json',
                     type: 'POST',
+                    async: false,
                     success: function(data){
                         var endTime = new Date().getTime();
                         _this.merge_info = data;
                         console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
+                        console.log('Merged cluster number:');
                         console.log(data.length);
                     }
 

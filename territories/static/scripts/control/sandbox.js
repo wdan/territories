@@ -19,6 +19,22 @@ LG.control.SandBox = function(){
             }
         },
 
+        update_data : {
+            value : function(className, data){
+                if(className in this.module){
+                    this.module[className].update_data(data);
+                }
+            }
+        },
+
+        merge_data : {
+            value : function(className, data, merge_list, add_id){
+                if(className in this.module){
+                    this.module[className].merge_data(data, merge_list, add_id);
+                }
+            }
+        },
+
         update_data_All : {
             value : function(){
                 for(var key in this.module){
@@ -29,15 +45,15 @@ LG.control.SandBox = function(){
             }
         },
 
-        updateAll : {
-            value : function(){
-                for(var key in this.module){
-                    if(this.module.hasOwnProperty(key)){
-                        this.module[key].update();
-                    }
-                }
-            }
-        },
+//        updateAll : {
+//            value : function(){
+//                for(var key in this.module){
+//                    if(this.module.hasOwnProperty(key)){
+//                        this.module[key].update();
+//                    }
+//                }
+//            }
+//        },
 
         remove : {
             value : function(className){

@@ -193,14 +193,15 @@ class NXGraph(AbstractGraph):
             self.nx_g.node[key]["cluster"] = res[key]
 
     def merge_cluster(self, cluster_list, merge_num):
+        cluster_list = map(lambda e: int(e), cluster_list)
         g = self.nx_g
         new_cluster_id = g.graph["cluster-size"]
         new_cluster_name = "merge" + str(merge_num)
         for n in g.nodes():
-            cluster = g.node["cluster"]
+            cluster = g.node[n]["cluster"]
             if cluster in cluster_list:
-                cluster["class"] = new_cluster_name
-                cluster["cluster"] = new_cluster_id
+                g.node[n]["class"] = new_cluster_name
+                g.node[n]["cluster"] = new_cluster_id
 
     @classmethod
     def mark_community(cls, g):

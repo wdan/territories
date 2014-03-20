@@ -64,9 +64,9 @@ LG.data.DataManager = function(){
                 var _this = this;
                 var startTime = new Date().getTime();
                 console.log('[LOG] Send Merge Request');
-                console.log('[POST] /send_merge?' + cluster_list + '&' + merge_number);
+                console.log('[POST] /merge_cluster?' + cluster_list + '&' + merge_number);
                 $.ajax({
-                    url: '/send_merge',
+                    url: '/merge_cluster',
                     data: {'cluster_list':cluster_list,'merge_number':merge_number},
                     traditional: true,
                     type: 'POST',
@@ -75,6 +75,7 @@ LG.data.DataManager = function(){
                         _this.merge_info = data;
                         console.log('[LOG] Data Transmission Done. Used ' + (endTime-startTime)/1000 + 's');
                         console.log(data);
+                        console.log(data.length);
                     }
 
                 });

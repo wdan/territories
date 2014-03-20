@@ -117,8 +117,8 @@ def get_detailed_info():
 @territories.route('/merge_cluster', methods = ["POST"])
 def merge_cluster():
     original_graph = NXGraph(width, height)
-    cluster_list = request.form['cluster-list']
-    merge_number = request.form['merge-number']
+    cluster_list = request.form.getlist("cluster_list")
+    merge_number = request.form["merge_number"]
     if detection:
         original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
     else:

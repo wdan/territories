@@ -136,25 +136,28 @@ def merge_cluster():
     cluster_name_dict[merge_cluster_name] = new_cluster_id
     original_graph.merge_cluster(cluster_list, merge_cluster_name)
     g = original_graph.nx_g
-    clustered_graph.nx_g = NXGraph.mark_community(original_graph.nx_g)
-    x = [], y = [], w = [], cluster = []
+    x = []
+    y = []
+    w = []
+    cluster = []
     t_x = 0
     t_y = 0
     t_size = 0
     for n in clustered_graph.nx_g.nodes():
         if n not in cluster_list:
-            x.append(clustered_graph.nx_g.node[n]["x"])
-            y.append(clustered_graph.nx_g.node[n]["y"])
-            w.append(clustered_graph.nx_g.node[n]["size"])
+            x.append(float(clustered_graph.nx_g.node[n]["x"]))
+            y.append(float(clustered_graph.nx_g.node[n]["y"]))
+            w.append(float(clustered_graph.nx_g.node[n]["size"]))
             cluster.append(clustered_graph.nx_g.node[n]["cluster"])
         else:
             t_x = clustered_graph.nx_g.node[n]["x"]
             t_y = clustered_graph.nx_g.node[n]["y"]
             t_size += clustered_graph.nx_g.node[n]["size"]
-    x.append(t_x)
-    y.append(t_y)
-    w.append(t_size)
+    x.append(float(t_x))
+    y.append(float(t_y))
+    w.append(float(t_size))
     cluster.append(new_cluster_id)
+    clustered_graph.nx_g = NXGraph.mark_community(original_graph.nx_g)
     clustered_graph.modify_cluster_id(cluster_name_dict)
     #s = clustered_graph.cal_cluster_voronoi_positions()
     s = clustered_graph.cal_voronoi_positions(x, y, w, cluster)

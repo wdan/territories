@@ -50,9 +50,6 @@ LG.visual.Voronoi = function(Visualization){
                         this.quality[key] = scale(q[key]);
                     }
                 }
-                console.log('quality');
-                console.log(this.quality);
-
             }
         },
 
@@ -91,10 +88,6 @@ LG.visual.Voronoi = function(Visualization){
 
                 folder.add(this, 'draw_label').onFinishChange(function(){
                     _this.label();
-                });
-
-                folder.add(this, 'draw_mid_node').onFinishChange(function(){
-                    _this.middle_node();
                 });
             }
         },
@@ -221,11 +214,6 @@ LG.visual.Voronoi = function(Visualization){
                         }
                         else{
                             points = subdivision_k(points, _this.quality[d['cluster']]);
-                            if(_this.quality[d['cluster']]==undefined){
-                                console.debug(d['cluster']);
-                                console.debug(_this.quality[d['cluster']]);
-                                console.debug('WRRRRRRR!!!!!');
-                            }
                         }
 
                         var s = 'M ' + points[0].x + ' ' + points[0].y;

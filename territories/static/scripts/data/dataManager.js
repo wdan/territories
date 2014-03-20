@@ -64,8 +64,8 @@ LG.data.DataManager = function(){
                 var data = this.polygon;
                 var n = data.length;
                 var m = cluster_list.length;
-                var res = {};
-                var x,y;
+                var res = [];
+                var x = 0,y = 0;
                 for(var i=0;i<n;i++){
                     var p = data[i];
                     var isFound = false;
@@ -78,10 +78,7 @@ LG.data.DataManager = function(){
                         }
                     }
                     if(!isFound){
-                        res[p['cluster']] = {
-                            x: p['mid_x'],
-                            y: p['mid_y']
-                        };
+                        res.push([p['cluster'], p['mid_x'], p['mid_y']])
                     }
                 }
                 x /= m;
@@ -89,10 +86,8 @@ LG.data.DataManager = function(){
                 var max = d3.max(data, function(d){
                     return d['cluster'];
                 });
-                res[max+1] = {
-                    x : x,
-                    y : y
-                };
+
+                res.push([max+1, x, y]);
                 console.debug('Mid position');
                 console.debug(res);
                 return res;
@@ -104,7 +99,7 @@ LG.data.DataManager = function(){
                 var pos = this.get_poly_pos(cluster_list);
                 var _this = this;
                 var startTime = new Date().getTime();
-                console.log('[LOG] Send Merge Request');
+                console.info('[LOG] Send Merge Request');
                 console.log('[POST] /merge_cluster?' + cluster_list + '&' + merge_number);
                 $.ajax({
                     url: '/merge_cluster',

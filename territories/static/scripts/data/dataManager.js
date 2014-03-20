@@ -61,7 +61,41 @@ LG.data.DataManager = function(){
 
         get_poly_pos :{
             value : function(cluster_list){
-
+                var data = this.polygon;
+                var n = data.length;
+                var m = cluster_list.length;
+                var res = {};
+                var x,y;
+                for(var i=0;i<n;i++){
+                    var p = data[i];
+                    var isFound = false;
+                    for(var j=0;j<m;j++){
+                        if(p['cluster']==cluster_list[j]){
+                            isFound = true;
+                            x += p['mid_x'];
+                            y += p['mid_y'];
+                            break;
+                        }
+                    }
+                    if(!isFound){
+                        res[p['cluster']] = {
+                            x: p['mid_x'],
+                            y: p['mid_y']
+                        };
+                    }
+                }
+                x /= m;
+                y /= m;
+                var max = d3.max(data, function(d){
+                    return d['cluster'];
+                });
+                res[max+1] = {
+                    x : x,
+                    y : y
+                };
+                console.debug('Mid position');
+                console.debug(res);
+                return res;
             }
         },
 

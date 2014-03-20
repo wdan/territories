@@ -104,9 +104,9 @@ LG.visual.Voronoi = function(Visualization){
                 var _this = this;
                 this.get_quality();
                 this.clusterName = dataManager.clusterAttr['cluster_name'];
-                update_add(this.data, data, add_id);
+                update_add(_this.data, data, add_id);
                 this.svg.selectAll('.poly')
-                    .data(this.data,function(d){
+                    .data(_this.data,function(d){
                         return d['cluster'];
                     })
                     .enter()
@@ -158,7 +158,6 @@ LG.visual.Voronoi = function(Visualization){
         update_data : {
 
             value : function(data){
-                console.log('aaa');
                 var _this = this;
                 update_same(this.data, data);
                 this.svg.selectAll('.poly')
@@ -266,7 +265,6 @@ LG.visual.Voronoi = function(Visualization){
                         .enter()
                         .append('text')
                         .text(function(d){
-                            console.log(_this.clusterName[d.cluster]);
                             return _this.clusterName[d.cluster];
                         })
                         .attr('text-anchor', 'middle')

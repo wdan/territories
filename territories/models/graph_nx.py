@@ -192,6 +192,16 @@ class NXGraph(AbstractGraph):
         for key in res.keys():
             self.nx_g.node[key]["cluster"] = res[key]
 
+    def merge_cluster(self, cluster_list, merge_num):
+        g = self.nx_g
+        new_cluster_id = g.graph["cluster-size"]
+        new_cluster_name = "merge" + str(merge_num)
+        for n in g.nodes():
+            cluster = g.node["cluster"]
+            if cluster in cluster_list:
+                cluster["class"] = new_cluster_name
+                cluster["cluster"] = new_cluster_id
+
     @classmethod
     def mark_community(cls, g):
         clustered_graph = nx.Graph()
@@ -218,6 +228,8 @@ class NXGraph(AbstractGraph):
             clustered_graph.add_node(cluster_id)
             clustered_graph.node[cluster_id]["size"] = community_size_dict[key]
             clustered_graph.node[cluster_id]["cluster-name"] = key
+
+        g.graph["cluster-size"] = cnt
 
         edges_dict = {}
         inner_edges_dict = {}
@@ -399,7 +411,7 @@ class NXGraph(AbstractGraph):
                 if src_cluster not in node_dict[key]:
                     item["in_degree"] = 0
                 else:
-		    item["in_degree"] = node_dict[key][src_cluster]
+                    item["in_degree"] = node_dict[key][src_cluster]
                 cluster_dict[(src_cluster, tgt_cluster)]["points"].append(item)
         res = []
         for key in cluster_dict.keys():

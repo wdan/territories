@@ -114,6 +114,22 @@ def get_detailed_info():
     return original_graph.get_detailed_info()
 
 
+@territories.route('/merge_cluster', methods = ["POST"])
+def merge_cluster():
+    original_graph = NXGraph(width, height)
+    cluster_list = request.form['cluster-list']
+    merge_number = request.form['merge-number']
+    if detection:
+        original_graph.nx_g = GraphGenerator.convert2nx(GraphImporter.add_attributes(orig, g))
+    else:
+        original_graph.nx_g = g.copy()
+    original_graph.merge_cluster(cluster_list, merge_number)
+    clustered_graph.nx_g = NXGraph.mark_community(original_graph.nx_g)
+    s = clustered_graph.cal_cluster_voronoi_positions()
+    v = Voronoi(s)
+    return v.to_json()
+
+
 @territories.route('/get_cluster_attr')
 def get_cluster_attr():
     res = {}

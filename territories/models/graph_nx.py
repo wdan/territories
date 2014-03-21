@@ -195,9 +195,8 @@ class NXGraph(AbstractGraph):
         for key in res.keys():
             self.nx_g.node[key]["cluster"] = res[key]
 
-    def merge_cluster(self, cluster_list, merge_cluster_name):
+    def merge_cluster(self, cluster_list, merge_cluster_name, new_cluster_id):
         g = self.nx_g
-        new_cluster_id = g.graph["cluster-size"]
         for n in g.nodes():
             cluster = g.node[n]["cluster"]
             if cluster in cluster_list:
@@ -222,6 +221,7 @@ class NXGraph(AbstractGraph):
             if type(community) is dict:
                 c_list = sorted(community.items(), key=lambda (k, v): v)
                 community = c_list[-1][0]
+                g.node[n]["class"] = community
             if community not in community_dict:
                 community_dict[community] = cnt
                 community_size_dict[community] = 0

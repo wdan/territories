@@ -145,7 +145,7 @@ def merge_cluster():
     merge_cluster_name = "merge" + str(merge_number)
     new_cluster_id = len(cluster_name_dict.keys())
     cluster_name_dict[merge_cluster_name] = new_cluster_id
-    original_graph.merge_cluster(cluster_list, merge_cluster_name)
+    original_graph.merge_cluster(cluster_list, merge_cluster_name, new_cluster_id)
     g = original_graph.nx_g.copy()
     x = []
     y = []

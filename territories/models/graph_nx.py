@@ -79,8 +79,11 @@ class NXGraph(AbstractGraph):
         matrix = [[0 for x in xrange(n)] for x in xrange(n)]
         node_dict = {}
         max_weight = 0
+        cluster_dict = {}
         for i, e in enumerate(self.nx_g.nodes()):
             node_dict[e] = i
+            cluster = self.nx_g.node[e]["cluster"]
+            cluster_dict[cluster] = i
         for e in self.nx_g.edges():
             index0 = node_dict[e[0]]
             index1 = node_dict[e[1]]
@@ -92,8 +95,8 @@ class NXGraph(AbstractGraph):
             if m < weight:
                 m = weight
         if src != -1 and src != None:
-            index0 = node_dict[src]
-            index1 = node_dict[tgt]
+            index0 = cluster_dict[src]
+            index1 = cluster_dict[tgt]
             matrix[index0][index1] = max_weight * 1.5
             matrix[index1][index0] = max_weight * 1.5
         for i in xrange(n):

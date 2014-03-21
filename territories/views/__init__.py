@@ -128,7 +128,6 @@ def merge_cluster():
     cluster_list = map(lambda e: int(e), cluster_list)
     pos = request.form.getlist("pos")
     pos_dict = {}
-    print pos
     for item in pos:
         row = item.split(",")
         cluster_id = int(row[0])
@@ -147,7 +146,7 @@ def merge_cluster():
     new_cluster_id = len(cluster_name_dict.keys())
     cluster_name_dict[merge_cluster_name] = new_cluster_id
     original_graph.merge_cluster(cluster_list, merge_cluster_name)
-    g = original_graph.nx_g
+    g = original_graph.nx_g.copy()
     x = []
     y = []
     w = []
@@ -175,7 +174,6 @@ def merge_cluster():
     #s = clustered_graph.cal_cluster_voronoi_positions()
     s = clustered_graph.cal_voronoi_positions(x, y, w, cluster)
     v = Voronoi(s)
-    print v.to_json()
     return v.to_json()
 
 

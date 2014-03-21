@@ -58,24 +58,24 @@ LG.visual.Voronoi = function(Visualization){
                 var _this = this;
                 var folder = this.dat.addFolder(this.className);
                 folder.add(this, 'color_set').onFinishChange(function(){
-                    _this.update();
+                    _this.update_attr('fill');
                 });
 
                 folder.addColor(this, 'fill').onChange(function(){
 
                     if(!_this.color_set){
                         _this.color_scale = d3.scale.linear().domain([0, 1]).range(['white', _this.fill]);
-                        _this.update();
+                        _this.update_attr('fill');
                     }
                 });
 
                 folder.add(this, 'opacity', 0, 1).step(0.05).onFinishChange(function(){
-                    _this.update();
+                    _this.update_attr('opacity');
                 });
 
-                folder.add(this, 'subdivision', 0, 10).step(1).onFinishChange(function(){
-                   _this.update();
-                });
+//                folder.add(this, 'subdivision', 0, 10).step(1).onFinishChange(function(){
+//                   _this.update();
+//                });
 
                 folder.add(this, 'scale', 0, 100).step(5).onFinishChange(function(value){
                     _this.update();
@@ -126,6 +126,13 @@ LG.visual.Voronoi = function(Visualization){
 
                 this.update();
 
+                this.exit();
+            }
+        },
+
+        exit : {
+            value : function(){
+                var _this = this;
                 this.svg.selectAll('.poly')
                     .data(_this.data,function(d){
                         return d['cluster'];
@@ -137,6 +144,16 @@ LG.visual.Voronoi = function(Visualization){
                     .remove();
 
                 this.svg.selectAll('.dash')
+                    .data(_this.data,function(d){
+                        return d['cluster'];
+                    })
+                    .exit()
+                    .transition()
+                    .duration(1000)
+                    .style('fill-opacity', 0)
+                    .remove();
+
+                this.svg.selectAll('text')
                     .data(_this.data,function(d){
                         return d['cluster'];
                     })
@@ -198,6 +215,25 @@ LG.visual.Voronoi = function(Visualization){
                         }
                         return s;
                     });
+            }
+        },
+
+        update_attr : {
+            value : function(attr_name){
+                var _this = this;
+                var poly = this.svg.selectAll('.poly');
+                if(attr_name == 'fill'){
+                    poly.style('fill', function(d){
+                        if (_this.color_set) return _this.classColor[d.cluster];
+                        else{
+                            var c = _this.orig_quality[d['cluster']];
+                            return _this.color_scale(c);
+                        }
+                    });
+                }
+                if(attr_name=='opacity'){
+                    poly.style('fill-opacity', _this.opacity);
+                }
             }
         },
 
@@ -466,4 +502,5 @@ LG.visual.Voronoi = function(Visualization){
     };
 
     return Voronoi;
+
 }(LG.visual.Visualization);

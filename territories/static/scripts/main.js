@@ -46,8 +46,8 @@ $('#dataTypeList').change(function(){
         var voronoi = new LG.visual.Voronoi(gui, overview_svg, dataManager, sandBox, 'voronoi');
         sandBox.add('voronoi', voronoi);
 
-//        var river_node = new LG.visual.RiverNode(gui, overview_svg, dataManager, sandBox, 'river_node');
-//        sandBox.add('river_node', river_node);
+        var river_node = new LG.visual.RiverNode(gui, overview_svg, dataManager, sandBox, 'river_node');
+        sandBox.add('river_node', river_node);
 //
 //        if(detail_svg!=undefined){
 //            d3.select('#detailed_view').select('svg').data([]).exit().remove();
@@ -59,7 +59,7 @@ $('#dataTypeList').change(function(){
 //        sandBox.add('detailed_view', detail);
 
         voronoi.display();
-//        river_node.display();
+        river_node.display();
 
 
 //        var boundary_node = new LG.visual.BoundaryNode(gui, svg, dataManager, 'boundary_node');
@@ -82,7 +82,6 @@ $('#update_cluster').click(function(){
         dataManager.getNewPosition(sandBox.exchangeCluster);
         dataManager.getConstraints();
         sandBox.update_exchange(dataManager.polygon);
-//            voronoi.update_data(dataManager.polygon);
         sandBox.clearClusterQueue();
     }else{
         console.log('[WARNING] Please select two groups.');
@@ -103,9 +102,11 @@ $('#merge_cluster').click(function(){
     if(merge.length>=2){
         dataManager.sendMergeRequest(merge, merge_number);
         dataManager.getClusterAttr();
+        dataManager.getConstraints();
         sandBox.merge_data('voronoi', dataManager.polygon, merge, orig_cluster_number + merge_number - 1);
         merge_number += 1;
         sandBox.clearMergeQueue();
+        sandBox.update_data_module('river_node');
     }else{
         console.log('[WARNING] Please select more than two groups.');
     }

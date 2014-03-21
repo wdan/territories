@@ -19,6 +19,15 @@ LG.control.SandBox = function(){
             }
         },
 
+        update_data_module : {
+            value : function(className){
+                if(className in this.module){
+                    this.module[className].update_data();
+
+                }
+            }
+        },
+
         update_data : {
             value : function(className, data){
                 if(className in this.module){
@@ -40,6 +49,10 @@ LG.control.SandBox = function(){
 
                 if('voronoi' in this.module){
                     this.module['voronoi'].update_data(polygon);
+                }
+
+                if('river_node' in this.module){
+                    this.module['river_node'].update_data();
                 }
             }
         },

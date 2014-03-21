@@ -198,7 +198,6 @@ class NXGraph(AbstractGraph):
     def merge_cluster(self, cluster_list, merge_cluster_name):
         g = self.nx_g
         new_cluster_id = g.graph["cluster-size"]
-        print cluster_list
         for n in g.nodes():
             cluster = g.node[n]["cluster"]
             if cluster in cluster_list:
